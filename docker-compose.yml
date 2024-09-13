@@ -1,0 +1,102 @@
+version: '3.8'
+
+services:
+    # Front-End à déterminer pendant le projet (De préférence NEXT.JS)
+
+    # Strapi pour le Back-End
+
+    # PostgreSQL pour les données relationnelles
+    postgres:
+        image: postgres:latest
+        container_name: postgres-db
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_DB: ${POSTGRES_DB}
+        volumes:
+        - pg_data:/var/lib/postgresql/data
+        networks:
+        - backend
+
+    # MongoDB pour les données non structurées
+    mongo:
+        image: mongo:latest
+        container_name: mongo-db
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+        volumes:
+        - mongo_data:/data/db
+        networks:
+        - backend
+
+    # Redis pour le cache
+    redis:
+        image: redis:latest
+        container_name: redis-cache
+        networks:
+        - backend
+
+    # Apache Solr pour le moteur de recherche
+    solr:
+        image: solr:latest
+        container_name: solr-search
+        ports:
+            - "${SOLR_PORT}:${SOLR_PORT}"
+        volumes:
+            - solr_data:/opt/solr/server/solr
+        networks:
+            - backend
+
+    # Service de sauvegarde PostgreSQL
+    # postgres-backup:
+    # image: postgres:latest
+    # container_name: postgres-backup
+    # environment:
+    #     POSTGRES_USER: ${POSTGRES_USER}
+    #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    #     POSTGRES_DB: ${POSTGRES_DB}
+    # volumes:
+    #     - ./backups:/backup
+    #     - ./backup_postgres.sh:/backup_postgres.sh
+    # entrypoint: ["/bin/bash", "/backup_postgres.sh"]
+    # networks:
+    #     - backup-net
+
+    # # Service de sauvegarde MongoDB
+    # mongo-backup:
+    # image: mongo:latest
+    # container_name: mongo-backup
+    # environment:
+    #     MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+    #     MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    # volumes:
+    #     - ./backups:/backup
+    #     - ./backup_mongo.sh:/backup_mongo.sh
+    # entrypoint: ["/bin/bash", "/backup_mongo.sh"]
+    # networks:
+    #     - backup-net
+
+    # Serveur SFTP
+    # sftp:
+        # image: atmoz/sftp
+        # container_name: sftp-server
+        # ports:
+        #     - "22:22"
+        # volumes:
+        #     - ./backups:/home/${SFTP_USER}/uploads
+        # environment:
+        #     USER: ${SFTP_USER}:${SFTP_PASS}
+        # networks:
+        #   - backup-net
+
+networks:
+    backend:
+        driver: bridge
+    # backup-net:
+    #     driver: bridge
+
+volumes:
+    pg_data:
+    mongo_data:
+    solr_data:
