@@ -1,23 +1,18 @@
-# Étape 1 : Utiliser une image Node.js officielle
-FROM node:20-alpine
+FROM node:18-alpine
+# Installing libvips-dev for sharp Compatibility
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
 
-# Définir le répertoire de travail à l'intérieur du conteneur
-WORKDIR /srv/app
-
-# Copier les fichiers package.json et yarn.lock (ou package-lock.json si tu utilises npm)
+WORKDIR /opt/
 COPY package.json yarn.lock ./
+RUN yarn config set network-timeout 600000 -g && yarn install
 
-# Installer les dépendances
-RUN yarn install --production
-
-# Copier tout le reste du projet Strapi dans le conteneur
+WORKDIR /opt/app
 COPY . .
-
-# Construire l'application Strapi (cela prend en compte les plugins, etc.)
-RUN yarn build
-
-# Exposer le port par défaut de Strapi
+ENV PATH /opt/node_modules/.bin:$PATH
+RUN chown -R node:node /opt/app
+USER node
+RUN ["yarn", "build"]
 EXPOSE 1337
-
-# Démarrer Strapi
-CMD ["yarn", "start"]
+CMD ["yarn", "develop", "--debug"]
