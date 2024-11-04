@@ -11,7 +11,6 @@
     "deploy": "strapi deploy"
   },
   "dependencies": {
-    "@_sh/strapi-plugin-ckeditor": "^4.0.9",
     "@strapi/plugin-cloud": "4.25.15",
     "@strapi/plugin-i18n": "4.25.15",
     "@strapi/plugin-users-permissions": "4.25.15",
@@ -22,6 +21,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
+    "strapi-plugin-navigation": "^2.5.4",
     "strapi-plugin-slugify": "^2.3.8",
     "strapi-plugin-website-builder": "^3.0.1",
     "styled-components": "5.3.3"
