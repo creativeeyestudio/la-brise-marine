@@ -1,18 +1,20 @@
+# Utilise une image Node officielle pour Strapi
 FROM node:18-alpine
-# Installing libvips-dev for sharp Compatibility
-RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev
-ARG NODE_ENV=development
-ENV NODE_ENV=${NODE_ENV}
 
-WORKDIR /opt/
+# Définit le répertoire de travail
+WORKDIR /app
+
+# Copie les fichiers package.json et yarn.lock pour installer les dépendances
 COPY package.json yarn.lock ./
-RUN yarn config set network-timeout 600000 -g && yarn install
 
-WORKDIR /opt/app
+# Installe les dépendances
+RUN yarn install
+
+# Copie tous les fichiers du projet Strapi dans le conteneur
 COPY . .
-ENV PATH /opt/node_modules/.bin:$PATH
-RUN chown -R node:node /opt/app
-USER node
-RUN ["yarn", "build"]
+
+# Expose le port par défaut de Strapi
 EXPOSE 1337
+
+# Démarre Strapi
 CMD ["yarn", "develop", "--debug"]
