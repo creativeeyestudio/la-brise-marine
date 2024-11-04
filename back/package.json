@@ -21,6 +21,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
+    "strapi-plugin-ckeditor-video": "^0.0.5",
     "strapi-plugin-navigation": "^2.5.4",
     "strapi-plugin-slugify": "^2.3.8",
     "strapi-plugin-website-builder": "^3.0.1",

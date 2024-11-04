@@ -475,8 +475,14 @@ export interface ApiPostPost extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
-    content: Attribute.Blocks &
+    content: Attribute.RichText &
       Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor5video.CKEditor5Video',
+        {
+          preset: 'toolbar';
+        }
+      > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -525,13 +531,6 @@ export interface ApiPostPost extends Schema.CollectionType {
         };
       }>;
     publishedAt: Attribute.DateTime;
-    slug: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     title: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
