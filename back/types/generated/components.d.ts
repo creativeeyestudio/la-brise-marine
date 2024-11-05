@@ -1,5 +1,16 @@
 import type { Attribute, Schema } from '@strapi/strapi';
 
+export interface CommonCarousel extends Schema.Component {
+  collectionName: 'components_common_carousels';
+  info: {
+    displayName: 'Carousel';
+    icon: 'picture';
+  };
+  attributes: {
+    Images: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+  };
+}
+
 export interface CommonTextDoubleImage extends Schema.Component {
   collectionName: 'components_common_text_double_images';
   info: {
@@ -16,6 +27,7 @@ export interface CommonTextDoubleImage extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'common.carousel': CommonCarousel;
       'common.text-double-image': CommonTextDoubleImage;
     }
   }

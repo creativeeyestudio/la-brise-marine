@@ -431,7 +431,9 @@ export interface ApiPagePage extends Schema.CollectionType {
     };
   };
   attributes: {
-    content: Attribute.DynamicZone<['common.text-double-image']> &
+    content: Attribute.DynamicZone<
+      ['common.text-double-image', 'common.carousel']
+    > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -485,6 +487,7 @@ export interface ApiPagePage extends Schema.CollectionType {
       }>;
     publishedAt: Attribute.DateTime;
     slug: Attribute.UID<'api::page.page', 'title'> &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
