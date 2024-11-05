@@ -550,12 +550,6 @@ export interface ApiPostPost extends Schema.CollectionType {
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    gallery: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
     intro: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -590,6 +584,13 @@ export interface ApiPostPost extends Schema.CollectionType {
         };
       }>;
     publishedAt: Attribute.DateTime;
+    slug: Attribute.UID<'api::post.post', 'title'> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     title: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
