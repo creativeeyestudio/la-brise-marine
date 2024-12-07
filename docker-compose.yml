@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: strapi
     restart: always
-    env_file: .env  # Charger les variables d'environnement
+    env_file: .env
     environment:
       DATABASE_CLIENT: mysql
       DATABASE_HOST: db
@@ -43,5 +43,27 @@ services:
     ports:
       - '3306:3306'
 
+  matomo:
+    image: matomo:latest
+    container_name: matomo
+    restart: always
+    ports:
+      - '8090:80'
+    environment:
+      MATOMO_DATABASE_HOST: db
+      MATOMO_TABLE_PREFIX: mto_
+      MATOMO_DATABASE_USERNAME: root
+      MATOMO_DATABASE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MATOMO_DATABASE_DBNAME: ${DATABASE_NAME}
+    depends_on:
+      - db
+    volumes:
+      - matomo:/var/www/html:z
+
+networks:
+  ds_net:
+    driver: bridge
+
 volumes:
   db_data:
+  matomo:
