@@ -39,6 +39,7 @@ export interface CommonTextDoubleImage extends Schema.Component {
   };
   attributes: {
     content_text: Attribute.Blocks & Attribute.Required;
+    content_title: Attribute.String;
     image_1: Attribute.Media<'images'> & Attribute.Required;
     image_2: Attribute.Media<'images'> & Attribute.Required;
   };

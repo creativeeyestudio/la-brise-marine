@@ -25,6 +25,9 @@
     "content_text": {
       "type": "blocks",
       "required": true
+    },
+    "content_title": {
+      "type": "string"
     }
   }
 }
