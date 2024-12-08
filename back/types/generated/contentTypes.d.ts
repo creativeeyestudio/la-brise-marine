@@ -431,9 +431,10 @@ export interface ApiPagePage extends Schema.CollectionType {
     };
   };
   attributes: {
-    content: Attribute.DynamicZone<
+    content_page: Attribute.DynamicZone<
       ['common.text-double-image', 'common.carousel']
     > &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

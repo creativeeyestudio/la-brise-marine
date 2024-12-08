@@ -25,7 +25,7 @@
       "type": "string",
       "required": true
     },
-    "content": {
+    "content_page": {
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -35,7 +35,8 @@
       "components": [
         "common.text-double-image",
         "common.carousel"
-      ]
+      ],
+      "required": true
     },
     "slug": {
       "pluginOptions": {

@@ -18,9 +18,9 @@ export interface CommonTextDoubleImage extends Schema.Component {
     displayName: 'text-double-image';
   };
   attributes: {
-    content: Attribute.Blocks & Attribute.Required;
-    image1: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    image2: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    content_text: Attribute.Blocks & Attribute.Required;
+    image_1: Attribute.Media<'images'> & Attribute.Required;
+    image_2: Attribute.Media<'images'> & Attribute.Required;
   };
 }
 
