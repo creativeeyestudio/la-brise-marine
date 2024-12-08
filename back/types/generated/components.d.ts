@@ -11,6 +11,26 @@ export interface CommonCarousel extends Schema.Component {
   };
 }
 
+export interface CommonGallery extends Schema.Component {
+  collectionName: 'components_common_galleries';
+  info: {
+    displayName: 'gallery';
+  };
+  attributes: {
+    images: Attribute.Media<'images', true>;
+  };
+}
+
+export interface CommonParallax extends Schema.Component {
+  collectionName: 'components_common_parallaxes';
+  info: {
+    displayName: 'parallax';
+  };
+  attributes: {
+    image: Attribute.Media<'images'> & Attribute.Required;
+  };
+}
+
 export interface CommonTextDoubleImage extends Schema.Component {
   collectionName: 'components_common_text_double_images';
   info: {
@@ -40,6 +60,8 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'common.carousel': CommonCarousel;
+      'common.gallery': CommonGallery;
+      'common.parallax': CommonParallax;
       'common.text-double-image': CommonTextDoubleImage;
       'common.text-image': CommonTextImage;
     }
