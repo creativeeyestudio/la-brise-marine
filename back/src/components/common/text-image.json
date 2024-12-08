@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_common_text_images",
+  "info": {
+    "displayName": "Text-image"
+  },
+  "options": {},
+  "attributes": {
+    "content_text": {
+      "type": "blocks",
+      "required": true
+    },
+    "content_image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "content_title": {
+      "type": "string"
+    }
+  }
+}

@@ -24,11 +24,24 @@ export interface CommonTextDoubleImage extends Schema.Component {
   };
 }
 
+export interface CommonTextImage extends Schema.Component {
+  collectionName: 'components_common_text_images';
+  info: {
+    displayName: 'Text-image';
+  };
+  attributes: {
+    content_image: Attribute.Media<'images'> & Attribute.Required;
+    content_text: Attribute.Blocks & Attribute.Required;
+    content_title: Attribute.String;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'common.carousel': CommonCarousel;
       'common.text-double-image': CommonTextDoubleImage;
+      'common.text-image': CommonTextImage;
     }
   }
 }
