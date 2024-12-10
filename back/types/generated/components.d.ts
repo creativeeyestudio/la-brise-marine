@@ -80,7 +80,7 @@ export interface CommonTextImage extends Schema.Component {
     icon: 'stack';
   };
   attributes: {
-    content_image: Attribute.Media<'images'>;
+    content_image: Attribute.Media<'images'> & Attribute.Required;
     content_text: Attribute.Blocks;
     content_title: Attribute.String;
   };
