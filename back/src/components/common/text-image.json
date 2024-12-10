@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_common_text_images",
+  "info": {
+    "displayName": "text-image",
+    "icon": "stack",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content_title": {
+      "type": "string"
+    },
+    "content_text": {
+      "type": "blocks"
+    },
+    "content_image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

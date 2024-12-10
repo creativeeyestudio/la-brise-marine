@@ -2,11 +2,12 @@
   "collectionName": "components_common_text_double_images",
   "info": {
     "displayName": "text-double-image",
-    "description": ""
+    "description": "",
+    "icon": "stack"
   },
   "options": {},
   "attributes": {
-    "image_1": {
+    "content_image_1": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -14,7 +15,7 @@
         "images"
       ]
     },
-    "image_2": {
+    "content_image_2": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -24,6 +25,10 @@
     },
     "content_text": {
       "type": "blocks",
+      "required": true
+    },
+    "content_title": {
+      "type": "string",
       "required": true
     }
   }

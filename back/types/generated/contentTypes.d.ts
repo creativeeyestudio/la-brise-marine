@@ -432,7 +432,15 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
   attributes: {
     content_page: Attribute.DynamicZone<
-      ['common.text-double-image', 'common.carousel']
+      [
+        'common.text-double-image',
+        'common.carousel',
+        'common.text-image',
+        'common.parallax',
+        'common.gallery',
+        'common.heroscreen',
+        'common.html-content'
+      ]
     > &
       Attribute.Required &
       Attribute.SetPluginOptions<{
@@ -487,6 +495,12 @@ export interface ApiPagePage extends Schema.CollectionType {
         };
       }>;
     publishedAt: Attribute.DateTime;
+    secondary_page: Attribute.Boolean &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     slug: Attribute.UID<'api::page.page', 'title'> &
       Attribute.Required &
       Attribute.SetPluginOptions<{
