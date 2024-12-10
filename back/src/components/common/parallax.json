@@ -1,17 +1,19 @@
 {
   "collectionName": "components_common_parallaxes",
   "info": {
-    "displayName": "parallax"
+    "displayName": "parallax",
+    "icon": "picture",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

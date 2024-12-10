@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_common_html_contents",
+  "info": {
+    "displayName": "html-content",
+    "icon": "code"
+  },
+  "options": {},
+  "attributes": {
+    "code_html": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

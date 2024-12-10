@@ -34,7 +34,12 @@
       "type": "dynamiczone",
       "components": [
         "common.text-double-image",
-        "common.carousel"
+        "common.carousel",
+        "common.text-image",
+        "common.parallax",
+        "common.gallery",
+        "common.heroscreen",
+        "common.html-content"
       ],
       "required": true
     },
@@ -114,6 +119,14 @@
         "website",
         "product"
       ]
+    },
+    "secondary_page": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "boolean"
     }
   }
 }
