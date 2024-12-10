@@ -51,8 +51,8 @@ export interface CommonTextImage extends Schema.Component {
     displayName: 'Text-image';
   };
   attributes: {
-    content_image: Attribute.Media<'images'> & Attribute.Required;
-    content_text: Attribute.Blocks & Attribute.Required;
+    content_image: Attribute.Media<'images'>;
+    content_text: Attribute.Blocks;
     content_title: Attribute.String;
   };
 }

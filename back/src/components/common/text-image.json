@@ -5,20 +5,18 @@
   },
   "options": {},
   "attributes": {
+    "content_title": {
+      "type": "string"
+    },
     "content_text": {
-      "type": "blocks",
-      "required": true
+      "type": "blocks"
     },
     "content_image": {
       "allowedTypes": [
         "images"
       ],
       "type": "media",
-      "multiple": false,
-      "required": true
-    },
-    "content_title": {
-      "type": "string"
+      "multiple": false
     }
   }
 }
