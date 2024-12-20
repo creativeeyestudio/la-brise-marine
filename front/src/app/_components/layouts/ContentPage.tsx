@@ -5,11 +5,14 @@ import React from 'react';
 
 const ContentPage: React.FC = () => {
     return(
-        <main>
-            <Parallax />
-            <TextImage />
-            <TextDoubleImage />
-        </main>
+        <>
+            <main>
+                <Parallax />
+                <TextImage />
+                <TextDoubleImage />
+            </main>
+        </>
+        
     );
 }
 
