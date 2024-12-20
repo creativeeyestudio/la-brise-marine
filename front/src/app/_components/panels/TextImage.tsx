@@ -1,6 +1,7 @@
 import Image from 'next/image';
+import React from 'react';
 
-export default function TextImage() {
+const TextImage: React.FC = () => {
     return(
         <section className="text-img">
 
@@ -20,3 +21,5 @@ export default function TextImage() {
         </section>
     )
 }
+
+export default TextImage;

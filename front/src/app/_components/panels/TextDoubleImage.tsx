@@ -1,6 +1,7 @@
 import Image from 'next/image';
+import React from 'react';
 
-export default function TextDoubleImage() {
+const TextDoubleImage: React.FC = () => {
     return(
         <section className="text-double-img">
             <div className="text-double-img_content">
@@ -26,3 +27,5 @@ export default function TextDoubleImage() {
         </section>
     )
 }
+
+export default TextDoubleImage;

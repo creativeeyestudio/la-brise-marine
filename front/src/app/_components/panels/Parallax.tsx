@@ -1,6 +1,7 @@
 import Image from "next/image";
+import React from 'react';
 
-export default function Parallax() {
+const Parallax: React.FC = () => {
     return(
         <figure className="parallax">
             <Image
@@ -12,3 +13,5 @@ export default function Parallax() {
         </figure>
     )
 }
+
+export default Parallax;

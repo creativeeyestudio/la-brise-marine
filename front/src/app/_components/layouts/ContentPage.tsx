@@ -1,8 +1,9 @@
 import Parallax from '../panels/Parallax';
 import TextImage from '../panels/TextImage';
 import TextDoubleImage from '../panels/TextDoubleImage';
+import React from 'react';
 
-export default function ContentPage() {
+const ContentPage: React.FC = () => {
     return(
         <main>
             <Parallax />
@@ -11,3 +12,5 @@ export default function ContentPage() {
         </main>
     );
 }
+
+export default ContentPage;
