@@ -1,15 +1,22 @@
 import Image from "next/image";
 import React from 'react';
 
-const Parallax: React.FC = () => {
+interface ParallaxProps {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+}
+
+const Parallax: React.FC<ParallaxProps> = (image: ParallaxProps) => {
     return(
         <figure className="parallax">
             <Image
                 className="parallax_img"
-                src="/profile.png"
-                width={500}
-                height={500}
-                alt="Picture of the author"/>
+                src={image.src}
+                width={image.width}
+                height={image.height}
+                alt={image.alt}/>
         </figure>
     )
 }
