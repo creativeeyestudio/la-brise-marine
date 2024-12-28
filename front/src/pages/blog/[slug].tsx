@@ -14,6 +14,7 @@ const PostPage: React.FC = () => {
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [language, setLanguage] = useState<string>("en");
 
   useEffect(() => {
     if (slug && typeof slug === "string") {
@@ -30,6 +31,9 @@ const PostPage: React.FC = () => {
       };
 
       fetchPost();
+
+      const userLanguage = document.documentElement.lang || "en";
+      setLanguage(userLanguage);
     }
   }, [slug]); // Exécute l'effet uniquement lorsque `slug` change
 
@@ -67,7 +71,7 @@ const PostPage: React.FC = () => {
           <h1>{post.attributes.title}</h1>
           <p>
             Publié le :{" "}
-            {new Date(post.attributes.publishedAt).toLocaleDateString()}
+            {new Date(post.attributes.publishedAt).toLocaleDateString(language)}
           </p>
           <div dangerouslySetInnerHTML={{ __html: content }} />
         </article>

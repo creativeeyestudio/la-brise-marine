@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 import Footer from "@/app/_components/layouts/Footer";
@@ -6,11 +6,17 @@ import Header from "@/app/_components/layouts/Header";
 import { getAllPosts } from "@/pages/api/posts";
 
 interface PostsProps {
-  locale: string;
   posts: Post[];
 }
 
-const Posts: React.FC<PostsProps> = ({ locale, posts }) => {
+const Posts: React.FC<PostsProps> = ({ posts }) => {
+  const [language, setLanguage] = useState<string>('en');
+  useEffect(() => {
+    // Récupérer la langue depuis l'en-tête X-User-Language
+    const userLanguage = document.documentElement.lang || 'en';
+    setLanguage(userLanguage);
+  }, []);
+
   return (
     <>
       <Header />
@@ -21,9 +27,7 @@ const Posts: React.FC<PostsProps> = ({ locale, posts }) => {
             <article className="blog__post" key={post.id}>
               <h2 className="blog__post__name">{post.attributes.title}</h2>
               <p className="blog__post__date">
-                {new Date(post.attributes.publishedAt).toLocaleDateString(
-                  locale
-                )}
+                {new Date(post.attributes.publishedAt).toLocaleDateString(language)}
               </p>
               <Link
                 href={`blog/${post.attributes.slug}`}
