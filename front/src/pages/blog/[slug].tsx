@@ -8,6 +8,7 @@ import Post from "@/interfaces/post";
 import DOMPurify from "dompurify";
 import Image from "next/image";
 import nextConfig from "../../../next.config";
+import Head from "next/head";
 
 const PostPage: React.FC = () => {
   const router = useRouter();
@@ -74,6 +75,18 @@ const PostPage: React.FC = () => {
   // Rendu final une fois que les données sont récupérées
   return (
     <>
+      <Head>
+        <title>{post.attributes.meta_title}</title>
+        <meta name="description" content={post.attributes.meta_description} />
+        <meta property="og:title" content={post.attributes.meta_title} />
+        <meta property="og:description" content={post.attributes.meta_description} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`${window.location.href}`} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:alt" content={imageAlt} />
+        <meta property="og:locale" content={language} />
+        <meta property="og:site_name" content="Nom de votre site" />
+      </Head>
       <Header />
       <main>
         <p>

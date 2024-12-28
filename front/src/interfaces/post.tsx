@@ -6,6 +6,8 @@ interface Post {
     content: string;
     publishedAt: Date;
     slug: string;
+    meta_title: string;
+    meta_description: string;
     main_image: {
       data: {
         attributes: {

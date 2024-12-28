@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
   },
   trailingSlash: true,
 
+  // Images
   images: {
     remotePatterns: [
       {
