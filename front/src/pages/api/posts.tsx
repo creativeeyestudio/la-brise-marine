@@ -1,6 +1,6 @@
 import nextConfig from "../../../next.config";
 
-const apiUrl = nextConfig.api_url + '/posts';
+const apiUrl = nextConfig.api_url + '/api/posts/?populate=*';
 
 export async function getAllPosts() {
   const res = await fetch(apiUrl, {
@@ -21,7 +21,7 @@ export async function getAllPosts() {
 }
 
 export async function getSinglePost(slug: string | string[] | undefined) {
-  const res = await fetch(apiUrl + "/?populate=*&filters[slug][$eq]=" + slug, {
+  const res = await fetch(apiUrl + "&filters[slug][$eq]=" + slug, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${nextConfig.api_token}`,

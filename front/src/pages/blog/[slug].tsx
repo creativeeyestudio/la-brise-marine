@@ -6,10 +6,13 @@ import React, { useEffect, useState } from "react";
 import { getSinglePost } from "../api/posts";
 import Post from "@/interfaces/post";
 import DOMPurify from "dompurify";
+import Image from "next/image";
+import nextConfig from "../../../next.config";
 
 const PostPage: React.FC = () => {
   const router = useRouter();
   const { slug } = router.query;
+  const api = nextConfig.api_url;
 
   const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
@@ -20,6 +23,7 @@ const PostPage: React.FC = () => {
     if (slug && typeof slug === "string") {
       const fetchPost = async () => {
         try {
+          setLoading(true);
           const response = await getSinglePost(slug);
           setPost(response.data[0]);
         } catch (err) {
@@ -57,6 +61,14 @@ const PostPage: React.FC = () => {
     return <p>Données de l&apos;article non disponibles.</p>;
   }
 
+  // Assurez-vous que les données d'image existent
+  const imageUrl = post.attributes.main_image?.data?.attributes?.url
+    ? api + post.attributes.main_image.data.attributes.url
+    : null;
+  const imageAlt = post.attributes.main_image?.data?.attributes?.alternativeText || post.attributes.title;
+  const imageWidth = post.attributes.main_image?.data?.attributes?.width;
+  const imageHeight = post.attributes.main_image?.data?.attributes?.height;
+
   const content = DOMPurify.sanitize(post.attributes.content);
 
   // Rendu final une fois que les données sont récupérées
@@ -68,6 +80,15 @@ const PostPage: React.FC = () => {
           <Link href="/blog">Retour à la liste des articles</Link>
         </p>
         <article>
+          <Image
+            src={imageUrl}
+            alt={imageAlt}
+            width={imageWidth}
+            height={imageHeight}
+            layout="responsive"
+            sizes="(max-width: 768px) 100vw"
+            priority
+          />
           <h1>{post.attributes.title}</h1>
           <p>
             Publié le :{" "}

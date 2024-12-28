@@ -4,6 +4,8 @@ import Link from "next/link";
 import Footer from "@/app/_components/layouts/Footer";
 import Header from "@/app/_components/layouts/Header";
 import { getAllPosts } from "@/pages/api/posts";
+import Image from "next/image";
+import nextConfig from "../../../next.config";
 
 interface PostsProps {
   posts: Post[];
@@ -11,6 +13,8 @@ interface PostsProps {
 
 const Posts: React.FC<PostsProps> = ({ posts }) => {
   const [language, setLanguage] = useState<string>('en');
+  const api = nextConfig.api_url;
+
   useEffect(() => {
     // Récupérer la langue depuis l'en-tête X-User-Language
     const userLanguage = document.documentElement.lang || 'en';
@@ -25,6 +29,17 @@ const Posts: React.FC<PostsProps> = ({ posts }) => {
         <div className="blog__content">
           {posts.map((post: Post) => (
             <article className="blog__post" key={post.id}>
+              <figure style={{ aspectRatio: '1/1', position: 'relative' }}>
+                <Image 
+                  src={api + post.attributes.main_image.data.attributes.url} 
+                  alt={post.attributes.main_image.data.attributes.alternativeText}
+                  layout="fill"
+                  objectFit="cover"
+                  objectPosition="center"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </figure>
+
               <h2 className="blog__post__name">{post.attributes.title}</h2>
               <p className="blog__post__date">
                 {new Date(post.attributes.publishedAt).toLocaleDateString(language)}
