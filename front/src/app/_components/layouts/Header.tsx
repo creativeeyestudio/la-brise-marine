@@ -5,7 +5,7 @@ const Header: React.FC = () => {
     return(
         <>
         <header></header>
-        <Navigation imageNav={ true } />
+        <Navigation imageNav={ false } />
         </>
     );
 }
