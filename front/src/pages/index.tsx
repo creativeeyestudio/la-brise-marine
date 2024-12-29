@@ -9,6 +9,7 @@ import Heroscreen from "@/app/_components/panels/Heroscreen";
 import TextDoubleImage from "@/app/_components/panels/TextDoubleImage";
 import Parallax from "@/app/_components/panels/Parallax";
 import TextImage from "@/app/_components/panels/TextImage";
+import HtmlContent from "@/app/_components/panels/HtmlContent";
 
 const PageHome: React.FC = () => {
   const [page, setPage] = useState<PageProps | null>(null);
@@ -92,6 +93,8 @@ const PageHome: React.FC = () => {
             case "common.parallax":
               return <Parallax image={content.image} />;
               break;
+            case "common.html-content":
+              return <HtmlContent htmlContent={content.code_html[0].children[0].text} />
             default:
               return <></>;
               break;

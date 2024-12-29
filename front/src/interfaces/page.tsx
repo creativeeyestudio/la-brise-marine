@@ -17,6 +17,7 @@ interface ContentPage {
   image: ImageProps;
   image1: ImageProps;
   image2: ImageProps;
+  code_html: TextBlock[];
 }
 
 export interface TextBlock {
