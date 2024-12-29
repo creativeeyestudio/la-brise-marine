@@ -4,12 +4,7 @@ import React from 'react';
 interface TextImageProps {
     title: string,
     content: string,
-    image: {
-        src: string,
-        width: number,
-        height: number,
-        alt: string
-    }
+    image: ImageProps
 }
 
 const TextImage: React.FC<TextImageProps> = (content: TextImageProps) => {
@@ -25,10 +20,10 @@ const TextImage: React.FC<TextImageProps> = (content: TextImageProps) => {
             
             <figure className="text-img_img">
                 <Image
-                    src={content.image.src}
-                    width={content.image.width}
-                    height={content.image.height}
-                    alt={content.image.alt} />
+                    src={content.image.data.attributes.url}
+                    width={content.image.data.attributes.width}
+                    height={content.image.data.attributes.height}
+                    alt={content.image.data.attributes.alternativeText} />
             </figure>
 
         </section>

@@ -65,10 +65,10 @@ export interface CommonTextDoubleImage extends Schema.Component {
     icon: 'stack';
   };
   attributes: {
-    content_image_1: Attribute.Media<'images'> & Attribute.Required;
-    content_image_2: Attribute.Media<'images'> & Attribute.Required;
-    content_text: Attribute.Blocks & Attribute.Required;
-    content_title: Attribute.String & Attribute.Required;
+    image1: Attribute.Media<'images'> & Attribute.Required;
+    image2: Attribute.Media<'images'> & Attribute.Required;
+    text: Attribute.Blocks & Attribute.Required;
+    title: Attribute.String & Attribute.Required;
   };
 }
 

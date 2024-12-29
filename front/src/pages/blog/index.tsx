@@ -7,14 +7,15 @@ import { getAllPosts } from "@/pages/api/posts";
 import Image from "next/image";
 import nextConfig from "../../../next.config";
 import Head from "next/head";
+import PostProps from "@/interfaces/post";
 
-interface PostsProps {
-  posts: Post[];
+interface PostsListProps {
+  posts: PostProps[];
 }
 
-const Posts: React.FC<PostsProps> = ({ posts }) => {
+const Posts: React.FC<PostsListProps> = ({ posts }) => {
   const [language, setLanguage] = useState<string>('en');
-  const api = nextConfig.api_url;
+  const api = nextConfig.apiUrl;
 
   useEffect(() => {
     // Récupérer la langue depuis l'en-tête X-User-Language
@@ -40,7 +41,7 @@ const Posts: React.FC<PostsProps> = ({ posts }) => {
       <main>
         <h1>Nos actualités</h1>
         <div className="blog__content">
-          {posts.map((post: Post) => (
+          {posts.map((post: PostProps) => (
             <article className="blog__post" key={post.id}>
               <figure style={{ aspectRatio: '1/1', position: 'relative' }}>
                 <Image 

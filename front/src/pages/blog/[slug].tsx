@@ -4,18 +4,18 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getSinglePost } from "../api/posts";
-import Post from "@/interfaces/post";
 import DOMPurify from "dompurify";
 import Image from "next/image";
 import nextConfig from "../../../next.config";
 import Head from "next/head";
+import PostProps from "@/interfaces/post";
 
 const PostPage: React.FC = () => {
   const router = useRouter();
   const { slug } = router.query;
-  const api = nextConfig.api_url;
+  const api = nextConfig.apiUrl;
 
-  const [post, setPost] = useState<Post | null>(null);
+  const [post, setPost] = useState<PostProps | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [language, setLanguage] = useState<string>("en");
@@ -65,7 +65,7 @@ const PostPage: React.FC = () => {
   // Assurez-vous que les données d'image existent
   const imageUrl = post.attributes.main_image?.data?.attributes?.url
     ? api + post.attributes.main_image.data.attributes.url
-    : null;
+    : undefined;
   const imageAlt = post.attributes.main_image?.data?.attributes?.alternativeText || post.attributes.title;
   const imageWidth = post.attributes.main_image?.data?.attributes?.width;
   const imageHeight = post.attributes.main_image?.data?.attributes?.height;
@@ -94,7 +94,7 @@ const PostPage: React.FC = () => {
         </p>
         <article>
           <Image
-            src={imageUrl}
+            src={imageUrl ?? "/"}
             alt={imageAlt}
             width={imageWidth}
             height={imageHeight}

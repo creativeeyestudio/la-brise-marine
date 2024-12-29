@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-interface Post {
+interface PostProps {
   id: number;
   attributes: {
     title: string;
@@ -8,35 +7,8 @@ interface Post {
     slug: string;
     meta_title: string;
     meta_description: string;
-    main_image: {
-      data: {
-        attributes: {
-          alternativeText: string;
-          mime: string;
-          url: string;
-          width: number;
-          height: number;
-          formats: {
-            thumbnail: {
-              width: number;
-              height: number;
-            }
-            small: {
-              width: number;
-              height: number;
-            }
-            medium: {
-              width: number;
-              height: number;
-            }
-            large: {
-              width: number;
-              height: number;
-            }
-          }
-          
-        }
-      }
-    }
+    main_image: ImageProps;
   };
 }
+
+export default PostProps
