@@ -6,6 +6,7 @@ import Header from "@/app/_components/layouts/Header";
 import { getAllPosts } from "@/pages/api/posts";
 import Image from "next/image";
 import nextConfig from "../../../next.config";
+import Head from "next/head";
 
 interface PostsProps {
   posts: Post[];
@@ -23,6 +24,18 @@ const Posts: React.FC<PostsProps> = ({ posts }) => {
 
   return (
     <>
+      <Head>
+        <title>{"Articles"}</title>
+        <meta name="description" content={"Nos articles"} />
+        <meta property="og:title" content={"Articles"} />
+        <meta property="og:description" content={"Nos articles"} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${window.location.href}`} />
+        {/* <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:alt" content={imageAlt} /> */}
+        <meta property="og:locale" content={language} />
+        <meta property="og:site_name" content="Nom de votre site" />
+      </Head>
       <Header />
       <main>
         <h1>Nos actualités</h1>
