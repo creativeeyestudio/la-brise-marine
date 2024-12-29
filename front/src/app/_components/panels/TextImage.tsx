@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+import nextConfig from '../../../../next.config';
 
 interface TextImageProps {
     title: string,
@@ -20,7 +21,7 @@ const TextImage: React.FC<TextImageProps> = (content: TextImageProps) => {
             
             <figure className="text-img_img">
                 <Image
-                    src={content.image.data.attributes.url}
+                    src={nextConfig.apiUrl + content.image.data.attributes.url}
                     width={content.image.data.attributes.width}
                     height={content.image.data.attributes.height}
                     alt={content.image.data.attributes.alternativeText} />

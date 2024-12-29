@@ -3,7 +3,8 @@ import type { Attribute, Schema } from '@strapi/strapi';
 export interface CommonCarousel extends Schema.Component {
   collectionName: 'components_common_carousels';
   info: {
-    displayName: 'Carousel';
+    description: '';
+    displayName: 'carousel';
     icon: 'picture';
   };
   attributes: {
@@ -80,9 +81,9 @@ export interface CommonTextImage extends Schema.Component {
     icon: 'stack';
   };
   attributes: {
-    content_image: Attribute.Media<'images'> & Attribute.Required;
-    content_text: Attribute.Blocks;
-    content_title: Attribute.String;
+    image: Attribute.Media<'images'> & Attribute.Required;
+    text: Attribute.Blocks;
+    title: Attribute.String;
   };
 }
 

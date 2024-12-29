@@ -12,7 +12,7 @@ const Heroscreen: React.FC<HeroscreenProps> = (content: HeroscreenProps) => {
       <>
         <figure className="hero">
           <Image
-            src={nextConfig.apiUrl +  content.image.data.attributes.url}
+            src={nextConfig.apiUrl + content.image.data.attributes.url}
             alt={content.image.data.attributes.alternativeText}
             fill={true}
             objectFit="cover"

@@ -8,6 +8,7 @@ import Head from "next/head";
 import Heroscreen from "@/app/_components/panels/Heroscreen";
 import TextDoubleImage from "@/app/_components/panels/TextDoubleImage";
 import Parallax from "@/app/_components/panels/Parallax";
+import TextImage from "@/app/_components/panels/TextImage";
 
 const PageHome: React.FC = () => {
   const [page, setPage] = useState<PageProps | null>(null);
@@ -53,37 +54,50 @@ const PageHome: React.FC = () => {
     );
   }
 
-  const pageBlock = page.attributes.content_page
+  const pageBlock = page.attributes.content_page;
 
   return (
     <>
       <Head>
-		<title>{page.attributes.meta_title}</title>
-		<meta name="description" content={page.attributes.meta_desc} />
-	  </Head>
+        <title>{page.attributes.meta_title}</title>
+        <meta name="description" content={page.attributes.meta_desc} />
+      </Head>
       <Header />
       <main>
-		{pageBlock.map((content) => {
-			console.log(content);
-			switch (content.__component) {
-				case 'common.heroscreen':
-					return <Heroscreen image={content.image} />
-					break;
-				case 'common.text-double-image':
-					return <TextDoubleImage 
-						title={content.title} 
-						content={content.text[0].children[0].text} 
-						image1={content.image1} 
-						image2={content.image2} />
-					break;
-				case 'common.parallax':
-					return <Parallax img={content.image}  />
-				default:
-					return(<></>)
-					break;
-			}
-		})}
-	  </main>
+        {pageBlock.map((content) => {
+          console.log(content);
+          switch (content.__component) {
+            case "common.heroscreen":
+              return <Heroscreen image={content.image} />;
+              break;
+            case "common.text-image":
+              return (
+                <TextImage
+                  title={content.title}
+                  content={content.text[0].children[0].text}
+                  image={content.image}
+                />
+              );
+              break;
+            case "common.text-double-image":
+              return (
+                <TextDoubleImage
+                  title={content.title}
+                  content={content.text[0].children[0].text}
+                  image1={content.image1}
+                  image2={content.image2}
+                />
+              );
+              break;
+            case "common.parallax":
+              return <Parallax image={content.image} />;
+              break;
+            default:
+              return <></>;
+              break;
+          }
+        })}
+      </main>
       <Footer />
     </>
   );

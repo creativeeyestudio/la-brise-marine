@@ -3,7 +3,7 @@ import React from 'react';
 import nextConfig from "../../../../next.config";
 
 interface ParallaxProps {
-    img: ImageProps
+    image: ImageProps
 }
 
 const Parallax: React.FC<ParallaxProps> = (content: ParallaxProps) => {
@@ -11,8 +11,8 @@ const Parallax: React.FC<ParallaxProps> = (content: ParallaxProps) => {
         <figure className="parallax">
             <Image
                 className="parallax_img"
-                src={nextConfig.apiUrl + content.img.data.attributes.url}
-                alt={content.img.data.attributes.alternativeText}
+                src={nextConfig.apiUrl + content.image.data.attributes.url}
+                alt={content.image.data.attributes.alternativeText}
                 fill={true}/>
         </figure>
     )
