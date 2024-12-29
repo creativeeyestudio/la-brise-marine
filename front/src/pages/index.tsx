@@ -10,6 +10,7 @@ import TextDoubleImage from "@/app/_components/panels/TextDoubleImage";
 import Parallax from "@/app/_components/panels/Parallax";
 import TextImage from "@/app/_components/panels/TextImage";
 import HtmlContent from "@/app/_components/panels/HtmlContent";
+import Gallery from "@/app/_components/panels/Gallery";
 
 const PageHome: React.FC = () => {
   const [page, setPage] = useState<PageProps | null>(null);
@@ -66,11 +67,9 @@ const PageHome: React.FC = () => {
       <Header />
       <main>
         {blocks.map((block) => {
-          console.log(block);
           switch (block.__component) {
             case "common.heroscreen":
               return <Heroscreen image={block.image} />;
-              break;
             case "common.text-image":
               return (
                 <TextImage
@@ -79,7 +78,6 @@ const PageHome: React.FC = () => {
                   image={block.image}
                 />
               );
-              break;
             case "common.text-double-image":
               return (
                 <TextDoubleImage
@@ -89,20 +87,19 @@ const PageHome: React.FC = () => {
                   image2={block.image2}
                 />
               );
-              break;
             case "common.parallax":
               return <Parallax image={block.image} />;
-              break;
+            case "common.gallery":
+              console.log(block.images.data);
+              return <Gallery data={block.images.data} />
             case "common.html-content":
               return (
                 <HtmlContent
                   htmlContent={block.code_html[0].children[0].text}
                 />
               );
-              break;
             default:
               return <></>;
-              break;
           }
         })}
       </main>
