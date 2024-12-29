@@ -7,6 +7,7 @@ import PageProps from "@/interfaces/page";
 import Head from "next/head";
 import Heroscreen from "@/app/_components/panels/Heroscreen";
 import TextDoubleImage from "@/app/_components/panels/TextDoubleImage";
+import Parallax from "@/app/_components/panels/Parallax";
 
 const PageHome: React.FC = () => {
   const [page, setPage] = useState<PageProps | null>(null);
@@ -75,6 +76,8 @@ const PageHome: React.FC = () => {
 						image1={content.image1} 
 						image2={content.image2} />
 					break;
+				case 'common.parallax':
+					return <Parallax img={content.image}  />
 				default:
 					return(<></>)
 					break;
