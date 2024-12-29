@@ -55,7 +55,7 @@ const PageHome: React.FC = () => {
     );
   }
 
-  const pageBlock = page.attributes.content_page;
+  const blocks = page.attributes.content_page;
 
   return (
     <>
@@ -65,36 +65,41 @@ const PageHome: React.FC = () => {
       </Head>
       <Header />
       <main>
-        {pageBlock.map((content) => {
-          console.log(content);
-          switch (content.__component) {
+        {blocks.map((block) => {
+          console.log(block);
+          switch (block.__component) {
             case "common.heroscreen":
-              return <Heroscreen image={content.image} />;
+              return <Heroscreen image={block.image} />;
               break;
             case "common.text-image":
               return (
                 <TextImage
-                  title={content.title}
-                  content={content.text[0].children[0].text}
-                  image={content.image}
+                  title={block.title}
+                  content={block.text[0].children[0].text}
+                  image={block.image}
                 />
               );
               break;
             case "common.text-double-image":
               return (
                 <TextDoubleImage
-                  title={content.title}
-                  content={content.text[0].children[0].text}
-                  image1={content.image1}
-                  image2={content.image2}
+                  title={block.title}
+                  content={block.text[0].children[0].text}
+                  image1={block.image1}
+                  image2={block.image2}
                 />
               );
               break;
             case "common.parallax":
-              return <Parallax image={content.image} />;
+              return <Parallax image={block.image} />;
               break;
             case "common.html-content":
-              return <HtmlContent htmlContent={content.code_html[0].children[0].text} />
+              return (
+                <HtmlContent
+                  htmlContent={block.code_html[0].children[0].text}
+                />
+              );
+              break;
             default:
               return <></>;
               break;
