@@ -7,13 +7,13 @@
   },
   "options": {},
   "attributes": {
-    "content_title": {
+    "title": {
       "type": "string"
     },
-    "content_text": {
+    "text": {
       "type": "blocks"
     },
-    "content_image": {
+    "image": {
       "type": "media",
       "multiple": false,
       "required": true,

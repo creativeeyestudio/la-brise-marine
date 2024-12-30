@@ -1,20 +1,22 @@
 {
   "collectionName": "components_common_carousels",
   "info": {
-    "displayName": "Carousel",
-    "icon": "picture"
+    "displayName": "carousel",
+    "icon": "picture",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     }
   }
 }

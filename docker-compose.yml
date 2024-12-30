@@ -1,6 +1,19 @@
 name: 'Dreamsite'
 
 services:
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+
   strapi:
     build:
       context: ./back  # Répertoire de votre projet Strapi

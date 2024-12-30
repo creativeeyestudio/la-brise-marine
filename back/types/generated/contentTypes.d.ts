@@ -498,7 +498,7 @@ export interface ApiPagePage extends Schema.CollectionType {
     secondary_page: Attribute.Boolean &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     slug: Attribute.UID<'api::page.page', 'title'> &
@@ -511,14 +511,14 @@ export interface ApiPagePage extends Schema.CollectionType {
     social_image: Attribute.Media<'images'> &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     title: Attribute.String &
       Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     updatedAt: Attribute.DateTime;
