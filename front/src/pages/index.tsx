@@ -66,16 +66,17 @@ const PageHome: React.FC = () => {
       </Head>
       <Header />
       <main>
-        {blocks.map((block) => {
+        {blocks.map((block, index) => {
           switch (block.__component) {
             case "common.heroscreen":
-              return <Heroscreen image={block.image} />;
+              return <Heroscreen image={block.image} key={index} />;
             case "common.text-image":
               return (
                 <TextImage
                   title={block.title}
                   content={block.text[0].children[0].text}
                   image={block.image}
+                  key={index}
                 />
               );
             case "common.text-double-image":
@@ -85,17 +86,19 @@ const PageHome: React.FC = () => {
                   content={block.text[0].children[0].text}
                   image1={block.image1}
                   image2={block.image2}
+                  key={index}
                 />
               );
             case "common.parallax":
-              return <Parallax image={block.image} />;
+              return <Parallax image={block.image} key={index} />;
             case "common.gallery":
               console.log(block.images.data);
-              return <Gallery data={block.images.data} />
+              return <Gallery data={block.images.data} key={index} />
             case "common.html-content":
               return (
                 <HtmlContent
                   htmlContent={block.code_html[0].children[0].text}
+                  key={index}
                 />
               );
             default:

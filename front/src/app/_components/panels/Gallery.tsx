@@ -18,8 +18,7 @@ const Gallery: React.FC<GalleryImageProps> = (content: GalleryImageProps) => {
                         alt={image.attributes.alternativeText}
                         width={thumbSize}
                         height={thumbSize}
-                        objectFit='cover'
-                        objectPosition='center'
+                        style={{objectFit: 'cover', objectPosition: 'center'}}
                     />
                 </figure>
             ))}
