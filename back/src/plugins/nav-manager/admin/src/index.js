@@ -28,13 +28,23 @@ export default {
         // },
       ],
     });
+    
     app.registerPlugin({
       id: pluginId,
       initializer: Initializer,
       isReady: false,
       name,
     });
+
+    // app.createSettingSection({
+    //   id: 'menusList',
+    //   intlLabel: {
+    //     id: 'menusList',
+    //     defaultLabel: 'Liste des menus'
+    //   }
+    // });
   },
+
 
   bootstrap(app) {},
   async registerTrads({ locales }) {
