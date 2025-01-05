@@ -8,6 +8,18 @@ module.exports = [
     },
   },
 
+  // POST
+  {
+    method: 'POST',
+    path: '/menus',
+    handler: 'MenuController.create',
+    config: {
+      auth: false,
+      policies: [],
+      middlewares: [],
+    },
+  },
+
   // GET
   {
     method: 'GET',
@@ -30,15 +42,15 @@ module.exports = [
     },
   },
 
-  // POST
+  // DELETE
   {
-    method: 'POST',
-    path: '/menus',
-    handler: 'MenuController.create',
+    method: 'DELETE',
+    path: '/menus/:id',
+    handler: 'MenuController.delete',
     config: {
       auth: false,
       policies: [],
       middlewares: [],
-    },
-  },
+    }
+  }
 ];
