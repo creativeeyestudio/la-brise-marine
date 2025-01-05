@@ -22,6 +22,12 @@ const HomePage = () => {
   const handleOpenDialog = () => setDialogVisible(true);
   const handleCloseDialog = () => setDialogVisible(false);
 
+  const [name, setName] = useState('');
+
+  const handleSubmit = () => {
+    console.log(name);
+  }
+
   return (
     <>
       <HeaderLayout
@@ -44,11 +50,16 @@ const HomePage = () => {
           id={undefined}
         >
           <DialogBody icon={undefined}>
-            <TextInput label="Nom du menu" name="navName" />
+            <TextInput 
+              label="Nom du menu" 
+              name="navName" 
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required />
           </DialogBody>
           <DialogFooter
             startAction={
-              <Button variant="success-light">Créer</Button>
+              <Button onClick={handleSubmit} variant="success-light">Créer</Button>
             }
             endAction={
               <Button onClick={handleCloseDialog} variant="danger-light">
