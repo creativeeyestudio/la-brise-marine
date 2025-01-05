@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Table, Thead, Tbody, Tr, Td, Th, IconButton } from "@strapi/design-system";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Td,
+  Th,
+  IconButton,
+} from "@strapi/design-system";
 import { Pencil, Trash } from "@strapi/icons";
 import axios from "axios";
 
@@ -7,7 +15,7 @@ const MenuList = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [error, setError] = useState(null);
 
-  const onEdit = () => {}
+  const onEdit = () => {};
 
   const onDelete = async (id) => {
     try {
@@ -17,7 +25,7 @@ const MenuList = () => {
       console.error("Erreur lors de la suppression du menu :", error);
       setError("Impossible de supprimer le menu.");
     }
-  }
+  };
 
   const fetchMenus = async () => {
     try {

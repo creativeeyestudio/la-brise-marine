@@ -59,14 +59,12 @@ const HomePage = () => {
 
       setSuccess("Le menu a bien été créé.");
       setError("");
-      setTimeout(() => handleCloseDialog(), 1500);
+      setTimeout(() => window.location.reload(), 1500);
     } catch (error) {
       console.error("Erreur lors de la création du menu :", error);
 
       if (error.response?.status === 400) {
-        setError(
-          error.response.data.error.message || "Une erreur est survenue."
-        );
+        setError(error.response.data.error.message || "Une erreur est survenue.");
       } else {
         setError("Erreur lors de la création du menu.");
       }
