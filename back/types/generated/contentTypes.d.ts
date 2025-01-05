@@ -805,6 +805,37 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface PluginNavManagerMenu extends Schema.CollectionType {
+  collectionName: 'menus';
+  info: {
+    displayName: 'Menu';
+    pluralName: 'menus';
+    singularName: 'menu';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::nav-manager.menu',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    items: Attribute.JSON & Attribute.DefaultTo<[]>;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::nav-manager.menu',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginNavigationAudience extends Schema.CollectionType {
   collectionName: 'audience';
   info: {
@@ -1393,6 +1424,7 @@ declare module '@strapi/types' {
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::google-maps.config': PluginGoogleMapsConfig;
       'plugin::i18n.locale': PluginI18NLocale;
+      'plugin::nav-manager.menu': PluginNavManagerMenu;
       'plugin::navigation.audience': PluginNavigationAudience;
       'plugin::navigation.navigation': PluginNavigationNavigation;
       'plugin::navigation.navigation-item': PluginNavigationNavigationItem;

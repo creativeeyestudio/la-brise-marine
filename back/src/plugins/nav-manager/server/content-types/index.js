@@ -1,3 +1,5 @@
-'use strict';
+const menu = require('./menu');
 
-module.exports = {};
+module.exports = {
+    'menu': { schema: menu }
+}

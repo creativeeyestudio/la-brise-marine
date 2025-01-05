@@ -1,5 +1,8 @@
 'use strict';
 
 module.exports = ({ strapi }) => {
-  // register phase
+  // Optionnel : afficher les types de contenu détectés
+  const contentTypes = Object.keys(strapi.contentTypes).filter((type) =>
+    type.startsWith('plugin::nav-manager.')
+  );
 };
