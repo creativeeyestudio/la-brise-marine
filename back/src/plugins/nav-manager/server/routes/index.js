@@ -7,6 +7,30 @@ module.exports = [
       policies: [],
     },
   },
+
+  // GET
+  {
+    method: 'GET',
+    path: '/menus',
+    handler: 'MenuController.find',
+    config: {
+      auth: false,
+      policies: [],
+      middlewares: [],
+    },
+  },
+  {
+    method: 'GET',
+    path: '/menus/:id',
+    handler: 'MenuController.findOne',
+    config: {
+      auth: false,
+      policies: [],
+      middlewares: [],
+    },
+  },
+
+  // POST
   {
     method: 'POST',
     path: '/menus',
