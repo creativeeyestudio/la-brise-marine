@@ -5,7 +5,7 @@
  */
 
 import React, { useState } from "react";
-import MenuList from "../../components/MenuList";
+import MenuList from "../../components/MenuList/index.js";
 import {
   Button,
   ContentLayout,
@@ -44,14 +44,18 @@ const HomePage = () => {
         return;
       }
 
-      const response = await axios.post("/nav-manager/menus", {
-        name: name.trim(),
-        items: []
-      }, {
-        headers: {
-            "Content-Type": 'application/json'
+      const response = await axios.post(
+        "/nav-manager/menus",
+        {
+          name: name.trim(),
+          items: [],
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
 
       setSuccess("Le menu a bien été créé.");
       setError("");
@@ -60,7 +64,9 @@ const HomePage = () => {
       console.error("Erreur lors de la création du menu :", error);
 
       if (error.response?.status === 400) {
-        setError(error.response.data.error.message || "Une erreur est survenue.");
+        setError(
+          error.response.data.error.message || "Une erreur est survenue."
+        );
       } else {
         setError("Erreur lors de la création du menu.");
       }
@@ -91,18 +97,21 @@ const HomePage = () => {
           id={undefined}
         >
           <DialogBody icon={undefined}>
-            <TextInput 
-              label="Nom du menu" 
-              name="navName" 
+            <TextInput
+              label="Nom du menu"
+              name="navName"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required />
-              {error && <p style={{ color: 'red' }}>{error}</p>}
-              {success && <p style={{ color: 'green' }}>{success}</p>}
+              required
+            />
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            {success && <p style={{ color: "green" }}>{success}</p>}
           </DialogBody>
           <DialogFooter
             startAction={
-              <Button onClick={handleSubmit} variant="success-light">Créer</Button>
+              <Button onClick={handleSubmit} variant="success-light">
+                Créer
+              </Button>
             }
             endAction={
               <Button onClick={handleCloseDialog} variant="danger-light">
