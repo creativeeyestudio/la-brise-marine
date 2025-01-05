@@ -86,8 +86,6 @@ module.exports = {
       });
 
       ctx.send(menu);
-
-      console.log("Le menu a bien été supprimé");
       
     } catch (error) {
       console.error('Erreur lors de la suppression du menu :', error);
