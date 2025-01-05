@@ -50,9 +50,10 @@ const MenuList = () => {
   }
 
   return (
-    <Table colCount={2} footer={undefined}>
+    <Table colCount={3} footer={undefined}>
       <Thead>
         <Tr>
+          <Th>ID</Th>
           <Th>Nom du menu</Th>
           <Th>Actions</Th>
         </Tr>
@@ -60,13 +61,14 @@ const MenuList = () => {
       <Tbody>
         {menuItems.length === 0 ? (
           <Tr>
-            <Td colSpan={2} style={{ textAlign: "center" }}>
+            <Td colSpan={3} style={{ textAlign: "center" }}>
               Aucun menu trouvé.
             </Td>
           </Tr>
         ) : (
           menuItems.map((menu) => (
             <Tr key={menu.id}>
+              <Td>{menu.id}</Td>
               <Td>{menu.name}</Td>
               <Td>
                 <IconButton
