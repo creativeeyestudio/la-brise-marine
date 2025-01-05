@@ -20,28 +20,54 @@ import axios from "axios";
 
 const HomePage = () => {
   const [isDialogVisible, setDialogVisible] = useState(false);
-  const handleOpenDialog = () => setDialogVisible(true);
-  const handleCloseDialog = () => setDialogVisible(false);
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const [name, setName] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const handleOpenDialog = () => {
+    setName("");
+    setError("");
+    setSuccess("");
+    setDialogVisible(true);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogVisible(false);
+    setError("");
+    setSuccess("");
+  };
 
   const handleSubmit = async () => {
-    console.log(name);
     try {
-      const response = await axios.post('/nav-manager/menus', {
-        name: name,
-        items: [],
+      if (!name.trim()) {
+        setError("Le nom du menu est obligatoire.");
+        return;
+      }
+
+      const response = await axios.post("/nav-manager/menus", {
+        name: name.trim(),
+        items: []
+      }, {
+        headers: {
+            "Content-Type": 'application/json'
+        }
       });
-      setSuccess("Le menu a bien été crée")
-      setTimeout(() => handleCloseDialog(), 2000);
+
+      setSuccess("Le menu a bien été créé.");
+      setError("");
+      setTimeout(() => handleCloseDialog(), 1500);
     } catch (error) {
-      setError("Erreur lors de la création du menu");
-      console.error(error);
+      console.error("Erreur lors de la création du menu :", error);
+
+      if (error.response?.status === 400) {
+        setError(error.response.data.error.message || "Une erreur est survenue.");
+      } else {
+        setError("Erreur lors de la création du menu.");
+      }
+
+      setSuccess("");
     }
-    
-  }
+  };
 
   return (
     <>
