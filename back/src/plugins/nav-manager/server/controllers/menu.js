@@ -3,8 +3,6 @@
 module.exports = {
   async create(ctx) {
     try {
-      console.log('Requête reçue pour créer un menu'); // Pour déboguer
-
       const { name, items } = ctx.request.body;
 
       // Vérification des champs obligatoires
@@ -30,8 +28,6 @@ module.exports = {
           items: items || [], // Par défaut, items sera un tableau vide si non fourni
         },
       });
-
-      console.log('Menu créé avec succès :', menu);
 
       // Réponse au client
       ctx.send({ data: menu });
