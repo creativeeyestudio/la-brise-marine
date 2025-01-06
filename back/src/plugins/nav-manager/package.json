@@ -1,10 +1,10 @@
 {
   "name": "nav-manager",
   "version": "0.0.0",
-  "description": "This is the description of the plugin.",
+  "description": "Plugin du CMS Dreamsite pour la gestion des menus de navigation",
   "strapi": {
     "name": "nav-manager",
-    "description": "Description of Nav Manager plugin",
+    "description": "Gestion des menus du CMS Dreamsite",
     "kind": "plugin",
     "displayName": "Nav Manager"
   },
@@ -28,11 +28,11 @@
     "styled-components": "^5.2.1"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Creative Eye Studio"
   },
   "maintainers": [
     {
-      "name": "A Strapi developer"
+      "name": "Creative Eye Studio"
     }
   ],
   "engines": {
