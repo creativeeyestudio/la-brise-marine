@@ -1,8 +1,10 @@
-import { Button, ContentLayout, HeaderLayout, IconButton, Table, Tbody, Td, Th, Thead, Tr } from "@strapi/design-system"
+import { Button, ContentLayout, HeaderLayout, IconButton, Link, Table, Tbody, Td, Th, Thead, Tr } from "@strapi/design-system"
 import { Plus, Trash } from "@strapi/icons";
+// @ts-ignore
 import axios from "axios";
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import pluginId from "../../pluginId";
 
 const MenuPage = () => {
     const { menuId } = useParams();
@@ -37,7 +39,11 @@ const MenuPage = () => {
             <HeaderLayout 
                 title={`${menu?.name}`}
                 subtitle={`Personnalisez le contenu de ce menu`}
-                navigationAction={<Button variant="tertiary">Retour</Button>}
+                navigationAction={
+                    <Link to={`/plugins/${pluginId}`}>
+                        <Button variant="tertiary">Retour</Button>
+                    </Link>
+                }
                 primaryAction={<Button startIcon={<Plus />}>Ajouter un lien</Button>}
             />
             
@@ -46,10 +52,10 @@ const MenuPage = () => {
                     <Table colCount={4} footer={undefined}>
                         <Thead>
                             <Tr>
-                                <Th>ID</Th>
-                                <Th>Nom</Th>
-                                <Th>Type</Th>
-                                <Th>Actions</Th>
+                                <Th action={null}>ID</Th>
+                                <Th action={null}>Nom</Th>
+                                <Th action={null}>Type</Th>
+                                <Th action={null}>Actions</Th>
                             </Tr>
                         </Thead>
                         <Tbody>

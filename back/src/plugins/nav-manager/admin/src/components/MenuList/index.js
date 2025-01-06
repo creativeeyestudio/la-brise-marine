@@ -56,9 +56,9 @@ const MenuList = () => {
     <Table colCount={3} footer={undefined}>
       <Thead>
         <Tr>
-          <Th>ID</Th>
-          <Th>Nom du menu</Th>
-          <Th>Actions</Th>
+          <Th action={undefined}>ID</Th>
+          <Th action={undefined}>Nom du menu</Th>
+          <Th action={undefined}>Actions</Th>
         </Tr>
       </Thead>
       <Tbody>
