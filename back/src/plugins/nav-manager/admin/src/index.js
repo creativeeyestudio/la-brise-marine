@@ -3,11 +3,36 @@ import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import Initializer from './components/Initializer';
 import PluginIcon from './components/PluginIcon';
+import MenuPage from './pages/MenuPage';
 
 const name = pluginPkg.strapi.name;
 
 export default {
   register(app) {
+    app.createSettingSection(
+      {
+        id: pluginId,
+        intlLabel: {
+          id: `${pluginId}.plugin.name`,
+          defaultMessage: 'Nav Manager'
+        }
+      },
+      [
+        {
+          intlLabel: {
+            id: `${pluginId}.plugin.name`,
+            defaultMessage: 'Manage Menu'
+          },
+          id: 'manage-menu',
+          to: `/plugins/${pluginId}/menu/:menuId`,
+          Component: async () => {
+            return import('./pages/MenuPage');
+          },
+          permissions: []
+        }
+      ]
+    )
+
     app.addMenuLink({
       to: `/plugins/${pluginId}`,
       icon: PluginIcon,
@@ -35,14 +60,6 @@ export default {
       isReady: false,
       name,
     });
-
-    // app.createSettingSection({
-    //   id: 'menusList',
-    //   intlLabel: {
-    //     id: 'menusList',
-    //     defaultLabel: 'Liste des menus'
-    //   }
-    // });
   },
 
 
@@ -68,4 +85,6 @@ export default {
 
     return Promise.resolve(importedTrads);
   },
+
+
 };

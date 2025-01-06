@@ -7,9 +7,12 @@ import {
   Td,
   Th,
   IconButton,
+  Link,
+  Flex,
 } from "@strapi/design-system";
 import { Pencil, Trash } from "@strapi/icons";
 import axios from "axios";
+import pluginId from "../../pluginId";
 
 const MenuList = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -71,16 +74,21 @@ const MenuList = () => {
               <Td>{menu.id}</Td>
               <Td>{menu.name}</Td>
               <Td>
-                <IconButton
-                  label="Modifier"
-                  icon={<Pencil />}
-                  onClick={() => onEdit()}
-                />
-                <IconButton
-                  label="Supprimer"
-                  icon={<Trash />}
-                  onClick={() => onDelete(menu.id)}
-                />
+                <Flex>
+                  <Link to={`/plugins/${pluginId}/menu/${menu.id}`}>
+                    <IconButton
+                      label="Modifier"
+                      icon={<Pencil />}
+                      onClick={() => onEdit()}
+                    />
+                  </Link>
+                  
+                  <IconButton
+                    label="Supprimer"
+                    icon={<Trash />}
+                    onClick={() => onDelete(menu.id)}
+                  />  
+                </Flex>
               </Td>
             </Tr>
           ))
