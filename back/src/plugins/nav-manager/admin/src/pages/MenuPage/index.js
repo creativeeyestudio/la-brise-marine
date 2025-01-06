@@ -97,7 +97,7 @@ const MenuPage = () => {
 
         <Dialog
           onClose={undefined}
-          title={"Ajouter un lien au menu"}
+          title={"Ajouter des liens au menu"}
           isOpen={isDialogVisible}
           id={undefined}
         >
