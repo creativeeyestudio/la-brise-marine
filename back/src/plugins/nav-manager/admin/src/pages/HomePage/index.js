@@ -48,12 +48,8 @@ const HomePage = () => {
         "/nav-manager/menus",
         {
           name: name.trim(),
-          items: [],
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
+          pages: [],
+          posts: [],
         }
       );
 
@@ -96,6 +92,7 @@ const HomePage = () => {
         >
           <DialogBody icon={undefined}>
             <TextInput
+              // @ts-ignore
               label="Nom du menu"
               name="navName"
               value={name}
