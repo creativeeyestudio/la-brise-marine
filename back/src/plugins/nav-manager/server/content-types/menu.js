@@ -15,7 +15,11 @@ module.exports = {
         required: true, // Champ obligatoire
         unique: true,   // Valeur unique
       },
-      items: {
+      pages: {
+        type: 'json',    // Type de champ : JSON pour des structures complexes
+        default: [],     // Valeur par défaut : tableau vide
+      },
+      posts: {
         type: 'json',    // Type de champ : JSON pour des structures complexes
         default: [],     // Valeur par défaut : tableau vide
       },

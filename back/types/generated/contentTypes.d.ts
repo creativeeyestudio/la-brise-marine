@@ -823,8 +823,9 @@ export interface PluginNavManagerMenu extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    items: Attribute.JSON & Attribute.DefaultTo<[]>;
     name: Attribute.String & Attribute.Required & Attribute.Unique;
+    pages: Attribute.JSON & Attribute.DefaultTo<[]>;
+    posts: Attribute.JSON & Attribute.DefaultTo<[]>;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<

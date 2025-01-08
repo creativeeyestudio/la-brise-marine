@@ -4,7 +4,7 @@ module.exports = {
 
   async create(ctx) {
     try {
-      const { name, items } = ctx.request.body;
+      const { name, pages, posts } = ctx.request.body;
 
       // Vérification des champs obligatoires
       if (!name) {
@@ -26,7 +26,8 @@ module.exports = {
       const menu = await strapi.db.query('plugin::nav-manager.menu').create({
         data: {
           name,
-          items: items || [], // Par défaut, items sera un tableau vide si non fourni
+          pages: pages || [],
+          posts: posts || [],
         },
       });
 
