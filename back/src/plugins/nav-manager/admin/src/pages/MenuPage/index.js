@@ -22,14 +22,28 @@ import { useParams } from "react-router-dom";
 import pluginId from "../../pluginId";
 import MenuLinks from "../../components/MenuLinks";
 
+
+
 const MenuPage = () => {
   const { menuId } = useParams();
   const [menu, setMenu] = useState(null);
   const [error, setError] = useState(null);
   const [isDialogVisible, setDialogVisible] = useState(false);
+  const [selectedItems, setSelectedItems] = useState({ pages: [], posts: [] });
 
   const handleOpenDialog = () => setDialogVisible(true);
   const handleCloseDialog = () => setDialogVisible(false);
+
+  const handlePostForm = async () => {
+    const dataToSend = {
+      pages: selectedItems.pages,
+      posts: selectedItems.posts,
+    };
+
+    console.log(dataToSend);
+
+    handleCloseDialog();
+  };
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -102,11 +116,11 @@ const MenuPage = () => {
           id={undefined}
         >
           <DialogBody icon={undefined}>
-            <MenuLinks></MenuLinks>
+            <MenuLinks setSelectedItems={setSelectedItems} />
           </DialogBody>
           <DialogFooter
             startAction={
-              <Button onClick={null} variant="success-light">
+              <Button onClick={handlePostForm} variant="success-light">
                 Enregistrer
               </Button>
             }
