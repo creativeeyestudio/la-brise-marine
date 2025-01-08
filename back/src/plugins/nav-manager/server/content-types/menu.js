@@ -15,15 +15,9 @@ module.exports = {
         required: true, // Champ obligatoire
         unique: true,   // Valeur unique
       },
-      pages: {
-        type: 'relation', // Relation avec le content-type `page`
-        relation: 'manyToMany',
-        target: 'api::page.page', // Content-type `page`
-      },
-      posts: {
-        type: 'relation', // Relation avec le content-type `post`
-        relation: 'manyToMany',
-        target: 'api::post.post', // Content-type `post`
+      items: {
+        type: 'json',    // Type de champ : JSON pour des structures complexes
+        default: [],     // Valeur par défaut : tableau vide
       },
     },
   };
