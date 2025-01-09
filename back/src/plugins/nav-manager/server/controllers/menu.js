@@ -43,7 +43,9 @@ module.exports = {
 
   async find(ctx) {
     try {
-      const menus = await strapi.db.query('plugin::nav-manager.menu').findMany();
+      const menus = await strapi.db.query('plugin::nav-manager.menu').findMany({
+        populate: ['pages', 'posts'], // Inclure les relations que vous voulez
+      });
       ctx.send({ data: menus });
     } catch (error) {
       console.error('Erreur lors de la récupération des menus :', error);
@@ -60,7 +62,8 @@ module.exports = {
       }
       
       const menu = await strapi.db.query('plugin::nav-manager.menu').findOne({
-        where: { id }
+        where: { id },
+        populate: ['pages', 'posts'], // Inclure les relations que vous voulez
       });
 
       if (!menu) {

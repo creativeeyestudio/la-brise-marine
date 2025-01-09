@@ -16,7 +16,6 @@ import React, { useEffect, useState } from "react";
 
 const MenuLinks = ({ setSelectedItems }) => {
     const [pages, setPages] = useState([]);
-    const [posts, setPosts] = useState([]);
     const [pagesItems, setPagesItems] = useState([]);
     const [postsItems, setPostsItems] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
@@ -36,19 +35,6 @@ const MenuLinks = ({ setSelectedItems }) => {
         }
     };
 
-    const getPostsList = async () => {
-        try {
-            const response = await axios.get('/api/posts', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            setPosts(response.data.data);
-        } catch (error) {
-            console.error('Erreur lors de la récupération des posts :', error);
-        }
-    };
-
     const handlePageCheckboxChange = (id) => {
         setPagesItems((prev) =>
             prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
@@ -64,7 +50,6 @@ const MenuLinks = ({ setSelectedItems }) => {
     useEffect(() => {
         const fetchData = async () => {
             await getPagesList();
-            await getPostsList();
         };
         fetchData();
     }, []);
@@ -84,7 +69,6 @@ const MenuLinks = ({ setSelectedItems }) => {
         >
             <Tabs>
                 <Tab id={undefined} variant={undefined} index={undefined} selectedTabIndex={undefined} onTabClick={undefined}>Pages</Tab>
-                <Tab id={undefined} variant={undefined} index={undefined} selectedTabIndex={undefined} onTabClick={undefined}>Posts</Tab>
             </Tabs>
 
             <TabPanels>
@@ -100,26 +84,6 @@ const MenuLinks = ({ setSelectedItems }) => {
                                                     value={pagesItems.includes(page.id)} 
                                                     onValueChange={() => handlePageCheckboxChange(page.id)}
                                                     children={page.attributes.title}></Checkbox>
-                                            </Box>
-                                        </Td>
-                                    </Tr>
-                                ))}
-                            </Tbody>
-                        </Table>
-                    </Box>
-                </TabPanel>
-                <TabPanel id={undefined}>
-                    <Box padding={4}>
-                        <Table colCount={1} footer={undefined}>
-                            <Tbody>
-                                {posts.map((post) => (
-                                    <Tr key={post.id}>
-                                        <Td>
-                                            <Box padding={2}>
-                                                <Checkbox 
-                                                    value={postsItems.includes(post.id)}
-                                                    onValueChange={() => handlePostCheckboxChange(post.id)}
-                                                    children={post.attributes.title}></Checkbox>
                                             </Box>
                                         </Td>
                                     </Tr>

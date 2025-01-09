@@ -824,8 +824,11 @@ export interface PluginNavManagerMenu extends Schema.CollectionType {
     > &
       Attribute.Private;
     name: Attribute.String & Attribute.Required & Attribute.Unique;
-    pages: Attribute.JSON & Attribute.DefaultTo<[]>;
-    posts: Attribute.JSON & Attribute.DefaultTo<[]>;
+    pages: Attribute.Relation<
+      'plugin::nav-manager.menu',
+      'manyToMany',
+      'api::page.page'
+    >;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<

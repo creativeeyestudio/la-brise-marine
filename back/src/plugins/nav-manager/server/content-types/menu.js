@@ -16,12 +16,9 @@ module.exports = {
         unique: true,   // Valeur unique
       },
       pages: {
-        type: 'json',    // Type de champ : JSON pour des structures complexes
-        default: [],     // Valeur par défaut : tableau vide
-      },
-      posts: {
-        type: 'json',    // Type de champ : JSON pour des structures complexes
-        default: [],     // Valeur par défaut : tableau vide
-      },
+        type: 'relation',
+        relation: 'manyToMany',
+        target: 'api::page.page'
+      }
     },
   };

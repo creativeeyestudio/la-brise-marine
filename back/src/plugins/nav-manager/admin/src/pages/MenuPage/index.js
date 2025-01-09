@@ -22,8 +22,6 @@ import { useParams } from "react-router-dom";
 import pluginId from "../../pluginId";
 import MenuLinks from "../../components/MenuLinks";
 
-
-
 const MenuPage = () => {
   const { menuId } = useParams();
   const [menu, setMenu] = useState(null);
@@ -37,7 +35,6 @@ const MenuPage = () => {
   const handlePostForm = async () => {
     const dataToSend = {
       pages: selectedItems.pages,
-      posts: selectedItems.posts,
     };
 
     console.log(dataToSend);
@@ -85,12 +82,11 @@ const MenuPage = () => {
 
       <ContentLayout>
         {menu ? (
-          <Table colCount={4} footer={undefined}>
+          <Table colCount={3} footer={undefined}>
             <Thead>
               <Tr>
                 <Th action={null}>ID</Th>
                 <Th action={null}>Nom</Th>
-                <Th action={null}>Type</Th>
                 <Th action={null}>Actions</Th>
               </Tr>
             </Thead>
@@ -98,7 +94,6 @@ const MenuPage = () => {
               <Tr>
                 <Td>0</Td>
                 <Td>Nom du lien</Td>
-                <Td>Page / Post</Td>
                 <Td>
                   <IconButton label="Supprimer" icon={<Trash />} />
                 </Td>
