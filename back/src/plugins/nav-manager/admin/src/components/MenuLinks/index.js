@@ -17,7 +17,6 @@ import React, { useEffect, useState } from "react";
 const MenuLinks = ({ setSelectedItems }) => {
     const [pages, setPages] = useState([]);
     const [pagesItems, setPagesItems] = useState([]);
-    const [postsItems, setPostsItems] = useState([]);
     const [activeTab, setActiveTab] = useState(0);
 
     const token = '979d0b2a6ed133b83344bb83a700a0b7816feb2f739e9a24882154ee7d9c4bde537055ee19aa6c7b157cf1ebfdc3ba18f1cf98dd041ae831d2a53ccb144c540a1de8a9a9ec47247156dab0051ab578a85b8d7c6956ac3040705279fb9f7496e54f07ecfda3e54613fc9943c1e277d67d866c11db5e5e2dd321998806c815930f'; // Remplacez par une variable d'environnement ou une source sécurisée
@@ -41,12 +40,6 @@ const MenuLinks = ({ setSelectedItems }) => {
         );
     };
 
-    const handlePostCheckboxChange = (id) => {
-        setPostsItems((prev) =>
-            prev.includes(id) ? prev.filter((itemId) => itemId !== id) : [...prev, id]
-        );
-    };
-
     useEffect(() => {
         const fetchData = async () => {
             await getPagesList();
@@ -57,9 +50,9 @@ const MenuLinks = ({ setSelectedItems }) => {
     // Appeler la fonction externe avec les items cochés
     useEffect(() => {
         if (setSelectedItems) {
-            setSelectedItems({ pages: pagesItems, posts: postsItems });
+            setSelectedItems({ pages: pagesItems });
         }
-    }, [pagesItems, postsItems, setSelectedItems]);
+    }, [pagesItems, setSelectedItems]);
 
     return (
         <TabGroup

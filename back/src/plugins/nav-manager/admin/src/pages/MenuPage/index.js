@@ -63,6 +63,8 @@ const MenuPage = () => {
     return <p style={{ color: "red" }}>{error}</p>;
   }
 
+  console.log(menu);
+
   return (
     <>
       <HeaderLayout
@@ -91,13 +93,15 @@ const MenuPage = () => {
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td>0</Td>
-                <Td>Nom du lien</Td>
-                <Td>
-                  <IconButton label="Supprimer" icon={<Trash />} />
-                </Td>
-              </Tr>
+              {menu.pages.map((page) => (
+                <Tr key={page.id}>
+                  <Td>{page.id}</Td>
+                  <Td>{page.title}</Td>
+                  <Td>
+                    <IconButton label="Supprimer" icon={<Trash />} />
+                  </Td>
+                </Tr>  
+              ))}
             </Tbody>
           </Table>
         ) : (
