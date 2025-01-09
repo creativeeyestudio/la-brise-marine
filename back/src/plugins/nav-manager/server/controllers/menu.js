@@ -27,7 +27,6 @@ module.exports = {
         data: {
           name,
           pages: pages || [],
-          posts: posts || [],
         },
       });
 
@@ -44,7 +43,7 @@ module.exports = {
   async find(ctx) {
     try {
       const menus = await strapi.db.query('plugin::nav-manager.menu').findMany({
-        populate: ['pages', 'posts'], // Inclure les relations que vous voulez
+        populate: ['pages'], // Inclure les relations que vous voulez
       });
       ctx.send({ data: menus });
     } catch (error) {
@@ -63,7 +62,7 @@ module.exports = {
       
       const menu = await strapi.db.query('plugin::nav-manager.menu').findOne({
         where: { id },
-        populate: ['pages', 'posts'], // Inclure les relations que vous voulez
+        populate: ['pages'], // Inclure les relations que vous voulez
       });
 
       if (!menu) {
@@ -96,4 +95,52 @@ module.exports = {
       ctx.internalServerError('Erreur interne lors de la suppression du menu.');
     }
   },
+
+  async addLink(ctx) {
+    const { id } = ctx.params; // ID du menu à mettre à jour
+    const { pages } = ctx.request.body; // Liste des pages à ajouter
+  
+    try {
+      // Vérifier que l'ID est fourni
+      if (!id) {
+        return ctx.badRequest("L'ID du menu est requis.");
+      }
+  
+      // Vérifier que des pages sont fournies
+      if (!pages || !Array.isArray(pages)) {
+        return ctx.badRequest("La liste des pages est requise et doit être un tableau.");
+      }
+  
+      // Récupérer le menu existant avec ses relations actuelles
+      const existingMenu = await strapi.db.query('plugin::nav-manager.menu').findOne({
+        where: { id },
+        populate: ['pages'], // Récupérer les pages actuelles
+      });
+  
+      if (!existingMenu) {
+        return ctx.notFound("Menu introuvable.");
+      }
+  
+      // Combiner les pages existantes avec les nouvelles sans créer de doublons
+      const updatedPages = [
+        ...(existingMenu.pages || []).map((page) => page.id), // Récupérer les IDs des pages existantes
+        ...pages, // Ajouter les nouvelles pages
+      ];
+  
+      // Supprimer les doublons
+      const uniquePages = [...new Set(updatedPages)];
+  
+      // Mettre à jour le menu avec la nouvelle liste de pages
+      const updatedMenu = await strapi.entityService.update('plugin::nav-manager.menu', id, {
+        populate: ['pages'], // Récupérer les pages actuelles
+        data: { pages },
+      });
+  
+      ctx.send({ data: updatedMenu });
+      
+    } catch (error) {
+      console.error("Erreur lors de l'ajout des pages au menu :", error);
+      ctx.internalServerError("Une erreur est survenue lors de la mise à jour du menu.");
+    }
+  }
 };

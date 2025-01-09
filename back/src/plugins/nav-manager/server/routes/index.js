@@ -52,5 +52,17 @@ module.exports = [
       policies: [],
       middlewares: [],
     }
+  },
+
+  // ADD LINKS
+  {
+    method: 'PATCH',
+    path: '/menus/:id/add-links',
+    handler: 'MenuController.addLink',
+    config: {
+      auth: false,
+      policies: [],
+      middlewares: [],
+    }
   }
 ];
