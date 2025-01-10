@@ -576,6 +576,7 @@ export interface ApiPostLinkPostLink extends Schema.CollectionType {
       Attribute.Private;
     custom_link: Attribute.String;
     external: Attribute.Boolean;
+    image: Attribute.Media<'images'>;
     label: Attribute.String & Attribute.Required;
     menus: Attribute.Relation<
       'api::post-link.post-link',
