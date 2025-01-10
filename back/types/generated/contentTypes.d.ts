@@ -414,6 +414,34 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiMenuMenu extends Schema.CollectionType {
+  collectionName: 'menus';
+  info: {
+    description: '';
+    displayName: 'menu';
+    pluralName: 'menus';
+    singularName: 'menu';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    label: Attribute.String;
+    menu_links: Attribute.Relation<
+      'api::menu.menu',
+      'manyToMany',
+      'api::post-link.post-link'
+    >;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPagePage extends Schema.CollectionType {
   collectionName: 'pages';
   info: {
@@ -523,6 +551,53 @@ export interface ApiPagePage extends Schema.CollectionType {
       }>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPostLinkPostLink extends Schema.CollectionType {
+  collectionName: 'post_links';
+  info: {
+    description: '';
+    displayName: 'menu-link';
+    pluralName: 'post-links';
+    singularName: 'post-link';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::post-link.post-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    custom_link: Attribute.String;
+    external: Attribute.Boolean;
+    label: Attribute.String & Attribute.Required;
+    menus: Attribute.Relation<
+      'api::post-link.post-link',
+      'manyToMany',
+      'api::menu.menu'
+    >;
+    page: Attribute.Relation<
+      'api::post-link.post-link',
+      'oneToOne',
+      'api::page.page'
+    >;
+    post: Attribute.Relation<
+      'api::post-link.post-link',
+      'oneToOne',
+      'api::post.post'
+    >;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::post-link.post-link',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -798,41 +873,6 @@ export interface PluginI18NLocale extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginNavManagerMenu extends Schema.CollectionType {
-  collectionName: 'menus';
-  info: {
-    displayName: 'Menu';
-    pluralName: 'menus';
-    singularName: 'menu';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::nav-manager.menu',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    name: Attribute.String & Attribute.Required & Attribute.Unique;
-    pages: Attribute.Relation<
-      'plugin::nav-manager.menu',
-      'manyToMany',
-      'api::page.page'
-    >;
-    publishedAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'plugin::nav-manager.menu',
       'oneToOne',
       'admin::user'
     > &
@@ -1170,13 +1210,14 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
+      'api::menu.menu': ApiMenuMenu;
       'api::page.page': ApiPagePage;
+      'api::post-link.post-link': ApiPostLinkPostLink;
       'api::post.post': ApiPostPost;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::google-maps.config': PluginGoogleMapsConfig;
       'plugin::i18n.locale': PluginI18NLocale;
-      'plugin::nav-manager.menu': PluginNavManagerMenu;
       'plugin::slugify.slug': PluginSlugifySlug;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
