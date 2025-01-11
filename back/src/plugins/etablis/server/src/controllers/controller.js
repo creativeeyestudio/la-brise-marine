@@ -1,6 +1,4 @@
-import type { Core } from '@strapi/strapi';
-
-const controller = ({ strapi }: { strapi: Core.Strapi }) => ({
+const controller = ({ strapi }) => ({
   index(ctx) {
     ctx.body = strapi
       .plugin('etablis')

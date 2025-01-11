@@ -4,9 +4,9 @@ import { Initializer } from './components/Initializer';
 import { PluginIcon } from './components/PluginIcon';
 
 export default {
-  register(app: any) {
+  register(app) {
     app.addMenuLink({
-      to: `plugins/${PLUGIN_ID}`,
+      to: `plugins/${PluginIcon}`,
       icon: PluginIcon,
       intlLabel: {
         id: `${PLUGIN_ID}.plugin.name`,
@@ -27,7 +27,7 @@ export default {
     });
   },
 
-  async registerTrads({ locales }: { locales: string[] }) {
+  async registerTrads({ locales }) {
     return Promise.all(
       locales.map(async (locale) => {
         try {
