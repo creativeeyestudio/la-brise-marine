@@ -13,7 +13,7 @@ interface PageProps {
   };
 }
 
-interface ContentPage {
+export interface ContentPage {
   __component: string;
   title: string;
   text: TextBlock[];

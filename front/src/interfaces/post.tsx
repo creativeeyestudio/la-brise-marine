@@ -1,3 +1,5 @@
+import { ImageProps } from "./_image";
+
 interface PostProps {
   id: number;
   attributes: {
