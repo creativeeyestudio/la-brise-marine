@@ -414,6 +414,34 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiMenuMenu extends Schema.CollectionType {
+  collectionName: 'menus';
+  info: {
+    description: '';
+    displayName: 'menu';
+    pluralName: 'menus';
+    singularName: 'menu';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    label: Attribute.String;
+    menu_links: Attribute.Relation<
+      'api::menu.menu',
+      'manyToMany',
+      'api::post-link.post-link'
+    >;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<'api::menu.menu', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPagePage extends Schema.CollectionType {
   collectionName: 'pages';
   info: {
@@ -523,6 +551,54 @@ export interface ApiPagePage extends Schema.CollectionType {
       }>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPostLinkPostLink extends Schema.CollectionType {
+  collectionName: 'post_links';
+  info: {
+    description: '';
+    displayName: 'menu-link';
+    pluralName: 'post-links';
+    singularName: 'post-link';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::post-link.post-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    custom_link: Attribute.String;
+    external: Attribute.Boolean;
+    image: Attribute.Media<'images'>;
+    label: Attribute.String & Attribute.Required;
+    menus: Attribute.Relation<
+      'api::post-link.post-link',
+      'manyToMany',
+      'api::menu.menu'
+    >;
+    page: Attribute.Relation<
+      'api::post-link.post-link',
+      'oneToOne',
+      'api::page.page'
+    >;
+    post: Attribute.Relation<
+      'api::post-link.post-link',
+      'oneToOne',
+      'api::post.post'
+    >;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::post-link.post-link',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -798,217 +874,6 @@ export interface PluginI18NLocale extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginNavigationAudience extends Schema.CollectionType {
-  collectionName: 'audience';
-  info: {
-    displayName: 'Audience';
-    name: 'audience';
-    pluralName: 'audiences';
-    singularName: 'audience';
-  };
-  options: {
-    comment: 'Audience';
-    increments: true;
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::navigation.audience',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    key: Attribute.UID<'plugin::navigation.audience', 'name'>;
-    name: Attribute.String & Attribute.Required;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'plugin::navigation.audience',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginNavigationNavigation extends Schema.CollectionType {
-  collectionName: 'navigations';
-  info: {
-    displayName: 'Navigation';
-    name: 'navigation';
-    pluralName: 'navigations';
-    singularName: 'navigation';
-  };
-  options: {
-    comment: '';
-    increments: true;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::navigation.navigation',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    items: Attribute.Relation<
-      'plugin::navigation.navigation',
-      'oneToMany',
-      'plugin::navigation.navigation-item'
-    >;
-    localeCode: Attribute.String;
-    localizations: Attribute.Relation<
-      'plugin::navigation.navigation',
-      'oneToMany',
-      'plugin::navigation.navigation'
-    >;
-    name: Attribute.Text & Attribute.Required;
-    slug: Attribute.UID & Attribute.Required;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'plugin::navigation.navigation',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    visible: Attribute.Boolean & Attribute.DefaultTo<false>;
-  };
-}
-
-export interface PluginNavigationNavigationItem extends Schema.CollectionType {
-  collectionName: 'navigations_items';
-  info: {
-    displayName: 'Navigation Item';
-    name: 'navigation-item';
-    pluralName: 'navigation-items';
-    singularName: 'navigation-item';
-  };
-  options: {
-    comment: 'Navigation Item';
-    increments: true;
-    timestamps: true;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-    i18n: {
-      localized: false;
-    };
-  };
-  attributes: {
-    additionalFields: Attribute.JSON & Attribute.DefaultTo<{}>;
-    audience: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToMany',
-      'plugin::navigation.audience'
-    >;
-    autoSync: Attribute.Boolean & Attribute.DefaultTo<true>;
-    collapsed: Attribute.Boolean & Attribute.DefaultTo<false>;
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    externalPath: Attribute.Text;
-    master: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'manyToOne',
-      'plugin::navigation.navigation'
-    >;
-    menuAttached: Attribute.Boolean & Attribute.DefaultTo<false>;
-    order: Attribute.Integer & Attribute.DefaultTo<0>;
-    parent: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToOne',
-      'plugin::navigation.navigation-item'
-    >;
-    path: Attribute.Text;
-    related: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToOne',
-      'plugin::navigation.navigations-items-related'
-    >;
-    title: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    type: Attribute.Enumeration<['INTERNAL', 'EXTERNAL', 'WRAPPER']> &
-      Attribute.DefaultTo<'INTERNAL'>;
-    uiRouterKey: Attribute.String;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginNavigationNavigationsItemsRelated
-  extends Schema.CollectionType {
-  collectionName: 'navigations_items_related';
-  info: {
-    displayName: 'Navigations Items Related';
-    name: 'navigations_items_related';
-    pluralName: 'navigations-items-relateds';
-    singularName: 'navigations-items-related';
-  };
-  options: {
-    increments: true;
-    populateCreatorFields: false;
-    timestamps: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-    i18n: {
-      localized: false;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::navigation.navigations-items-related',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    field: Attribute.String & Attribute.Required;
-    master: Attribute.String & Attribute.Required;
-    order: Attribute.Integer & Attribute.Required;
-    related_id: Attribute.String & Attribute.Required;
-    related_type: Attribute.String & Attribute.Required;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'plugin::navigation.navigations-items-related',
       'oneToOne',
       'admin::user'
     > &
@@ -1335,47 +1200,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginWebsiteBuilderLog extends Schema.CollectionType {
-  collectionName: 'logs';
-  info: {
-    displayName: 'logs';
-    pluralName: 'logs';
-    singularName: 'log';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    build: Attribute.String;
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::website-builder.log',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    method: Attribute.String;
-    response: Attribute.JSON;
-    status: Attribute.Integer;
-    trigger: Attribute.String;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'plugin::website-builder.log',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1387,23 +1211,20 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
+      'api::menu.menu': ApiMenuMenu;
       'api::page.page': ApiPagePage;
+      'api::post-link.post-link': ApiPostLinkPostLink;
       'api::post.post': ApiPostPost;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::google-maps.config': PluginGoogleMapsConfig;
       'plugin::i18n.locale': PluginI18NLocale;
-      'plugin::navigation.audience': PluginNavigationAudience;
-      'plugin::navigation.navigation': PluginNavigationNavigation;
-      'plugin::navigation.navigation-item': PluginNavigationNavigationItem;
-      'plugin::navigation.navigations-items-related': PluginNavigationNavigationsItemsRelated;
       'plugin::slugify.slug': PluginSlugifySlug;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::website-builder.log': PluginWebsiteBuilderLog;
     }
   }
 }

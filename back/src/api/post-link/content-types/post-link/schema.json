@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "post_links",
+  "info": {
+    "singularName": "post-link",
+    "pluralName": "post-links",
+    "displayName": "menu-link",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "post": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::post.post"
+    },
+    "page": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page"
+    },
+    "custom_link": {
+      "type": "string"
+    },
+    "external": {
+      "type": "boolean"
+    },
+    "menus": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::menu.menu",
+      "mappedBy": "menu_links"
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

@@ -92,7 +92,6 @@ const PageHome: React.FC = () => {
             case "common.parallax":
               return <Parallax image={block.image} key={index} />;
             case "common.gallery":
-              console.log(block.images.data);
               return <Gallery data={block.images.data} key={index} />
             case "common.html-content":
               return (
