@@ -7,7 +7,7 @@ export async function getHomePage() {
 }
 
 export async function getPage(slug: string) {
-    initPage(false, slug);
+    return initPage(false, slug);
 }
 
 async function initPage(mainPage: boolean, slug: string | null = null) {
