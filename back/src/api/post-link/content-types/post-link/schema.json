@@ -4,7 +4,7 @@
   "info": {
     "singularName": "post-link",
     "pluralName": "post-links",
-    "displayName": "menu-link",
+    "displayName": "Menu-link",
     "description": ""
   },
   "options": {
@@ -39,11 +39,12 @@
       "required": true
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     }
   }
 }
