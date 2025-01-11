@@ -414,11 +414,45 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
   };
 }
 
+export interface ApiGoogleApiKeyGoogleApiKey extends Schema.SingleType {
+  collectionName: 'google_api_keys';
+  info: {
+    description: '';
+    displayName: 'Google API Key';
+    pluralName: 'google-api-keys';
+    singularName: 'google-api-key';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ads: Attribute.String;
+    analytics: Attribute.String;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::google-api-key.google-api-key',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    maps: Attribute.String;
+    publishedAt: Attribute.DateTime;
+    tag_manager: Attribute.String;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::google-api-key.google-api-key',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMenuMenu extends Schema.CollectionType {
   collectionName: 'menus';
   info: {
     description: '';
-    displayName: 'menu';
+    displayName: 'Menu';
     pluralName: 'menus';
     singularName: 'menu';
   };
@@ -559,7 +593,7 @@ export interface ApiPostLinkPostLink extends Schema.CollectionType {
   collectionName: 'post_links';
   info: {
     description: '';
-    displayName: 'menu-link';
+    displayName: 'Menu-link';
     pluralName: 'post-links';
     singularName: 'post-link';
   };
@@ -1211,6 +1245,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::category.category': ApiCategoryCategory;
+      'api::google-api-key.google-api-key': ApiGoogleApiKeyGoogleApiKey;
       'api::menu.menu': ApiMenuMenu;
       'api::page.page': ApiPagePage;
       'api::post-link.post-link': ApiPostLinkPostLink;
