@@ -14,7 +14,7 @@ interface WebPageProps {
 
 const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
   return (
-    <main>
+    <>
       {blocks.map((block, index) => {
         switch (block.__component) {
           case "common.heroscreen":
@@ -53,7 +53,7 @@ const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
             return <></>;
         }
       })}
-    </main>
+    </>
   );
 };
 

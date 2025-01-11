@@ -67,7 +67,6 @@ const Navigation: React.FC<NavigationProps> = ({menuId, imageNav = false}) => {
                     ))}
                 </ul>
             </nav>
-*
 
             {imageList.length > 0 && (
                 <div className="navimages">
