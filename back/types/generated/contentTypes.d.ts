@@ -828,6 +828,40 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
+export interface PluginEtablisSheet extends Schema.CollectionType {
+  collectionName: 'etablis_sheet';
+  info: {
+    description: "Fiche descriptive de l'\u00E9tablissement";
+    displayName: 'Fiche \u00E9tablissement';
+    pluralName: 'sheets';
+    singularName: 'sheet';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Attribute.Enumeration<['hotel', 'restaurant']> &
+      Attribute.Required;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::etablis.sheet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    description: Attribute.RichText & Attribute.Required;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'plugin::etablis.sheet',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginGoogleMapsConfig extends Schema.SingleType {
   collectionName: 'google_maps_configs';
   info: {
@@ -1252,6 +1286,7 @@ declare module '@strapi/types' {
       'api::post.post': ApiPostPost;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
+      'plugin::etablis.sheet': PluginEtablisSheet;
       'plugin::google-maps.config': PluginGoogleMapsConfig;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::slugify.slug': PluginSlugifySlug;
