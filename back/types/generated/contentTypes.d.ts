@@ -828,7 +828,7 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
-export interface PluginEtablisSheet extends Schema.CollectionType {
+export interface PluginEtablisSheet extends Schema.SingleType {
   collectionName: 'etablis_sheet';
   info: {
     description: "Fiche descriptive de l'\u00E9tablissement";
@@ -849,7 +849,6 @@ export interface PluginEtablisSheet extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    description: Attribute.RichText & Attribute.Required;
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
