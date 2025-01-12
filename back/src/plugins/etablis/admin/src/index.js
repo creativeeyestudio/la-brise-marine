@@ -1,43 +1,61 @@
-import { getTranslation } from './utils/getTranslation';
-import { PLUGIN_ID } from './pluginId';
-import { Initializer } from './components/Initializer';
-import { PluginIcon } from './components/PluginIcon';
+import { prefixPluginTranslations } from '@strapi/helper-plugin';
+import pluginPkg from '../../package.json';
+import pluginId from './pluginId';
+import Initializer from './components/Initializer';
+import PluginIcon from './components/PluginIcon';
+
+const name = pluginPkg.strapi.name;
 
 export default {
   register(app) {
     app.addMenuLink({
-      to: `plugins/${PluginIcon}`,
+      to: `/plugins/${pluginId}`,
       icon: PluginIcon,
       intlLabel: {
-        id: `${PLUGIN_ID}.plugin.name`,
-        defaultMessage: PLUGIN_ID,
+        id: `${pluginId}.plugin.name`,
+        defaultMessage: name,
       },
       Component: async () => {
-        const { App } = await import('./pages/App');
+        const component = await import('./pages/App');
 
-        return App;
+        return component;
       },
+      permissions: [
+        // Uncomment to set the permissions of the plugin here
+        // {
+        //   action: '', // the action name should be plugin::plugin-name.actionType
+        //   subject: null,
+        // },
+      ],
     });
-
     app.registerPlugin({
-      id: PLUGIN_ID,
+      id: pluginId,
       initializer: Initializer,
       isReady: false,
-      name: PLUGIN_ID,
+      name,
     });
   },
 
+  bootstrap(app) {},
   async registerTrads({ locales }) {
-    return Promise.all(
-      locales.map(async (locale) => {
-        try {
-          const { default: data } = await import(`./translations/${locale}.json`);
-
-          return { data, locale };
-        } catch {
-          return { data: {}, locale };
-        }
+    const importedTrads = await Promise.all(
+      locales.map((locale) => {
+        return import(`./translations/${locale}.json`)
+          .then(({ default: data }) => {
+            return {
+              data: prefixPluginTranslations(data, pluginId),
+              locale,
+            };
+          })
+          .catch(() => {
+            return {
+              data: {},
+              locale,
+            };
+          });
       })
     );
+
+    return Promise.resolve(importedTrads);
   },
 };

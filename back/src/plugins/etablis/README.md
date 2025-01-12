@@ -1,3 +1,3 @@
-# etablis
+# Strapi plugin etablis
 
-Gestion de la fiche établissement
+A quick description of etablis.
