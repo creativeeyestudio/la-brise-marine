@@ -29,11 +29,6 @@ module.exports = {
             required: true,
             description: "Catégorie de l'établissement"
         },
-        location: {
-            type: "customField",
-            required: true,
-            customField: "plugin::google-maps.location-picker"
-        },
         phone_number: {
             type: "string",
             required: true
