@@ -14,7 +14,6 @@ interface PageHomeProps {
 const PageHome: React.FC<PageHomeProps> = ({ page, error }) => {
   
   if (error) {
-    console.error("Erreur côté serveur : " + error);
     return <Error statusCode={500} />;
   }
 
