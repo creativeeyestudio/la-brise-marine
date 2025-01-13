@@ -37,9 +37,8 @@ module.exports = {
             type: "string",
             required: true
         },
-        stars: {
+        hotel_stars: {
             type: "integer",
-            max: 5,
             min: 0
         }
     },

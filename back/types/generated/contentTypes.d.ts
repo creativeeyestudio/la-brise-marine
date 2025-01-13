@@ -851,20 +851,17 @@ export interface PluginEtablisSheet extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
-    location: Attribute.JSON &
-      Attribute.CustomField<'plugin::strapi-leaflet-geoman.geojson'>;
-    mail_adress: Attribute.String & Attribute.Required;
-    name: Attribute.String & Attribute.Required & Attribute.Unique;
-    phone_number: Attribute.String & Attribute.Required;
-    publishedAt: Attribute.DateTime;
-    stars: Attribute.Integer &
+    hotel_stars: Attribute.Integer &
       Attribute.SetMinMax<
         {
-          max: 5;
           min: 0;
         },
         number
       >;
+    mail_adress: Attribute.String & Attribute.Required;
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    phone_number: Attribute.String & Attribute.Required;
+    publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'plugin::etablis.sheet',
@@ -954,59 +951,6 @@ export interface PluginSlugifySlug extends Schema.CollectionType {
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'plugin::slugify.slug',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginStrapiLeafletGeomanConfig extends Schema.SingleType {
-  collectionName: 'strapi_leaflet_geoman_config';
-  info: {
-    displayName: 'Strapi Leaflet Geoman Config';
-    pluralName: 'configs';
-    singularName: 'config';
-  };
-  options: {
-    draftAndPublish: false;
-    populateCreatorFields: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::strapi-leaflet-geoman.config',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    defaultLatitude: Attribute.Decimal &
-      Attribute.Required &
-      Attribute.DefaultTo<42>;
-    defaultLongitude: Attribute.Decimal &
-      Attribute.Required &
-      Attribute.DefaultTo<42>;
-    defaultTileAccessToken: Attribute.String & Attribute.DefaultTo<''>;
-    defaultTileAttribution: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<"Map data \u00A9 <a href='https://www.openstreetmap.org'>OpenStreetMap</a> contributors">;
-    defaultTileURL: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'https://tile.openstreetmap.org/{z}/{x}/{y}.png'>;
-    defaultZoom: Attribute.Integer &
-      Attribute.Required &
-      Attribute.DefaultTo<6>;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'plugin::strapi-leaflet-geoman.config',
       'oneToOne',
       'admin::user'
     > &
@@ -1315,7 +1259,6 @@ declare module '@strapi/types' {
       'plugin::etablis.sheet': PluginEtablisSheet;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::slugify.slug': PluginSlugifySlug;
-      'plugin::strapi-leaflet-geoman.config': PluginStrapiLeafletGeomanConfig;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
