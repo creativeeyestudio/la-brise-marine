@@ -14,16 +14,38 @@ module.exports = {
     },
     attributes: {
         name: {
-        type: 'string',
-        required: true,
-        unique: true,
-        description: "Nom de l'hôtel ou du restaurant",
+            type: 'string',
+            required: true,
+            unique: true,
+            description: "Nom de l'hôtel ou du restaurant"
         },
         category: {
-        type: 'enumeration',
-        enum: ['hotel', 'restaurant'],
-        required: true,
-        description: "Catégorie de l'établissement",
+            type: "enumeration",
+            enum: [
+                "hotel",
+                "restaurant",
+                "hotel-restaurant"
+            ],
+            required: true,
+            description: "Catégorie de l'établissement"
+        },
+        location: {
+            type: "customField",
+            required: true,
+            customField: "plugin::google-maps.location-picker"
+        },
+        phone_number: {
+            type: "string",
+            required: true
+        },
+        mail_adress: {
+            type: "string",
+            required: true
+        },
+        stars: {
+            type: "integer",
+            max: 5,
+            min: 0
         }
     },
 };

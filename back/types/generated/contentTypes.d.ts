@@ -840,7 +840,9 @@ export interface PluginEtablisSheet extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    category: Attribute.Enumeration<['hotel', 'restaurant']> &
+    category: Attribute.Enumeration<
+      ['hotel', 'restaurant', 'hotel-restaurant']
+    > &
       Attribute.Required;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -849,8 +851,21 @@ export interface PluginEtablisSheet extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
+    location: Attribute.JSON &
+      Attribute.Required &
+      Attribute.CustomField<'plugin::google-maps.location-picker'>;
+    mail_adress: Attribute.String & Attribute.Required;
     name: Attribute.String & Attribute.Required & Attribute.Unique;
+    phone_number: Attribute.String & Attribute.Required;
     publishedAt: Attribute.DateTime;
+    stars: Attribute.Integer &
+      Attribute.SetMinMax<
+        {
+          max: 5;
+          min: 0;
+        },
+        number
+      >;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'plugin::etablis.sheet',
