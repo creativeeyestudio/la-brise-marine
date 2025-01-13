@@ -26,9 +26,10 @@ module.exports = ({ strapi }) => ({
             );
         
             // Retourner l'unique instance ou `null` si non trouvée
-            return result[0] || null;
+            return result || null;
         } catch (error) {
             strapi.log.error('Erreur dans le service find :', error);
+            console.error(error);
             throw new Error('Échec de la récupération de la fiche.');
         }
     },

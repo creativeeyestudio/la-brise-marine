@@ -31,6 +31,7 @@ module.exports = {
         
             return ctx.send(entity);
         } catch (error) {
+            console.log(error);
             strapi.log.error('Erreur lors de la récupération de la fiche :', error);
             return ctx.internalServerError('Impossible de récupérer la fiche.');
         }

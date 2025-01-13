@@ -10,7 +10,7 @@ module.exports = [
 
   {
     method: 'GET',
-    path: '/etablis',
+    path: '/sheet',
     handler: 'sheetController.find',
     config: {
       auth: false,
