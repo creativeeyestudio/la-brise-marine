@@ -17,19 +17,19 @@ module.exports = ({ strapi }) => ({
         }
     },
 
-    async find(ctx) {
+    async find() {
         try {
-            // Appel au service pour récupérer l'entité unique
-            const entity = await strapi.plugin('etablis').service('sheet').find();
+            // Récupération de l'unique instance de la fiche (Single Type)
+            const result = await strapi.entityService.findMany(
+                'plugin::etablis.sheet',
+                { populate: '*' } // Inclure les relations, personnalisez si besoin
+            );
         
-            if (!entity) {
-                return ctx.notFound('La fiche n\'existe pas.');
-            }
-        
-            return ctx.send(entity);
+            // Retourner l'unique instance ou `null` si non trouvée
+            return result[0] || null;
         } catch (error) {
-            strapi.log.error('Erreur lors de la récupération de la fiche :', error);
-            return ctx.internalServerError('Impossible de récupérer la fiche.');
+            strapi.log.error('Erreur dans le service find :', error);
+            throw new Error('Échec de la récupération de la fiche.');
         }
     },
 })

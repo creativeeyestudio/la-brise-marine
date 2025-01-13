@@ -7,4 +7,15 @@ module.exports = [
       policies: [],
     },
   },
+
+  {
+    method: 'GET',
+    path: '/etablis',
+    handler: 'sheetController.find',
+    config: {
+      auth: false,
+      policies: [],
+      middlewares: [],
+    },
+  },
 ];
