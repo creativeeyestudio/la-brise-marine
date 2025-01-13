@@ -7,6 +7,8 @@ import Gallery from "../panels/Gallery";
 import HtmlContent from "../panels/HtmlContent";
 import Parallax from "../panels/Parallax";
 
+import '../../globals.css';
+
 // Ici, on définit un type pour les props attendues par le composant.
 interface WebPageProps {
   blocks: ContentPage[]; // blocks est un tableau d'objets de type ContentPage.

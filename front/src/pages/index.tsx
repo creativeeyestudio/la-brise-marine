@@ -12,11 +12,13 @@ interface PageHomeProps {
 }
 
 const PageHome: React.FC<PageHomeProps> = ({ page, error }) => {
+  
   if (error) {
-    return <Error statusCode={404} />;
+    return <Error statusCode={500} />;
   }
 
   if (!page) {
+    console.error("Page non trouvée");
     return <Error statusCode={404} />;
   }
 

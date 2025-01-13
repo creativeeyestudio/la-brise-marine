@@ -13,7 +13,7 @@ interface PageWebProps {
 
 const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
   if (error) {
-    return <Error statusCode={404} />;
+    return <Error statusCode={500} />;
   }
 
   if (!page) {

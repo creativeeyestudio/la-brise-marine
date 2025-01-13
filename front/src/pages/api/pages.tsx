@@ -11,7 +11,6 @@ export async function getPage(slug: string) {
 }
 
 async function initPage(mainPage: boolean, slug: string | null = null) {
-
   const paramUrl = mainPage 
     ? '&filters[homepage][$eq]=true'
     : '&filters[slug][$eq]=' + slug;
@@ -25,10 +24,10 @@ async function initPage(mainPage: boolean, slug: string | null = null) {
 
   // Vérifiez si la requête a échoué
   if (!res.ok) {
-    const errorText = await res.text(); // Essayez de lire le contenu de l'erreur
-    console.error("API Error:", errorText);
-    throw new Error(`Failed to fetch posts: ${res.status} ${res.statusText}`);
-  }
+    const errorText = await res.text();
+    console.error(`Error fetching data: ${res.status} ${res.statusText}. Details: ${errorText}`);
+    throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+  }  
 
   return res.json();
 }
