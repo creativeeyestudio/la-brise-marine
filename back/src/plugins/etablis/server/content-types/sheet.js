@@ -19,6 +19,12 @@ module.exports = {
             unique: true,
             description: "Nom de l'hôtel ou du restaurant"
         },
+        logo: {
+            allowedTypes: ["images"],
+            type: 'media',
+            multiple: false,
+            required: true
+        },
         category: {
             type: "enumeration",
             enum: [
@@ -29,11 +35,6 @@ module.exports = {
             required: true,
             description: "Catégorie de l'établissement"
         },
-        location: {
-            type: "customField",
-            required: true,
-            customField: "plugin::google-maps.location-picker"
-        },
         phone_number: {
             type: "string",
             required: true
@@ -42,10 +43,16 @@ module.exports = {
             type: "string",
             required: true
         },
-        stars: {
+        hotel_stars: {
             type: "integer",
-            max: 5,
             min: 0
+        },
+        google_maps_link: {
+          type: "string"
+        },
+        location: {
+          type: "customField",
+          customField: "plugin::strapi-leaflet-geoman.geojson"
         }
     },
 };
