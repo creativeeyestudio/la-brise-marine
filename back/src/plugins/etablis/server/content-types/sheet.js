@@ -46,6 +46,13 @@ module.exports = {
         hotel_stars: {
             type: "integer",
             min: 0
+        },
+        google_maps_link: {
+          type: "string"
+        },
+        location: {
+          type: "customField",
+          customField: "plugin::strapi-leaflet-geoman.geojson"
         }
     },
 };

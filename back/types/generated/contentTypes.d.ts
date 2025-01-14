@@ -851,6 +851,7 @@ export interface PluginEtablisSheet extends Schema.SingleType {
       'admin::user'
     > &
       Attribute.Private;
+    google_maps_link: Attribute.String;
     hotel_stars: Attribute.Integer &
       Attribute.SetMinMax<
         {
