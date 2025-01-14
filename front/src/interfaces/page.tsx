@@ -8,6 +8,7 @@ interface PageProps {
     slug: string;
     meta_title: string;
     meta_desc: string;
+    homepage: boolean,
     secondary_page: boolean;
     content_page: ContentPage[];
   };
