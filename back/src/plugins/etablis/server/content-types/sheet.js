@@ -19,6 +19,12 @@ module.exports = {
             unique: true,
             description: "Nom de l'hôtel ou du restaurant"
         },
+        logo: {
+            allowedTypes: ["images"],
+            type: 'media',
+            multiple: false,
+            required: true
+        },
         category: {
             type: "enumeration",
             enum: [

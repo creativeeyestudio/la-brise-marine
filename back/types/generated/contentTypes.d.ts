@@ -858,6 +858,7 @@ export interface PluginEtablisSheet extends Schema.SingleType {
         },
         number
       >;
+    logo: Attribute.Media<'images'> & Attribute.Required;
     mail_adress: Attribute.String & Attribute.Required;
     name: Attribute.String & Attribute.Required & Attribute.Unique;
     phone_number: Attribute.String & Attribute.Required;
