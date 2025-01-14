@@ -1,0 +1,55 @@
+{
+  "kind": "singleType",
+  "collectionName": "etablis_sheet",
+  "info": {
+    "singularName": "sheet",
+    "pluralName": "sheets",
+    "displayName": "Fiche établissement",
+    "description": "Fiche descriptive de l'établissement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "description": "Nom de l'hôtel ou du restaurant"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "hotel",
+        "restaurant",
+        "hotel-restaurant"
+      ],
+      "required": true,
+      "description": "Catégorie de l'établissement"
+    },
+    "phone_number": {
+      "type": "string",
+      "required": true
+    },
+    "mail_adress": {
+      "type": "string",
+      "required": true
+    },
+    "hotel_stars": {
+      "type": "integer",
+      "min": 0
+    },
+    "location": {
+      "type": "customField",
+      "customField": "plugin::strapi-leaflet-geoman.geojson"
+    }
+  }
+}
