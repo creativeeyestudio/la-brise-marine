@@ -5,6 +5,8 @@ import Head from "next/head";
 import WebPage from "@/app/_components/templates/WebPage";
 import ContentPage from '@/app/_components/layouts/ContentPage';
 import PageProps from '@/interfaces/page';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 interface PageWebProps {
   page: PageProps | null;
@@ -12,12 +14,27 @@ interface PageWebProps {
 }
 
 const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
+  const router = useRouter();
+  
+  useEffect(() => {
+    if (page?.attributes.homepage) {
+      router.push('/');
+    }
+  }, [page, router]);
+  
   if (error) {
     return <Error statusCode={500} />;
   }
 
   if (!page) {
     return <Error statusCode={404} />;
+  }
+
+  const isHomepage = page.attributes.homepage;
+
+  if (isHomepage) {
+    console.log("Homepage");
+    router.push('/');
   }
 
   const blocks = page.attributes.content_page;
@@ -33,14 +50,13 @@ const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
   );
 };
 
-// Cette fonction sera exécutée à chaque requête côté serveur pour récupérer les données
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.params!;
   try {
     const response = await getPage(slug);
     return { props: { page: response.data[0], error: null } };
   } catch (error) {
-    return { props: { page: null, error: "Erreur lors du chargement de la page" } };
+    return { props: { page: null, error: "Erreur lors du chargement de la page" + error } };
   }
 };
 
