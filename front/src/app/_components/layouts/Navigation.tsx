@@ -1,26 +1,24 @@
-import { MenuLink } from '@/interfaces/menu';
+import { MenuItem } from '@/interfaces/menu';
 import getMenu from '@/pages/api/menus';
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 interface NavigationProps {
     menuId: number;
-    imageNav?: boolean;
 }
 
-const Navigation: React.FC<NavigationProps> = ({menuId, imageNav = false}) => {
+const Navigation: React.FC<NavigationProps> = ({menuId}) => {
 
-    const [menuItems, setMenuItems] = useState<MenuLink[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(true); // Indicateur de chargement
+    const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         async function fetchMenuItems() {
             try {
                 setIsLoading(true); // Active le chargement
                 const menuData = await getMenu(menuId); // Appel à l'API
-                const links = menuData?.data?.attributes?.menu_links?.data || [];
-                setMenuItems(links); // Définit les éléments du menu
+                const items: MenuItem[] = menuData;
+                setMenuItems(items); // Définit les éléments du menu
             } catch (error) {
                 console.error("Error fetching menu:", error);
                 setMenuItems([]); // Réinitialise les items en cas d'erreur
@@ -31,14 +29,14 @@ const Navigation: React.FC<NavigationProps> = ({menuId, imageNav = false}) => {
     
         if (menuId) {
             fetchMenuItems();
+        } else {
+            console.error("Menu with " + menuId + " not found !");
         }
     }, [menuId]);
 
-    const imageList = imageNav ? [
-        { src: '/image1.png', alt: 'First Image', width: 100, height: 100 },
-        { src: '/image2.png', alt: 'Second Image', width: 100, height: 100 },
-        { src: '/image3.png', alt: 'Third Image', width: 100, height: 100 },
-    ] : [];
+    if (isLoading) {
+        return <p></p>;
+    }
 
     return(
         <>
@@ -46,37 +44,33 @@ const Navigation: React.FC<NavigationProps> = ({menuId, imageNav = false}) => {
                 <ul>
                     {menuItems.map((item) => (
                         <li key={item.id}>
-                            {item.attributes.custom_link ? (
-                                <Link href={item.attributes.custom_link}>
-                                    {item.attributes.label}
-                                </Link>
-                            ) : item.attributes.page?.data ? (
-                                <Link href={`/${item.attributes.page.data.attributes.slug}`}>
-                                    {item.attributes.label}
-                                </Link>
-                            ) : item.attributes.post?.data ? (
-                                <Link href={`/blog/${item.attributes.post.data.attributes.slug}`}>
-                                    {item.attributes.label}
+                            {item.path ? (
+                                <Link href={item.path}>
+                                    {item.title}
                                 </Link>
                             ) : (
-                                <Link href="#">
-                                    {item.attributes.label} (no link)
-                                </Link>
+                                <span>{item.title}</span>
+                            )}
+
+                            {item.items.length > 0 && (
+                                <ul>
+                                    {item.items.map((subItem) => (
+                                        <li key={subItem.id}>
+                                            {subItem.path ? (
+                                                <Link href={subItem.path}>
+                                                    {subItem.title}
+                                                </Link>
+                                            ) : (
+                                                <span>{subItem.title}</span>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
                             )}
                         </li>
                     ))}
                 </ul>
             </nav>
-
-            {imageList.length > 0 && (
-                <div className="navimages">
-                    {imageList.map((image, index) => (
-                        <figure key={index}>
-                            <Image src={image.src} alt={image.alt} width={image.width} height={image.height} />
-                        </figure>
-                    ))}
-                </div>
-            )}
         </>
     );
 }
