@@ -510,6 +510,12 @@ export interface ApiPagePage extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    nav_image: Attribute.Media<'images'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     og_desc: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
