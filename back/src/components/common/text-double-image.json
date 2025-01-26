@@ -18,7 +18,7 @@
     "image2": {
       "type": "media",
       "multiple": false,
-      "required": true,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
@@ -30,6 +30,11 @@
     "title": {
       "type": "string",
       "required": true
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "common.links"
     }
   }
 }
