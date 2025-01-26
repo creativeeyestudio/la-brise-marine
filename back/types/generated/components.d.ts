@@ -46,6 +46,21 @@ export interface CommonHtmlContent extends Schema.Component {
   };
 }
 
+export interface CommonLinks extends Schema.Component {
+  collectionName: 'components_common_links';
+  info: {
+    description: '';
+    displayName: 'Links';
+  };
+  attributes: {
+    external_link: Attribute.String;
+    label: Attribute.String;
+    medias: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    pages: Attribute.Relation<'common.links', 'oneToMany', 'api::page.page'>;
+    posts: Attribute.Relation<'common.links', 'oneToMany', 'api::post.post'>;
+  };
+}
+
 export interface CommonParallax extends Schema.Component {
   collectionName: 'components_common_parallaxes';
   info: {
@@ -67,7 +82,8 @@ export interface CommonTextDoubleImage extends Schema.Component {
   };
   attributes: {
     image1: Attribute.Media<'images'> & Attribute.Required;
-    image2: Attribute.Media<'images'> & Attribute.Required;
+    image2: Attribute.Media<'images'>;
+    links: Attribute.Component<'common.links', true>;
     text: Attribute.Blocks & Attribute.Required;
     title: Attribute.String & Attribute.Required;
   };
@@ -82,6 +98,7 @@ export interface CommonTextImage extends Schema.Component {
   };
   attributes: {
     image: Attribute.Media<'images'> & Attribute.Required;
+    links: Attribute.Component<'common.links', true>;
     text: Attribute.Blocks;
     title: Attribute.String;
   };
@@ -94,6 +111,7 @@ declare module '@strapi/types' {
       'common.gallery': CommonGallery;
       'common.heroscreen': CommonHeroscreen;
       'common.html-content': CommonHtmlContent;
+      'common.links': CommonLinks;
       'common.parallax': CommonParallax;
       'common.text-double-image': CommonTextDoubleImage;
       'common.text-image': CommonTextImage;
