@@ -1,6 +1,10 @@
 {
   "parser": "babel-eslint",
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:security/recommended",
+  ],
   "env": {
     "commonjs": true,
     "es6": true,
