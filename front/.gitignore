@@ -6,6 +6,7 @@
 /.pnp
 .pnp.*
 .yarn/*
+sonar-project.properties
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
