@@ -21,7 +21,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copier uniquement les fichiers nécessaires depuis l'étape de build
-COPY --from=builder /app/package.json /app/yarn.lock ./
+COPY --from=builder /app/package.json ./
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/public ./public
