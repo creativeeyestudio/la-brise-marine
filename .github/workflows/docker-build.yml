@@ -33,7 +33,6 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image
-        if: secrets.DOCKER_USERNAME && secrets.DOCKER_PASSWORD
         run: |
           docker tag dreamsite-admin:${{ github.ref_name }} kevinad/dreamsite-admin:${{ github.ref_name }}
           docker push kevinad/dreamsite-admin:${{ github.ref_name }}
