@@ -1,0 +1,6 @@
+{
+    "scripts": {
+      "publish:front": "cd front && npm publish"
+    }
+  }
+  

@@ -1,7 +1,9 @@
 {
-  "name": "dreamsite-front",
+  "name": "@creativeeyestudio/dream-site-v3",
   "version": "1.0.0",
-  "private": true,
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
