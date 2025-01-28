@@ -27,7 +27,6 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/config ./config
 COPY --from=builder /app/src ./src
-COPY --from=builder /app/extensions ./extensions
 
 # Configure l'utilisateur non-root pour améliorer la sécurité
 RUN addgroup -S strapi && adduser -S strapi -G strapi
