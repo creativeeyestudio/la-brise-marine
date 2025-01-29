@@ -1,14 +1,22 @@
 {
-  "name": "@creativeeyestudio/dream-site-v3",
+  "name": "dream-site-web",
   "version": "1.0.0",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "private": false,
+  "main": "index.js",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "files": [
+    "public",
+    "pages",
+    "dist",
+    "package.json"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "@heroui/react": "^2.6.14",
