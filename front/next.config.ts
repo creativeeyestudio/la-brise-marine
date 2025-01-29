@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
 
   // Locales
   i18n: {
-    locales: ['default', 'fr', 'en', 'es', 'it', 'de'],
+    locales: ['default', 'fr', 'en'],
     defaultLocale: "default"
   },
   trailingSlash: true,
