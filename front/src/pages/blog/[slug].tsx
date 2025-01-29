@@ -74,7 +74,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const response = await getSinglePost(slug);
     return { props: { post: response.data[0], error: null } };
   } catch (error) {
-    return { props: { post: null, error: "Erreur lors du chargement de l'article." } };
+    return { props: { post: null, error: "Erreur lors du chargement de l'article." + error } };
   }
 };
 

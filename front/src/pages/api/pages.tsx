@@ -6,11 +6,11 @@ export async function getHomePage() {
     return initPage(true);
 }
 
-export async function getPage(slug: string) {
+export async function getPage(slug: string | string[] | undefined) {
     return initPage(false, slug);
 }
 
-async function initPage(mainPage: boolean, slug: string | null = null) {
+async function initPage(mainPage: boolean, slug: string | string[] | null = null) {
   const paramUrl = mainPage 
     ? '&filters[homepage][$eq]=true'
     : '&filters[slug][$eq]=' + slug;
