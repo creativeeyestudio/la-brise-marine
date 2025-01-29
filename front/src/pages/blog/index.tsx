@@ -56,8 +56,18 @@ const Posts: React.FC<PostsListProps> = ({ posts }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const postsData = await getAllPosts();
-  const posts = postsData.data; // Vérifiez que vos données correspondent à cette structure
+  try {
+    const postsData = await getAllPosts();
+    if (postsData) {
+      const posts = postsData.data; // Vérifiez que vos données correspondent à cette structure
+    } else {
+      return { notFound: true }
+    }
+  } catch (error) {
+    return { props: { post: null, error: "Erreur lors du chargement de l'article." + error } };
+  }
+  
+  
 
   return {
     props: {
