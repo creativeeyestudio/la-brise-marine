@@ -5,6 +5,7 @@ import Head from "next/head";
 import WebPage from "@/app/_components/templates/WebPage";
 import ContentPage from "@/app/_components/layouts/ContentPage";
 import { GetStaticProps } from "next";
+import { notFound } from "next/navigation";
 
 interface PageHomeProps {
   page: PageProps | null;
@@ -39,7 +40,12 @@ const PageHome: React.FC<PageHomeProps> = ({ page, error }) => {
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await getHomePage();
-    return { props: { page: response.data[0], error: null } };
+    if (response) {
+      return { props: { page: response.data[0], error: null } };
+    } else {
+      return { notFound: true }
+    }
+    
   } catch (error) {
     return { props: { page: null, error: "Erreur lors du chargement de la page" + error } };
   }

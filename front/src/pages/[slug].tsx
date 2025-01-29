@@ -54,7 +54,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.params!;
   try {
     const response = await getPage(slug);
-    return { props: { page: response.data[0], error: null } };
+    if (response) {
+      return { props: { page: response.data[0], error: null } };
+    } else {
+      return { notFound: true }
+    }    
   } catch (error) {
     return { props: { page: null, error: "Erreur lors du chargement de la page" + error } };
   }
