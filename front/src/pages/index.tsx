@@ -5,7 +5,6 @@ import Head from "next/head";
 import WebPage from "@/app/_components/templates/WebPage";
 import ContentPage from "@/app/_components/layouts/ContentPage";
 import { GetStaticProps } from "next";
-import { notFound } from "next/navigation";
 
 interface PageHomeProps {
   page: PageProps | null;
