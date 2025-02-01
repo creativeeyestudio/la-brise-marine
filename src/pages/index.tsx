@@ -14,6 +14,7 @@ interface PageHomeProps {
 const PageHome: React.FC<PageHomeProps> = ({ page, error }) => {
   
   if (error) {
+    console.error(error);
     return <Error statusCode={500} />;
   }
 
@@ -39,11 +40,12 @@ const PageHome: React.FC<PageHomeProps> = ({ page, error }) => {
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const response = await getHomePage();
+    
     if (response) {
       return { props: { page: response.data[0], error: null } };
-    } else {
-      return { notFound: true }
     }
+    
+    return { notFound: true }
     
   } catch (error) {
     return { props: { page: null, error: "Erreur lors du chargement de la page" + error } };
