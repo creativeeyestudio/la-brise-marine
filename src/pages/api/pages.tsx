@@ -1,12 +1,10 @@
-import nextConfig from "../../../next.config";
-
-const apiUrl = nextConfig.apiUrl + "/api/pages?populate=deep";
+const apiUrl = process.env.API_URL + "/api/pages?populate=deep";
 
 export async function getHomePage() {
     return initPage(true);
 }
 
-export async function getPage(slug: string | string[] | undefined) {
+export async function getPage(slug: string | string[] | null = null) {
     return initPage(false, slug);
 }
 
@@ -18,11 +16,10 @@ async function initPage(mainPage: boolean, slug: string | string[] | null = null
   const res = await fetch(apiUrl + paramUrl, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${nextConfig.apiToken}`,
+      Authorization: `Bearer ${process.env.API_TOKEN}`,
     },
   });
 
-  // Vérifiez si la requête a échoué
   if (!res.ok) {
     const errorText = await res.text();
     console.error(`Error fetching data: ${res.status} ${res.statusText}. Details: ${errorText}`);
