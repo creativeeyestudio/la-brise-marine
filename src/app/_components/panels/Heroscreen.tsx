@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import nextConfig from "../../../../next.config";
 import { ImageProps } from "@/interfaces/_image";
 
 export interface HeroscreenProps {
@@ -13,7 +12,7 @@ const Heroscreen: React.FC<HeroscreenProps> = (content: HeroscreenProps) => {
       <>
         <figure className="hero">
           <Image
-            src={nextConfig.apiUrl + content.image.data.attributes.url}
+            src={process.env.NEXT_PUBLIC_API_URL + content.image.data.attributes.url}
             alt={content.image.data.attributes.alternativeText}
             fill={true}
             objectFit="cover"
