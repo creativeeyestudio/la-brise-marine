@@ -1,36 +1,33 @@
-const apiUrl = process.env.API_URL + '/api/posts/?populate=*';
+import axios from "axios";
+
+const apiUrl = process.env.API_URL + '/api/posts/?populate=deep';
 
 export async function getAllPosts() {
-  const res = await fetch(apiUrl, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.API_TOKEN}`,
-    },
-  });
+  try {
+    const res = await axios.get(apiUrl,  {
+      headers: {
+        'Authorization': `Bearer ${process.env.API_TOKEN}`,
+      }
+    });
 
-  // Vérifiez si la requête a échoué
-  if (!res.ok) {
-    const errorText = await res.text();
-    console.error("API Error:", errorText);
-    throw new Error(`Failed to fetch posts: ${res.status} ${res.statusText}`);
+    return res.data;
+  } catch (error) {
+    console.error(`Error fetching data: ${error}`);
+    throw new Error(`Failed to fetch data: ${error}`);
   }
-
-  return res.json();
 }
 
 export async function getSinglePost(slug: string | string[] | undefined) {
-  const res = await fetch(apiUrl + "&filters[slug][$eq]=" + slug, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.API_TOKEN}`,
-    },
-  });
+  try {
+    const res = await axios.get(apiUrl +  + "&filters[slug][$eq]=" + slug,  {
+      headers: {
+        'Authorization': `Bearer ${process.env.API_TOKEN}`,
+      }
+    });
 
-  if (!res.ok) {
-    const errorText = await res.text();
-    console.error("API Error:", errorText);
-    throw new Error(`Failed to fetch posts: ${res.status} ${res.statusText}`);
+    return res.data;
+  } catch (error) {
+    console.error(`Error fetching data: ${error}`);
+    throw new Error(`Failed to fetch data: ${error}`);
   }
-
-  return res.json();
 }
