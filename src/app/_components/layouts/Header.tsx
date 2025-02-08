@@ -5,7 +5,7 @@ const Header: React.FC = () => {
     return(
         <>
         <header></header>
-        {/* <Navigation menuId={1} /> */}
+        <Navigation menuId={2} />
         </>
     );
 }

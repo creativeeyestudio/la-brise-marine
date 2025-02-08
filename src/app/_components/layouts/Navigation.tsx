@@ -42,7 +42,7 @@ const Navigation: React.FC<NavigationProps> = ({menuId}) => {
         <>
             <nav>
                 <ul>
-                    {menuItems.map((item) => (
+                    {menuItems?.length > 0 ? menuItems.map((item) => (
                         <li key={item.id}>
                             {item.path ? (
                                 <Link href={item.path}>
@@ -68,7 +68,7 @@ const Navigation: React.FC<NavigationProps> = ({menuId}) => {
                                 </ul>
                             )}
                         </li>
-                    ))}
+                    )) : <></>}
                 </ul>
             </nav>
         </>

@@ -1,26 +1,26 @@
 import axios from "axios";
-import nextConfig from "../../../next.config";
 
-const apiUrl = `${nextConfig.apiUrl}/api/navigation/render`;
+const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/navigation/render`;
 
 const getMenu = async (menuId: number) => {
     try {
         const res = await axios.get(`${apiUrl}/${menuId}?type=TREE`, {
             headers: {
-                Authorization: `Bearer ${nextConfig.apiToken}`,
+                'Authorization': `Bearer ${process.env.API_TOKEN}`,
             },
         });
 
-        if (res.status === 200) {
+        if (res.status >= 200 && res.status < 300) {
             return res.data;
-        } else {
-            console.error("API returned an unexpected status:", res.status, res.statusText);
-            throw new Error(`API Error: ${res.status} - ${res.statusText}`);
-        }
+        }        
+
+        return false;
     } catch (error: unknown) {
-        // Gestion des erreurs réseau ou autres
-        console.error("Failed to fetch menu:", error || error);
-        throw new Error("An error occurred while fetching the menu.");
+        if (axios.isAxiosError(error)) {
+            console.error("Axios error:", error.response?.data || error.message);
+        } else {
+            console.error("Unexpected error:", error);
+        }    
     }
 };
 
