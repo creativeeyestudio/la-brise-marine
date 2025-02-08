@@ -23,6 +23,7 @@ const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
   }, [page, router]);
   
   if (error) {
+    console.error(error);
     return <Error statusCode={500} />;
   }
 
@@ -54,13 +55,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.params!;
   try {
     const response = await getPage(slug);
+    
     if (response) {
       return { props: { page: response.data[0], error: null } };
-    } else {
-      return { notFound: true }
-    }    
+    }
+    
+    return { notFound: true }
   } catch (error) {
-    return { props: { page: null, error: "Erreur lors du chargement de la page" + error } };
+    return { props: { page: null, error: "Erreur lors du chargement de la page " + error } };
   }
 };
 

@@ -25,8 +25,9 @@ const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
             return (
               <TextImage
                 title={block.title}
-                content={block.text[0].children[0].text}
+                text={block.text[0].children[0].text}
                 image={block.image}
+                links={block.links}
                 key={index}
               />
             );
