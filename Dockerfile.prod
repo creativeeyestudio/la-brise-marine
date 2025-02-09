@@ -1,0 +1,33 @@
+# Étape 1 : Build de l'application
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Copier les fichiers de dépendances en premier pour optimiser le cache
+COPY package.json package-lock.json ./
+RUN npm install --frozen-lockfile
+
+# Copier le reste du projet
+COPY . .
+
+# Construire l'application Next.js
+RUN npm run build
+
+# Étape 2 : Exécution de l'application optimisée
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copier uniquement le build depuis l'étape précédente
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/package.json /app/package-lock.json ./
+COPY --from=builder /app/public ./public
+
+# Installer uniquement les dépendances nécessaires en production
+RUN npm install --omit=dev
+
+# Exposer le port Next.js
+EXPOSE 3000
+
+# Lancer Next.js en mode production
+CMD ["npm", "run", "start"]

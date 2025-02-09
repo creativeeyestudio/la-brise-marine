@@ -1,21 +1,23 @@
-# Dockerfile
-
+# Utiliser une image légère de Node.js
 FROM node:18-alpine
 
-# Définir le répertoire de travail dans le conteneur
-WORKDIR /src/app
+# Définir le dossier de travail dans le conteneur
+WORKDIR /app
 
-# Copier uniquement les fichiers nécessaires pour installer les dépendances
+# Copier uniquement package.json et package-lock.json pour installer les dépendances
 COPY package.json package-lock.json ./
 
 # Installer les dépendances
 RUN npm install
 
-# Copier tout le code source de l'application (important pour npm run dev)
+# Copier tout le projet dans le conteneur
 COPY . .
 
-# Exposer le port utilisé par Next.js
+# Exposer le port Next.js (3000)
 EXPOSE 3000
 
-# Commande par défaut pour démarrer l'application en mode développement
+# Activer le hot-reloading avec Chokidar
+ENV CHOKIDAR_USEPOLLING=true
+
+# Commande pour démarrer Next.js en mode développement
 CMD ["npm", "run", "dev"]
