@@ -1,10 +1,10 @@
 // Post.tsx
 import { GetServerSideProps } from "next";
-import { getSinglePost } from "../api/posts";
+import { getSinglePost } from "../../app/api/posts";
 import Head from "next/head";
 import Image from "next/image";
 import ContentPage from "@/app/_components/layouts/ContentPage";
-import PostProps from "@/interfaces/post";
+import PostProps from "@/app/interfaces/post";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
@@ -50,7 +50,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, error }) => {
       </p>
       <article>
         <Image
-          src={imageUrl ?? "/"}
+          src={process.env. NEXT_PUBLIC_API_TOKEN + imageUrl}
           alt={imageAlt}
           width={post.attributes.main_image.data.attributes.width}
           height={post.attributes.main_image.data.attributes.height}

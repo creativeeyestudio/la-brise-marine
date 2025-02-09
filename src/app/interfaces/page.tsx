@@ -1,5 +1,6 @@
 import { GalleryImageProps } from "@/app/_components/panels/Gallery";
 import { ImageProps } from "./_image";
+import PostProps from "./post";
 
 interface PageProps {
   id: number;
@@ -18,6 +19,7 @@ export interface ContentPage {
   __component: string;
   title: string;
   text: TextBlock[];
+  links: LinkItem[];
   code_html: TextBlock[];
   image: ImageProps;
   image1: ImageProps;
@@ -28,6 +30,18 @@ export interface ContentPage {
 export interface TextBlock {
   type: string;
   children: TextChild[];
+}
+
+export interface LinkItem {
+  id: number;
+  label: string;
+  external_link: string | null;
+  pages: {
+    data: PageProps[]
+  },
+  posts: {
+    data: PostProps[]
+  }
 }
 
 interface TextChild {

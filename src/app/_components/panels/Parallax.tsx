@@ -1,21 +1,29 @@
 import Image from "next/image";
 import React from 'react';
-import nextConfig from "../../../../next.config";
-import { ImageProps } from "@/interfaces/_image";
+import { ImageProps } from "@/app/interfaces/_image";
+import Ukiyo from "ukiyojs";
 
 interface ParallaxProps {
     image: ImageProps
 }
 
 const Parallax: React.FC<ParallaxProps> = (content: ParallaxProps) => {
+    
+    new Ukiyo('.ukiyo', {
+        speed: 1.5
+    });
+
     return(
-        <figure className="parallax">
+        <>
+        <figure className="prx">
             <Image
-                className="parallax_img"
-                src={nextConfig.apiUrl + content.image.data.attributes.url}
+                className="prx_img ukiyo"
+                src={process.env. NEXT_PUBLIC_API_TOKEN + content.image.data.attributes.url}
                 alt={content.image.data.attributes.alternativeText}
                 fill={true}/>
         </figure>
+        </>
+        
     )
 }
 

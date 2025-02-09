@@ -1,42 +1,58 @@
 import Image from "next/image";
 import React from "react";
-import nextConfig from "../../../../next.config";
-import { ImageProps } from "@/interfaces/_image";
+import { ImageProps } from "@/app/interfaces/_image";
+import { LinkItem } from "@/app/interfaces/page";
+import ButtonLink from "../buttonLink";
 
 export interface TextDoubleImageProps {
-  title: string;
-  content: string;
-  image1: ImageProps;
-  image2: ImageProps;
+  title: string
+  text: string
+  links: LinkItem[]
+  image1: ImageProps
+  image2: ImageProps
 }
 
-const TextDoubleImage: React.FC<TextDoubleImageProps> = (
-  content: TextDoubleImageProps
-) => {
+const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, image1, image2 }) => {
   return (
     <section className="text-double-img">
       <div className="text-double-img_content">
-        <h2 className="text-double-img_title">{content.title}</h2>
-        {content.content}
+        <h2 className="text-double-img_title">{title}</h2>
+        {text}
+        <div className='btnLinks'>
+            {links?.map((link) => (
+                <>
+                    <ButtonLink 
+                        primary={true} 
+                        label={link.label}
+                        href={
+                            link.external_link ? link.external_link : 
+                            link.pages.data[0] ? link.pages.data[0].attributes.slug : 
+                            link.posts.data[0] ? 'blog/' + link.posts.data[0]?.attributes.slug : ""
+                        }
+                        external={link.external_link ? true : false}
+                    />
+                </>
+            ))}
+        </div>
       </div>
 
       <figure className="text-double-img_image text-double-img_image--first">
         <Image
-          src={nextConfig.apiUrl + content.image1.data.attributes.url}
-          width={content.image1.data.attributes.width}
-          height={content.image1.data.attributes.height}
-          alt={content.image1.data.attributes.alternativeText}
+          src={process.env. NEXT_PUBLIC_API_TOKEN + image1.data.attributes.url}
+          width={image1.data.attributes.width}
+          height={image1.data.attributes.height}
+          alt={image1.data.attributes.alternativeText}
         />
       </figure>
 
-      <figure className="text-double-img_image text-double-img_image--second">
+      {image2.data != null ? <figure className="text-double-img_image text-double-img_image--second">
         <Image
-          src={nextConfig.apiUrl + content.image2.data.attributes.url}
-          width={content.image2.data.attributes.width}
-          height={content.image2.data.attributes.height}
-          alt={content.image2.data.attributes.alternativeText}
+          src={process.env. NEXT_PUBLIC_API_TOKEN + image2.data?.attributes.url}
+          width={image2.data?.attributes.width}
+          height={image2.data?.attributes.height}
+          alt={image2.data?.attributes.alternativeText}
         />
-      </figure>
+      </figure> : <></>}
     </section>
   );
 };

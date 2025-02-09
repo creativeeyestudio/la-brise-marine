@@ -1,6 +1,5 @@
-import { GalleryProps } from '@/interfaces/_image';
+import { GalleryProps } from '@/app/interfaces/_image';
 import Image from 'next/image';
-import nextConfig from '../../../../next.config';
 
 export interface GalleryImageProps {
     data: GalleryProps[];
@@ -14,8 +13,8 @@ const Gallery: React.FC<GalleryImageProps> = (content: GalleryImageProps) => {
             {content.data.map((image, index) => (
                 <figure key={index}>
                     <Image 
-                        src={nextConfig.apiUrl + image.attributes.url} 
-                        alt={image.attributes.alternativeText}
+                        src={process.env. NEXT_PUBLIC_API_TOKEN + image.attributes.url} 
+                        alt={image.attributes.alternativeText ?? `Galerie Image ${index + 1}`}
                         width={thumbSize}
                         height={thumbSize}
                         style={{objectFit: 'cover', objectPosition: 'center'}}

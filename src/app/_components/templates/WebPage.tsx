@@ -1,7 +1,7 @@
 import React from "react";
 import Heroscreen from "../panels/Heroscreen";
 import TextDoubleImage from "../panels/TextDoubleImage";
-import { ContentPage } from "@/interfaces/page";
+import { ContentPage } from "@/app/interfaces/page";
 import TextImage from "../panels/TextImage";
 import Gallery from "../panels/Gallery";
 import HtmlContent from "../panels/HtmlContent";
@@ -25,8 +25,9 @@ const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
             return (
               <TextImage
                 title={block.title}
-                content={block.text[0].children[0].text}
+                text={block.text[0].children[0].text}
                 image={block.image}
+                links={block.links}
                 key={index}
               />
             );
@@ -34,7 +35,8 @@ const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
             return (
               <TextDoubleImage
                 title={block.title}
-                content={block.text[0].children[0].text}
+                text={block.text[0].children[0].text}
+                links={block.links}
                 image1={block.image1}
                 image2={block.image2}
                 key={index}
