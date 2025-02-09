@@ -1,4 +1,4 @@
-name: Build and Deploy Strapi Docker Image
+name: Build and Deploy Next.js Docker Image
 
 on:
   push:
