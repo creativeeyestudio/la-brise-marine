@@ -8,6 +8,8 @@ import HtmlContent from "../panels/HtmlContent";
 import Parallax from "../panels/Parallax";
 
 import '../../globals.css';
+import TextIntro from "../panels/TextIntro";
+import TextBlock from "../panels/Text";
 
 // Ici, on définit un type pour les props attendues par le composant.
 interface WebPageProps {
@@ -19,6 +21,10 @@ const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
     <>
       {blocks.map((block, index) => {
         switch (block.__component) {
+          case "common.text-intro":
+            return <TextIntro title={block.title} content={block.content}></TextIntro>
+          case "common.text":
+            return <TextBlock title={block.title} content={block.content}></TextBlock>
           case "common.heroscreen":
             return <Heroscreen image={block.image} key={index} />;
           case "common.text-image":
