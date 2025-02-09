@@ -18,6 +18,7 @@ interface PageProps {
 export interface ContentPage {
   __component: string;
   title: string;
+  content: string
   text: TextBlock[];
   links: LinkItem[];
   code_html: TextBlock[];
