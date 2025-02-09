@@ -1,10 +1,10 @@
 import { GetServerSideProps } from 'next';
-import { getPage } from "./api/pages";
+import { getPage } from "../app/api/pages";
 import Error from "next/error";
 import Head from "next/head";
 import WebPage from "@/app/_components/templates/WebPage";
 import ContentPage from '@/app/_components/layouts/ContentPage';
-import PageProps from '@/interfaces/page';
+import PageProps from '@/app/interfaces/page';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 

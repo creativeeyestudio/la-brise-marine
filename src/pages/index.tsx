@@ -1,6 +1,6 @@
-import { getHomePage } from "./api/pages";
+import { getHomePage } from "../app/api/pages";
 import Error from "next/error";
-import PageProps from "@/interfaces/page";
+import PageProps from "@/app/interfaces/page";
 import Head from "next/head";
 import WebPage from "@/app/_components/templates/WebPage";
 import ContentPage from "@/app/_components/layouts/ContentPage";

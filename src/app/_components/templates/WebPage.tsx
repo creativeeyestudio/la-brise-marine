@@ -1,7 +1,7 @@
 import React from "react";
 import Heroscreen from "../panels/Heroscreen";
 import TextDoubleImage from "../panels/TextDoubleImage";
-import { ContentPage } from "@/interfaces/page";
+import { ContentPage } from "@/app/interfaces/page";
 import TextImage from "../panels/TextImage";
 import Gallery from "../panels/Gallery";
 import HtmlContent from "../panels/HtmlContent";

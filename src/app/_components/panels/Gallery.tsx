@@ -1,4 +1,4 @@
-import { GalleryProps } from '@/interfaces/_image';
+import { GalleryProps } from '@/app/interfaces/_image';
 import Image from 'next/image';
 
 export interface GalleryImageProps {
@@ -14,7 +14,7 @@ const Gallery: React.FC<GalleryImageProps> = (content: GalleryImageProps) => {
                 <figure key={index}>
                     <Image 
                         src={process.env.NEXT_PUBLIC_API_URL + image.attributes.url} 
-                        alt={image.attributes.alternativeText}
+                        alt={image.attributes.alternativeText ?? `Galerie Image ${index + 1}`}
                         width={thumbSize}
                         height={thumbSize}
                         style={{objectFit: 'cover', objectPosition: 'center'}}

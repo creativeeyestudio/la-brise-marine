@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
-import { ImageProps } from '@/interfaces/_image';
-import { LinkItem } from '@/interfaces/page';
+import { ImageProps } from '@/app/interfaces/_image';
+import { LinkItem } from '@/app/interfaces/page';
 import ButtonLink from '../buttonLink';
 
 interface TextImageProps {

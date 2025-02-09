@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { ImageProps } from "@/interfaces/_image";
+import { ImageProps } from "@/app/interfaces/_image";
 
 export interface HeroscreenProps {
   image: ImageProps | undefined;

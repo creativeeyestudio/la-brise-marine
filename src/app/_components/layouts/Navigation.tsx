@@ -1,5 +1,5 @@
-import { MenuItem } from '@/interfaces/menu';
-import getMenu from '@/pages/api/menus';
+import { MenuItem } from '@/app/interfaces/menu';
+import getMenu from '@/app/api/menus';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
