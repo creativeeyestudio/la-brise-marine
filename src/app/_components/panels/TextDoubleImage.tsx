@@ -38,7 +38,7 @@ const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, i
 
       <figure className="text-double-img_image text-double-img_image--first">
         <Image
-          src={process.env.NEXT_PUBLIC_API_URL + image1.data.attributes.url}
+          src={process.env. NEXT_PUBLIC_API_TOKEN + image1.data.attributes.url}
           width={image1.data.attributes.width}
           height={image1.data.attributes.height}
           alt={image1.data.attributes.alternativeText}
@@ -47,7 +47,7 @@ const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, i
 
       {image2.data != null ? <figure className="text-double-img_image text-double-img_image--second">
         <Image
-          src={process.env.NEXT_PUBLIC_API_URL + image2.data?.attributes.url}
+          src={process.env. NEXT_PUBLIC_API_TOKEN + image2.data?.attributes.url}
           width={image2.data?.attributes.width}
           height={image2.data?.attributes.height}
           alt={image2.data?.attributes.alternativeText}

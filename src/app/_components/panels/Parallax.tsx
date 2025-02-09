@@ -18,7 +18,7 @@ const Parallax: React.FC<ParallaxProps> = (content: ParallaxProps) => {
         <figure className="prx">
             <Image
                 className="prx_img ukiyo"
-                src={process.env.NEXT_PUBLIC_API_URL + content.image.data.attributes.url}
+                src={process.env. NEXT_PUBLIC_API_TOKEN + content.image.data.attributes.url}
                 alt={content.image.data.attributes.alternativeText}
                 fill={true}/>
         </figure>

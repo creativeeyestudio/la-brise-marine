@@ -40,7 +40,7 @@ const TextImage: React.FC<TextImageProps> = ({ title, text, links, image }) => {
             
             <figure className="text-img_img">
                 <Image
-                    src={process.env.NEXT_PUBLIC_API_URL + image.data.attributes.url}
+                    src={process.env. NEXT_PUBLIC_API_TOKEN + image.data.attributes.url}
                     width={image.data.attributes.width}
                     height={image.data.attributes.height}
                     alt={image.data.attributes.alternativeText ?? "Missing Alt"} />

@@ -50,7 +50,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, error }) => {
       </p>
       <article>
         <Image
-          src={process.env.NEXT_PUBLIC_API_URL + imageUrl}
+          src={process.env. NEXT_PUBLIC_API_TOKEN + imageUrl}
           alt={imageAlt}
           width={post.attributes.main_image.data.attributes.width}
           height={post.attributes.main_image.data.attributes.height}

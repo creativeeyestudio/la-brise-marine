@@ -5,7 +5,7 @@ const Header: React.FC = () => {
     return(
         <>
         <header></header>
-        <Navigation menuId={2} />
+        <Navigation menuId={'main-navigation'} />
         </>
     );
 }

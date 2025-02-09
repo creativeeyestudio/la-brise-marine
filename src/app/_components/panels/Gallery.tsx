@@ -13,7 +13,7 @@ const Gallery: React.FC<GalleryImageProps> = (content: GalleryImageProps) => {
             {content.data.map((image, index) => (
                 <figure key={index}>
                     <Image 
-                        src={process.env.NEXT_PUBLIC_API_URL + image.attributes.url} 
+                        src={process.env. NEXT_PUBLIC_API_TOKEN + image.attributes.url} 
                         alt={image.attributes.alternativeText ?? `Galerie Image ${index + 1}`}
                         width={thumbSize}
                         height={thumbSize}

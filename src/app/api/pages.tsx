@@ -18,7 +18,7 @@ async function initPage(mainPage: boolean, slug: string | string[] | null = null
 
     const res = await axios.get(apiUrl + paramUrl,  {
       headers: {
-        'Authorization': `Bearer ${process.env.API_TOKEN}`,
+        'Authorization': `Bearer ${process.env. NEXT_PUBLIC_API_TOKEN}`,
       }
     });
 

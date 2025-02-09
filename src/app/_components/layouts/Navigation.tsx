@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 interface NavigationProps {
-    menuId: number;
+    menuId: string;
 }
 
 const Navigation: React.FC<NavigationProps> = ({menuId}) => {
