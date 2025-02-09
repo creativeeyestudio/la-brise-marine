@@ -2,7 +2,7 @@ services:
   admin:
     image: kevinad/dreamsite-admin:main
     restart: always
-    env_file: .env
+    env_file: .env.local
     environment:
       DATABASE_CLIENT: mysql
       DATABASE_HOST: db
