@@ -1,6 +1,6 @@
 services:
   admin:
-    image: kevinad/dreamsite-admin:main
+    image: kevinad/dreamsite-admin:develop
     restart: always
     env_file: .env
     environment:
