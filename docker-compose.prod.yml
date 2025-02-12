@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   admin:
     image: kevinad/dreamsite-admin:main  # Image stable de production
