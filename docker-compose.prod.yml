@@ -1,8 +1,8 @@
 services:
   admin:
-    image: kevinad/dreamsite-admin:develop
+    image: kevinad/dreamsite-admin:main  # Image stable de production
     restart: always
-    env_file: .env.local
+    env_file: .env
     environment:
       DATABASE_CLIENT: mysql
       DATABASE_HOST: db
@@ -17,18 +17,16 @@ services:
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
       TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
     volumes:
-      - ./back:/app  # Montez le répertoire du projet pour le développement en direct
-      - ./back/config:/app/config  # Conserve la config Strapi
+      - ./back/config:/app/config  # Garde la configuration Strapi
       - ./back/public/uploads:/app/public/uploads  # Conserve les fichiers uploadés
       - ./back/src/plugins:/app/src/plugins  # Conserve les plugins installés
-      - /app/node_modules  # Empêche les conflits avec node_modules dans l’image
     ports:
-      - '1337:1337'
+      - '1337:1337'  # Expose Strapi en prod sur le port 1337
     depends_on:
       - db
 
   db:
-    image: mysql:5.7
+    image: mysql:5.7  # Utilisation de MySQL 5.7 comme demandé
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -36,9 +34,13 @@ services:
       MYSQL_USER: ${DATABASE_USERNAME}
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
-      - db_data:/var/lib/mysql  # Stockage persistant pour MySQL
-    ports:
-      - '3306:3306'
+      - db_data:/var/lib/mysql  # Stockage persistant pour la base de données
+    networks:
+      - backend
 
 volumes:
-  db_data:
+  db_data:  # Stockage persistant pour MySQL
+
+networks:
+  backend:
+    driver: bridge
