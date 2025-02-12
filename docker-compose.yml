@@ -18,7 +18,11 @@ services:
       TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
     volumes:
       - ./back:/app  # Montez le répertoire du projet pour le développement en direct
-      - /app/node_modules  # Montez node_modules pour éviter les conflits
+      - ./back/config:/app/config  # Conserve la config Strapi
+      - ./back/public/uploads:/app/public/uploads  # Conserve les fichiers uploadés
+      - ./back/src/plugins:/app/src/plugins  # Conserve les plugins installés
+      - ./back/database:/app/database  # Si tu utilises SQLite (sinon, MySQL suffit)
+      - /app/node_modules  # Empêche les conflits avec node_modules dans l’image
     ports:
       - '1337:1337'
     depends_on:
