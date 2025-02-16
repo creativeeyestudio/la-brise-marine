@@ -18,6 +18,7 @@ interface PageProps {
 export interface ContentPage {
   __component: string;
   title: string;
+  text: TextBlock[]
   content: TextBlock[]
   links: LinkItem[]
   code_html: TextBlock[]
@@ -44,11 +45,15 @@ export interface LinkItem {
   }
 }
 
-interface TextChild {
-  bold: boolean
-  italic: boolean
-  text: string
-  type: string
+export interface TextChild {
+  type: "text" | "link"; // Ajout du type "link"
+  text?: string; // Texte des éléments de type "text" ou contenu d'un lien
+  bold?: boolean; // Optionnel, pour les éléments "text" ou "link"
+  italic?: boolean; // Optionnel, pour les éléments "text" ou "link"
+  url?: string; // Lien URL, seulement pour les éléments de type "link"
+  children?: TextChild[]; // Pour les liens, qui peuvent avoir des sous-éléments de texte
 }
+
+
 
 export default PageProps;
