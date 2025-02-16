@@ -26,6 +26,7 @@ export interface ContentPage {
   image1: ImageProps
   image2: ImageProps
   images: GalleryImageProps
+  speed: number;
 }
 
 export interface TextBlock {
