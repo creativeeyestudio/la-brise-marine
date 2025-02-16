@@ -7,6 +7,7 @@ import TextBlock from "../panels/Text";
 import TextImage from "../panels/TextImage";
 import TextDoubleImage from "../panels/TextDoubleImage";
 import Parallax from "../panels/Parallax";
+import Heroscreen from "../panels/Heroscreen";
 
 // Ici, on définit un type pour les props attendues par le composant.
 interface WebPageProps {
@@ -36,7 +37,11 @@ const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
             );
           case "page.parallax":
             return (
-              <Parallax image={block.image} speed={block.speed} />
+              <Parallax image={block.image} speed={block.speed} key={index} />
+            );
+          case "page.heroscreen":
+            return (
+              <Heroscreen images={block.images} key={index} />
             );
           default:
             return <></>;
