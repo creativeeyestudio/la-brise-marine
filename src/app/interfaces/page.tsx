@@ -18,7 +18,7 @@ interface PageProps {
 export interface ContentPage {
   __component: string;
   title: string;
-  content: TextBlock
+  content: TextBlock[]
   links: LinkItem[]
   code_html: TextBlock[]
   image: ImageProps
@@ -45,8 +45,10 @@ export interface LinkItem {
 }
 
 interface TextChild {
-  text: string;
-  type: string;
+  bold: boolean
+  italic: boolean
+  text: string
+  type: string
 }
 
 export default PageProps;
