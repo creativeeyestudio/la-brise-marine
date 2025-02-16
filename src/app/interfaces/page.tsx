@@ -1,5 +1,5 @@
 import { GalleryImageProps } from "@/app/_components/panels/Gallery";
-import { ImageProps } from "./_image";
+import { ImageMultipleProps, ImageProps } from "./_image";
 import PostProps from "./post";
 
 interface PageProps {
@@ -25,7 +25,8 @@ export interface ContentPage {
   image: ImageProps
   image1: ImageProps
   image2: ImageProps
-  images: GalleryImageProps
+  images: ImageMultipleProps
+  gallery: GalleryImageProps
   speed: number;
 }
 
