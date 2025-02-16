@@ -21,43 +21,13 @@ const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
     <>
       {blocks.map((block, index) => {
         switch (block.__component) {
-          case "common.text-intro":
-            return <TextIntro title={block.title} content={block.content}></TextIntro>
-          case "common.text":
-            return <TextBlock title={block.title} content={block.content}></TextBlock>
-          case "common.heroscreen":
-            return <Heroscreen image={block.image} key={index} />;
-          case "common.text-image":
+          case "page.text-intro":
             return (
-              <TextImage
-                title={block.title}
-                text={block.text[0].children[0].text}
-                image={block.image}
-                links={block.links}
-                key={index}
-              />
+              <TextIntro title={block.title} content={block.content} key={index} />
             );
-          case "common.text-double-image":
+          case "page.text":
             return (
-              <TextDoubleImage
-                title={block.title}
-                text={block.text[0].children[0].text}
-                links={block.links}
-                image1={block.image1}
-                image2={block.image2}
-                key={index}
-              />
-            );
-          case "common.parallax":
-            return <Parallax image={block.image} key={index} />;
-          case "common.gallery":
-            return <Gallery data={block.images.data} key={index} />;
-          case "common.html-content":
-            return (
-              <HtmlContent
-                htmlContent={block.code_html[0].children[0].text}
-                key={index}
-              />
+              <TextBlock title={block.title} content={block.content} key={index} />
             );
           default:
             return <></>;

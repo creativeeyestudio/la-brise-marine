@@ -18,14 +18,13 @@ interface PageProps {
 export interface ContentPage {
   __component: string;
   title: string;
-  content: string
-  text: TextBlock[];
-  links: LinkItem[];
-  code_html: TextBlock[];
-  image: ImageProps;
-  image1: ImageProps;
-  image2: ImageProps;
-  images: GalleryImageProps;
+  content: TextBlock
+  links: LinkItem[]
+  code_html: TextBlock[]
+  image: ImageProps
+  image1: ImageProps
+  image2: ImageProps
+  images: GalleryImageProps
 }
 
 export interface TextBlock {

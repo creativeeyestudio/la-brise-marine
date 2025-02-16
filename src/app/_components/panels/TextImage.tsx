@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import React from 'react';
 import { ImageProps } from '@/app/interfaces/_image';
-import { LinkItem } from '@/app/interfaces/page';
+import { LinkItem, TextBlock } from '@/app/interfaces/page';
 import ButtonLink from '../buttonLink';
 
 interface TextImageProps {
     title: string,
-    text: string,
+    text: TextBlock,
     links: LinkItem[],
     image: ImageProps
 }

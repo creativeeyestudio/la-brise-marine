@@ -1,15 +1,19 @@
-interface TextProps {
+import { TextBlock } from "@/app/interfaces/page";
+
+interface TextIntroProps {
     title: string
-    content: string
+    content: TextBlock
 }
 
-const TextBlock: React.FC<TextProps> = ({ title, content }) => {
+const TextIntro: React.FC<TextIntroProps> = ({ title, content }) => {
     return(
         <section>
-            <h2>{title}</h2>
-            {content}
+            <h2>{ title }</h2>
+            { content.children.map((content) => (
+                content.text
+            )) }
         </section>
     )
 }
 
-export default TextBlock;
+export default TextIntro;
