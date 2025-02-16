@@ -41,7 +41,7 @@ const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
   const blocks = page.attributes.content_page;
 
   return (
-    <ContentPage>
+    <ContentPage secondary_page={page.attributes.secondary_page}>
       <Head>
         <title>{page.attributes.meta_title}</title>
         <meta name="description" content={page.attributes.meta_desc} />
