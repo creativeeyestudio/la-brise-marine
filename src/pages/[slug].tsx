@@ -53,6 +53,7 @@ const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { slug } = context.params!;
+  
   try {
     const response = await getPage(slug);
     

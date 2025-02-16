@@ -26,6 +26,7 @@
     "next-i18next": "^15.4.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "swiper": "^11.2.4",
     "ukiyojs": "^4.2.0"
   },
   "devDependencies": {
