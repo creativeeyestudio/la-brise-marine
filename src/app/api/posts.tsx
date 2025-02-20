@@ -6,7 +6,7 @@ export async function getAllPosts() {
   try {
     const res = await axios.get(apiUrl,  {
       headers: {
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_ NEXT_PUBLIC_API_TOKEN}`,
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
       }
     });
 
@@ -18,8 +18,6 @@ export async function getAllPosts() {
 }
 
 export async function getSinglePost(slug: string | string[] | undefined) {
-  console.log(apiUrl);
-  
   try {
     const res = await axios.get(apiUrl + "&filters[slug][$eq]=" + slug,  {
       headers: {
