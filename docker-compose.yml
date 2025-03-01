@@ -2,8 +2,7 @@ services:
   admin:
     image: kevinad/dreamsite-admin:develop
     restart: always
-    env_file: 
-      - .env
+    env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: ${DATABASE_HOST}
