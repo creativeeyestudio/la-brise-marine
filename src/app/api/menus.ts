@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/navigation/render`;
+const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/navigation/render/`;
 
 const getMenu = async (menuId: string) => {
     try {
-        const response = await fetch(apiUrl + '/' + menuId + '?type=TREE', {
+        const response = await fetch(apiUrl + menuId + '?type=TREE', {
             method: "GET",
             headers: {
-                "Authorization": `Bearer ${process.env. NEXT_PUBLIC_API_TOKEN}`
+                "Authorization": `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`
             }
         });
         
