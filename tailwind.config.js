@@ -8,10 +8,10 @@ module.exports = {
       colors: {
         'primary': '#1F3856',
         'primary-light': '#A8DADC',
+        'primary-dark': '#1F3856',
         'secondary': '#F4F4F4',
         'tertiary': '#D9CAB3',
         'grey-dark': '#5C5C5C',
-        'primary-dark': '#1F3856',
       },
       fontSize: {
         'sm': '0.64rem',
