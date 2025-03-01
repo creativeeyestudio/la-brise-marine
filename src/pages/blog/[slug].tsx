@@ -1,7 +1,7 @@
-// Post.tsx
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import { getSinglePost } from "../../app/api/posts";
 import Head from "next/head";
+import Error from "next/error";
 import Image from "next/image";
 import ContentPage from "@/app/_components/layouts/ContentPage";
 import PostProps from "@/app/interfaces/post";
@@ -21,23 +21,16 @@ const PostPage: React.FC<PostPageProps> = ({ post, error }) => {
     setLanguage(userLanguage);
   }, []);
 
-  if (error) {
-    return <p>{error}</p>;
-  }
-
-  if (!post) {
-    return (
-      <ContentPage>
-        <p>Aucun article trouvé.</p>;
-      </ContentPage>
-    )
+  if (error || !post) {
+    console.error(error || "Post non trouvé");
+    return <Error statusCode={error ? 500 : 404} />;
   }
 
   const imageUrl = post.attributes.main_image?.data?.attributes?.url;
   const imageAlt = post.attributes.main_image?.data?.attributes?.alternativeText || post.attributes.title;
 
   return (
-    <ContentPage>
+    <ContentPage secondary_page={true}>
       <Head>
         <title>{post.attributes.meta_title}</title>
         <meta name="description" content={post.attributes.meta_description} />
@@ -52,31 +45,28 @@ const PostPage: React.FC<PostPageProps> = ({ post, error }) => {
         <Image
           src={process.env. NEXT_PUBLIC_API_TOKEN + imageUrl}
           alt={imageAlt}
-          width={post.attributes.main_image.data.attributes.width}
-          height={post.attributes.main_image.data.attributes.height}
-          layout="responsive"
+          layout="fill"
         />
         <h1>{post.attributes.title}</h1>
         <p>
           Publié le: {new Date(post.attributes.publishedAt).toLocaleDateString(language)}
         </p>
-        <div
-          dangerouslySetInnerHTML={{ __html: post.attributes.content }}
-        />
+        <div dangerouslySetInnerHTML={{ __html: post.attributes.content }} />
       </article>
     </ContentPage>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params!;
   try {
     const response = await getSinglePost(slug);
-    if (response) {
-      return { props: { post: response.data[0], error: null } };
-    } else {
+    
+    if (!response || !response.data || response.data.length === 0) {
       return { notFound: true }
     }
+
+    return { props: { post: response.data[0], error: null } };
   } catch (error) {
     return { props: { post: null, error: "Erreur lors du chargement de l'article." + error } };
   }

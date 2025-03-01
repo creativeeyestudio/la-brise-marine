@@ -1,15 +1,13 @@
 import React from "react";
-import Heroscreen from "../panels/Heroscreen";
-import TextDoubleImage from "../panels/TextDoubleImage";
 import { ContentPage } from "@/app/interfaces/page";
-import TextImage from "../panels/TextImage";
-import Gallery from "../panels/Gallery";
-import HtmlContent from "../panels/HtmlContent";
-import Parallax from "../panels/Parallax";
 
 import '../../globals.css';
 import TextIntro from "../panels/TextIntro";
 import TextBlock from "../panels/Text";
+import TextImage from "../panels/TextImage";
+import TextDoubleImage from "../panels/TextDoubleImage";
+import Parallax from "../panels/Parallax";
+import Heroscreen from "../panels/Heroscreen";
 
 // Ici, on définit un type pour les props attendues par le composant.
 interface WebPageProps {
@@ -21,43 +19,29 @@ const WebPage: React.FC<WebPageProps> = ({ blocks }) => {
     <>
       {blocks.map((block, index) => {
         switch (block.__component) {
-          case "common.text-intro":
-            return <TextIntro title={block.title} content={block.content}></TextIntro>
-          case "common.text":
-            return <TextBlock title={block.title} content={block.content}></TextBlock>
-          case "common.heroscreen":
-            return <Heroscreen image={block.image} key={index} />;
-          case "common.text-image":
+          case "page.text-intro":
             return (
-              <TextImage
-                title={block.title}
-                text={block.text[0].children[0].text}
-                image={block.image}
-                links={block.links}
-                key={index}
-              />
+              <TextIntro title={block.title} content={block.content} key={index} />
             );
-          case "common.text-double-image":
+          case "page.text":
             return (
-              <TextDoubleImage
-                title={block.title}
-                text={block.text[0].children[0].text}
-                links={block.links}
-                image1={block.image1}
-                image2={block.image2}
-                key={index}
-              />
+              <TextBlock title={block.title} content={block.content} key={index} />
             );
-          case "common.parallax":
-            return <Parallax image={block.image} key={index} />;
-          case "common.gallery":
-            return <Gallery data={block.images.data} key={index} />;
-          case "common.html-content":
+          case "page.text-image":
             return (
-              <HtmlContent
-                htmlContent={block.code_html[0].children[0].text}
-                key={index}
-              />
+              <TextImage title={block.title} text={block.text} links={block.links} image={block.image} key={index} />
+            );
+          case "page.text-double-image":
+            return (
+              <TextDoubleImage title={block.title} text={block.text} links={block.links} image1={block.image1} image2={block.image2} key={index} />
+            );
+          case "page.parallax":
+            return (
+              <Parallax image={block.image} speed={block.speed} key={index} />
+            );
+          case "page.heroscreen":
+            return (
+              <Heroscreen images={block.images} key={index} />
             );
           default:
             return <></>;

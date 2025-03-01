@@ -1,5 +1,5 @@
 import { GalleryImageProps } from "@/app/_components/panels/Gallery";
-import { ImageProps } from "./_image";
+import { ImageMultipleProps, ImageProps } from "./_image";
 import PostProps from "./post";
 
 interface PageProps {
@@ -18,14 +18,16 @@ interface PageProps {
 export interface ContentPage {
   __component: string;
   title: string;
-  content: string
-  text: TextBlock[];
-  links: LinkItem[];
-  code_html: TextBlock[];
-  image: ImageProps;
-  image1: ImageProps;
-  image2: ImageProps;
-  images: GalleryImageProps;
+  text: TextBlock[]
+  content: TextBlock[]
+  links: LinkItem[]
+  code_html: TextBlock[]
+  image: ImageProps
+  image1: ImageProps
+  image2: ImageProps
+  images: ImageMultipleProps
+  gallery: GalleryImageProps
+  speed: number;
 }
 
 export interface TextBlock {
@@ -45,9 +47,15 @@ export interface LinkItem {
   }
 }
 
-interface TextChild {
-  text: string;
-  type: string;
+export interface TextChild {
+  type: "text" | "link"; // Ajout du type "link"
+  text?: string; // Texte des éléments de type "text" ou contenu d'un lien
+  bold?: boolean; // Optionnel, pour les éléments "text" ou "link"
+  italic?: boolean; // Optionnel, pour les éléments "text" ou "link"
+  url?: string; // Lien URL, seulement pour les éléments de type "link"
+  children?: TextChild[]; // Pour les liens, qui peuvent avoir des sous-éléments de texte
 }
+
+
 
 export default PageProps;

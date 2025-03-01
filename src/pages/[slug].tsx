@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import { getPage } from "../app/api/pages";
 import Error from "next/error";
 import Head from "next/head";
@@ -41,7 +41,7 @@ const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
   const blocks = page.attributes.content_page;
 
   return (
-    <ContentPage>
+    <ContentPage secondary_page={page.attributes.secondary_page}>
       <Head>
         <title>{page.attributes.meta_title}</title>
         <meta name="description" content={page.attributes.meta_desc} />
@@ -51,18 +51,25 @@ const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params!;
+  
   try {
     const response = await getPage(slug);
     
-    if (response) {
-      return { props: { page: response.data[0], error: null } };
+    if (!response || !response.data || response.data.length === 0) {
+      return { notFound: true }
     }
-    
-    return { notFound: true }
+
+    const page = response.data[0];
+
+    return { 
+      props: { page: page, error: null }, 
+      revalidate: 60
+    };
   } catch (error) {
-    return { props: { page: null, error: "Erreur lors du chargement de la page " + error } };
+    console.error("Erreur lors du chargement de la page:", error);
+    return { props: { page: null, error: "Erreur lors du chargement de la page" + error } };
   }
 };
 
