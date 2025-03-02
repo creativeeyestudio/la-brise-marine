@@ -52,7 +52,7 @@ const Navigation: React.FC<NavigationProps> = ({menuId}) => {
                                 <span>{item.title}</span>
                             )}
 
-                            {item.items.length > 0 && (
+                            {item.items?.length > 0 && (
                                 <ul>
                                     {item.items.map((subItem) => (
                                         <li key={subItem.id}>

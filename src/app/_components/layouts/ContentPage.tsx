@@ -6,7 +6,9 @@ const ContentPage: React.FC<{ children: React.ReactNode, secondary_page: boolean
     return(
         <>
             <Header secondary_page={secondary_page} />
-            <main>{children}</main>
+            <main className={'min-h-screen'}>
+                {children}
+            </main>
             <Footer />
         </>
     )

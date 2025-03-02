@@ -27,9 +27,9 @@ module.exports = {
         '7xl': '5.96rem',
       },  
       fontFamily: {
-        'title': 'Poppins',
-        'subtitle': 'Raleway',
-        'body': 'Roboto'
+        title: ["var(--font-poppins)", "sans-serif"],
+        subtitle: ["var(--font-raleway)", "sans-serif"],
+        body: ["var(--font-roboto)", "sans-serif"],
       },
       screens: {
         'sm': "640px",  // 📱 Mobiles moyens (iPhone 12, Galaxy S)
