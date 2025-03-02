@@ -27,7 +27,7 @@ const Heroscreen: React.FC<HeroscreenProps> = (content: HeroscreenProps) => {
         disableOnInteraction: false,
       }}
       modules={[EffectFade, Pagination, Autoplay]}
-      className="h-screen"
+      className="aspect-square md:aspect-video lg:h-svh lg:w-full"
     >
       {content.images.data.map((image, index) => (
         <SwiperSlide key={index} className="relative">
@@ -37,7 +37,7 @@ const Heroscreen: React.FC<HeroscreenProps> = (content: HeroscreenProps) => {
             fill={true}
             objectFit="cover"
             priority={true}
-            className="hero_img" />
+            className="hero_img w-full" />
         </SwiperSlide>
       ))}    
     </Swiper>
