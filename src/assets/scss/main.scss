@@ -1,0 +1,11 @@
+// Import de Tailwind CSS après tout pour éviter les conflits
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+// ABSTRACTS
+@import './abstracts/mixins';
+
+// BASE
+@import './base/reset';
+@import './base/typography';
