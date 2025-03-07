@@ -8,9 +8,9 @@ interface TextIntroProps {
 
 const TextIntro: React.FC<TextIntroProps> = ({ title, content }) => {
     return(
-        <section className="bg-secondary p-sm md:p-md lg:p-lg">
-            <h1 className="text-2xl lg:text-center">{title}</h1>
-            <div className="max-w-screen-xl m-auto">
+        <section className="bg-primary p-sm md:p-md lg:p-lg">
+            <h1 className="text-3xl lg:text-center text-tertiary">{title}</h1>
+            <div className="max-w-screen-xl m-auto text-secondary">
                 {content.map((paragraph, index) => (
                     <p key={index}>
                         {paragraph.children.map((child, childIndex) => {
