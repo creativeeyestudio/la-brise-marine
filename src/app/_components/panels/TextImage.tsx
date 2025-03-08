@@ -63,21 +63,21 @@ const TextImage: React.FC<TextImageProps> = ({ title, text, links, image }) => {
                     </p>
                 ))}
 
-                <div className='btnLinks flex flex-col flex-1 gap-4'>
-                        {links?.map((link) => (
-                            <>
-                                <ButtonLink 
-                                    primary={false} 
-                                    label={link.label}
-                                    href={
-                                        link.external_link ? link.external_link : 
-                                        link.pages.data[0] ? link.pages.data[0].attributes.slug : 
-                                        link.posts.data[0] ? 'blog/' + link.posts.data[0]?.attributes.slug : ""
-                                    }
-                                    external={link.external_link ? true : false}
-                                />
-                            </>
-                        ))}
+                <div className='btnLinks flex flex-col flex-1 gap-4 mt-8'>
+                    {links?.map((link) => (
+                        <>
+                            <ButtonLink 
+                                primary={false} 
+                                label={link.label}
+                                href={
+                                    link.external_link ? link.external_link : 
+                                    link.pages.data[0] ? link.pages.data[0].attributes.slug : 
+                                    link.posts.data[0] ? 'blog/' + link.posts.data[0]?.attributes.slug : ""
+                                }
+                                external={link.external_link ? true : false}
+                            />
+                        </>
+                    ))}
                 </div> 
 
                 <div className="relative aspect-video opacity-35 max-w-[550] mx-auto">

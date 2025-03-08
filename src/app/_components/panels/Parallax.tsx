@@ -16,7 +16,7 @@ const Parallax: React.FC<ParallaxProps> = (content: ParallaxProps) => {
 
     return(
         <>
-        <figure className="prx h-[50vh] overflow-hidden relative">
+        <figure className="prx h-[75vh] overflow-hidden relative">
             <Image
                 className="prx_img"
                 src={process.env.NEXT_PUBLIC_API_URL + content.image.data.attributes.url}
