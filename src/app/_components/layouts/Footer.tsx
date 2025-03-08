@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
             {/*<div className='border-b-secondary border-b-2 p-sm-px md:p-md-px lg:p-lg-px'>
                 <Navigation menuId='footer-navigation' />
             </div>*/}
-            <div className='flex flex-col p-sm-px gap-sm md:p-md-px md:gap-md lg:p-lg-px lg:gap-lg lg:flex lg:flex-row lg:justify-between lg:items-end'>
+            <div className='flex flex-col p-sm-px gap-sm md:p-md-px md:gap-md lg:px-lg lg:gap-lg lg:flex lg:flex-row lg:justify-between lg:items-end'>
                 <div className="social flex gap-sm-px md:gap-md-px">
                     <a className='size-9 lg:size-12 text-secondary'>
                         <FaInstagram className='size-full' />
