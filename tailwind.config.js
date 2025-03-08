@@ -45,33 +45,33 @@ module.exports = {
         'md': '2rem',      // Espace pour les écrans moyens (tablettes)
         
         // Espacements en `vw` pour les grands écrans (desktop)
-        'lg': '4vw',       // Espace pour les grands écrans (ordinateurs de bureau, portables)
+        'lg': '5.787vw',       // Espace pour les grands écrans (ordinateurs de bureau, portables)
 
         // Espacements pour le padding
         'xs-px': '1rem',   // Padding horizontal pour mobile
         'sm-px': '1.5rem', // Padding horizontal pour tablette
         'md-px': '2rem',   // Padding horizontal pour tablette
-        'lg-px': '4vw',    // Padding horizontal pour grand écran
+        'lg-px': '5.787vw',    // Padding horizontal pour grand écran
         'xs-py': '1rem',   // Padding vertical pour mobile
         'sm-py': '1.5rem', // Padding vertical pour tablette
         'md-py': '2rem',   // Padding vertical pour tablette
-        'lg-py': '4vw',    // Padding vertical pour grand écran
+        'lg-py': '8.681vw',    // Padding vertical pour grand écran
         
         // Espacements pour les marges verticales (my)
         'xs-mx': '1rem',   // Marges horizontales pour petits écrans
         'sm-mx': '1.5rem', // Marges horizontales pour tablettes
         'md-mx': '2rem',   // Marges horizontales pour tablettes
-        'lg-mx': '4vw',    // Marges horizontales pour grand écran
+        'lg-mx': '5.787vw',    // Marges horizontales pour grand écran
         'xs-my': '1rem',   // Marges verticales pour petits écrans
         'sm-my': '1.5rem', // Marges verticales pour tablettes
         'md-my': '2rem',   // Marges verticales pour tablettes
-        'lg-my': '4vw',    // Marges verticales pour grand écran
+        'lg-my': '8.681vw',    // Marges verticales pour grand écran
 
         // Espacement pour les gaps (grilles/flex)
         'xs-gap': '1rem',  // Gap pour les petits écrans
         'sm-gap': '1.5rem',// Gap pour tablettes
         'md-gap': '2rem',  // Gap pour tablettes/écrans moyens
-        'lg-gap': '4vw',   // Gap pour grand écran (desktop)
+        'lg-gap': '8.681vw',   // Gap pour grand écran (desktop)
 
       },
     },

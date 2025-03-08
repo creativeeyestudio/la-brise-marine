@@ -14,9 +14,21 @@ export interface TextDoubleImageProps {
 
 const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, image1, image2 }) => {
   return (
-    <section className="text-double-img">
-      <div className="text-double-img_content">
-        <h2 className="text-double-img_title">{title}</h2>
+    <section className="bg-primary-dark flex flex-col-reverse text-tertiary xl:grid xl:grid-cols-2 xl:gap-lg xl:px-lg xl:py-lg">
+      {/* First Image */}
+      <figure className="relative aspect-[4/3] md:aspect-video xl:aspect-[inherit] xl:col-start-1 xl:row-start-1 xl:h-2/3">
+        <Image
+          src={process.env.NEXT_PUBLIC_API_URL + image1.data.attributes.url}
+          fill={true}
+          objectFit="cover"
+          alt={image1.data.attributes.alternativeText}
+        />
+      </figure>
+
+      {/* Texte */}
+      <div className="p-sm md:p-md lg:p-lg xl:pt-lg xl:p-0 xl:col-start-2 xl:row-start-1">
+        <h2 className="text-2xl">{title}</h2>
+        
         {text.map((paragraph, index) => (
             <p key={index}>
                 {paragraph.children.map((child, childIndex) => {
@@ -61,11 +73,12 @@ const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, i
                 })}
             </p>
         ))}
-        <div className='btnLinks'>
+        
+        <div className='flex flex-col gap-4 mt-8'>
             {links?.map((link) => (
                 <>
                     <ButtonLink 
-                        primary={true} 
+                        primary={false} 
                         label={link.label}
                         href={
                             link.external_link ? link.external_link : 
@@ -73,29 +86,23 @@ const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, i
                             link.posts.data[0] ? 'blog/' + link.posts.data[0]?.attributes.slug : ""
                         }
                         external={link.external_link ? true : false}
+                        classes="white-border"
                     />
                 </>
             ))}
         </div>
+
+        {/* Second Image */}
+        {image2.data != null ? <figure className="hidden xl:block relative aspect-square ml-xl col-start-2 row-start-2 mt-lg ml-lg">
+          <Image
+            src={process.env.NEXT_PUBLIC_API_URL + image2.data?.attributes.url}
+            fill={true}
+            objectFit="cover"
+            alt={image2.data?.attributes.alternativeText}
+          />
+        </figure> : <></>}
       </div>
 
-      <figure className="text-double-img_image text-double-img_image--first">
-        <Image
-          src={process.env.NEXT_PUBLIC_API_URL + image1.data.attributes.url}
-          width={image1.data.attributes.width}
-          height={image1.data.attributes.height}
-          alt={image1.data.attributes.alternativeText}
-        />
-      </figure>
-
-      {image2.data != null ? <figure className="text-double-img_image text-double-img_image--second">
-        <Image
-          src={process.env.NEXT_PUBLIC_API_URL + image2.data?.attributes.url}
-          width={image2.data?.attributes.width}
-          height={image2.data?.attributes.height}
-          alt={image2.data?.attributes.alternativeText}
-        />
-      </figure> : <></>}
     </section>
   );
 };
