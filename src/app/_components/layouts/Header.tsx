@@ -3,13 +3,13 @@ import Navigation from './Navigation';
 
 const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
     
-    const baseClasses = 'w-full h-24 bg-primary flex justify-between items-center absolute p-4 xl:p-0';
+    const baseClasses = 'w-full h-24 bg-primary flex justify-between items-center fixed z-50 p-4 xl:p-0';
     const classes = `${baseClasses} ${secondary_page ? "secondary-page " : ""}`.trim();
 
     return(
         <>
         <header className={classes}>
-            <button className='toggle-nav hidden md:flex flex-col justify-between w-10 h-6 xl:ms-lg-py'>
+            <button className='toggle-nav hidden md:flex flex-col justify-between w-10 h-6 xl:ms-lg-px'>
                 <span className='w-full bg-secondary h-0.5'></span>
                 <span className='w-full bg-secondary h-0.5'></span>
                 <span className='w-full bg-secondary h-0.5'></span>
@@ -21,7 +21,9 @@ const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
                 <span className='uppercase'>Réserver et offrir</span>
             </button>
         </header>
-        <Navigation menuId={'main-navigation'} />
+        <div className="hidden">
+            <Navigation menuId={'main-navigation'} />
+        </div>
         </>
     );
 }
