@@ -9,7 +9,7 @@ interface TextIntroProps {
 const TextIntro: React.FC<TextIntroProps> = ({ title, content }) => {
     return(
         <section className="bg-primary p-sm md:p-md lg:p-lg">
-            <h1 className="text-3xl lg:text-center text-tertiary">{title}</h1>
+            <h1 className="text-4xl lg:text-center text-tertiary">{title}</h1>
             <div className="max-w-screen-xl m-auto text-secondary">
                 {content.map((paragraph, index) => (
                     <p key={index}>

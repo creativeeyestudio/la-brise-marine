@@ -1,0 +1,25 @@
+.link {
+    &.secondary {
+        position: relative;
+        transition-duration: .5s;
+        width: max-content;
+        &::after {
+            content: '';
+            width: 70%;
+            height: 2px;
+            position: absolute;
+            bottom: -.25rem;
+            left: 0;
+            transition-duration: .5s;
+            @apply bg-black;
+        }
+
+        &:hover {
+            @apply text-tertiary;
+            &::after {
+                width: 100%;
+                @apply bg-tertiary;
+            }
+        }
+    }
+}

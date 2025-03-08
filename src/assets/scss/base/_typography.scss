@@ -1,3 +1,7 @@
 h1 {
     @include title-style();
 }
+
+h2 {
+    @include title-style();
+}
