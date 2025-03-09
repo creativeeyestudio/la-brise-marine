@@ -3,11 +3,24 @@ import getMenu from '@/app/api/menus';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
+import Image from 'next/image';
+
 interface NavigationProps {
-    menuId: string;
+    menuId: string
+    fullNav: boolean
 }
 
-const Navigation: React.FC<NavigationProps> = ({menuId}) => {
+function updateImageView(target: string) {
+    const images = document.querySelectorAll('.nav-image');
+    images.forEach((image) => {
+        image.classList.remove('opacity-100');
+        image.classList.add('opacity-0');
+    });
+
+    document.querySelector(`.${target}`)?.classList.add('opacity-100');
+}
+
+const Navigation: React.FC<NavigationProps> = ({menuId, fullNav=true}) => {
 
     const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -38,12 +51,12 @@ const Navigation: React.FC<NavigationProps> = ({menuId}) => {
         return <p></p>;
     }
 
-    return(
+    return fullNav ? (
         <>
-            <nav>
+            <nav className='xl:flex-1'>
                 <ul>
                     {menuItems?.length > 0 ? menuItems.map((item) => (
-                        <li key={item.id}>
+                        <li key={item.id} onMouseEnter={() => updateImageView('image-' + item.id)} className='w-[max-content]'>
                             {item.path ? (
                                 <Link href={item.path}>
                                     {item.title}
@@ -55,7 +68,7 @@ const Navigation: React.FC<NavigationProps> = ({menuId}) => {
                             {item.items?.length > 0 && (
                                 <ul>
                                     {item.items.map((subItem) => (
-                                        <li key={subItem.id}>
+                                        <li key={subItem.id} className='w-[max-content]'>
                                             {subItem.path ? (
                                                 <Link href={subItem.path}>
                                                     {subItem.title}
@@ -71,8 +84,27 @@ const Navigation: React.FC<NavigationProps> = ({menuId}) => {
                     )) : <></>}
                 </ul>
             </nav>
+
+            <div className="relative w-full xl:flex-1">
+            {menuItems.length > 0 &&
+                menuItems.map((image, index) => 
+                    image.image?.url && (
+                        <figure 
+                            key={image.id}
+                            className={`nav-image image-${image.id} ${index === 0 ? 'opacity-100' : 'opacity-0'} duration-700`}>
+                            <Image
+                                src={process.env.NEXT_PUBLIC_API_URL + image.image.url}
+                                alt={image.title}
+                                fill={true}
+                                objectFit='cover'
+                                objectPosition='center'
+                            />
+                        </figure>
+                ))
+            }
+            </div>
         </>
-    );
+    ) : (<></>);
 }
 
 export default Navigation;

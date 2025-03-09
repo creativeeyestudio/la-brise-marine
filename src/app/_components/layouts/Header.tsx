@@ -6,6 +6,10 @@ const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
     const baseClasses = 'w-full h-24 bg-primary flex justify-between items-center fixed z-50 p-4 xl:p-0';
     const classes = `${baseClasses} ${secondary_page ? "secondary-page " : ""}`.trim();
 
+    function openNav(classTarget: string) {
+        document.querySelector(classTarget)?.classList.toggle('open');
+    }
+
     return(
         <>
         <header className={classes}>
@@ -17,7 +21,7 @@ const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
 
             <figure className='bg-black opacity-40 w-full h-full md:w-80 md:h-4/6 md:absolute md:left-40 xl:left-1/2 xl:-translate-x-1/2'></figure>
 
-            <button className="hidden bg-secondary h-full px-12 md:block">
+            <button className="hidden bg-secondary h-full px-12 md:block" onClick={() => openNav('.menu--secondary')}>
                 <span className='uppercase'>Réserver et offrir</span>
             </button>
         </header>

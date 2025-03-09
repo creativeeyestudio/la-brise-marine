@@ -1,0 +1,7 @@
+.menu {
+    &--secondary {
+        @include nav-style();
+        @include nav-btn-style();
+        @apply flex-row-reverse translate-x-full;
+    }
+}

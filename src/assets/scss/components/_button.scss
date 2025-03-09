@@ -1,17 +1,8 @@
 .link {
     &.secondary {
-        position: relative;
-        transition-duration: .5s;
-        width: max-content;
+        @apply relative duration-500 w-[max-content];
         &::after {
-            content: '';
-            width: 70%;
-            height: 2px;
-            position: absolute;
-            bottom: -.25rem;
-            left: 0;
-            transition-duration: .5s;
-            @apply bg-black;
+            @apply content-[''] w-2/3 h-[2px] absolute -bottom-1 left-0 duration-500 bg-black;
         }
 
         &.white-border {
@@ -24,8 +15,7 @@
             &:hover {
                 @apply text-tertiary;
                 &::after {
-                    width: 100%;
-                    @apply bg-tertiary;
+                    @apply bg-tertiary w-full;
                 }
             }
         }

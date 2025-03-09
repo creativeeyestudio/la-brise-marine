@@ -1,4 +1,50 @@
 @mixin title-style() {
-    margin: 0 0 2rem;
-    @apply font-title;
+    @apply font-title mx-0 mb-8;
+}
+
+@mixin nav-style() {
+    @apply 
+        fixed top-[96px] 
+        bottom-0 z-10 
+        w-full 
+        p-sm 
+        bg-primary-dark 
+        md:p-md 
+        lg:px-lg-px 
+        lg:py-lg-py 
+        xl:flex 
+        xl:gap-lg-px
+        opacity-0
+        duration-1000;
+    
+    &.open {
+        @apply 
+            translate-x-0
+            opacity-100;
+    }
+}
+
+@mixin nav-btn-style() {
+    li {
+        @apply text-lg font-subtitle font-medium xl:text-3xl;
+
+        &:not(:last-child) {
+            @apply mb-xs xl:mb-md;
+        }
+
+        a {
+            @apply text-tertiary relative;
+
+            &::after {
+                @apply content-[''] absolute -bottom-2 left-0 w-0 h-[2px] bg-tertiary opacity-0 duration-700;
+            }
+
+            &:hover {
+                &::after {
+                    @apply w-4/5 opacity-100;
+                }
+            }
+        }
+    } 
+    
 }

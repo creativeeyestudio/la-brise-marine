@@ -13,7 +13,7 @@ export interface MenuItem {
     slug: string
     external: boolean
     items: MenuItem[]
-    nav_image: MenuItemImage | null
+    image: MenuItemImage | null
 }
 
 interface MenuItemImage {
