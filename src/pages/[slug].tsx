@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { getPage } from "../app/api/pages";
 import Error from "next/error";
 import Head from "next/head";
@@ -6,7 +6,7 @@ import WebPage from "@/app/_components/templates/WebPage";
 import ContentPage from '@/app/_components/layouts/ContentPage';
 import PageProps from '@/app/interfaces/page';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface PageWebProps {
   page: PageProps | null;
@@ -15,12 +15,19 @@ interface PageWebProps {
 
 const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
   
   useEffect(() => {
+    setIsClient(true);
+
     if (page?.attributes.homepage) {
       router.push('/');
     }
   }, [page, router]);
+
+  if (!isClient) {
+    return null; // Empêche le rendu avant le montage du composant
+  }
   
   if (error) {
     console.error(error);
@@ -50,6 +57,14 @@ const PageWeb: React.FC<PageWebProps> = ({ page, error }) => {
     </ContentPage>
   );
 };
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  };
+};
+
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params!;
