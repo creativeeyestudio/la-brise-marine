@@ -13,7 +13,7 @@ const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
     return(
         <>
         <header className={classes}>
-            <button className='toggle-nav hidden md:flex flex-col justify-between w-10 h-6 xl:ms-lg-px'>
+            <button className='toggle-nav hidden md:flex flex-col justify-between w-10 h-6 xl:ms-lg-px' onClick={() => openNav('.menu--primary')}>
                 <span className='w-full bg-secondary h-0.5'></span>
                 <span className='w-full bg-secondary h-0.5'></span>
                 <span className='w-full bg-secondary h-0.5'></span>
@@ -21,13 +21,10 @@ const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
 
             <figure className='bg-black opacity-40 w-full h-full md:w-80 md:h-4/6 md:absolute md:left-40 xl:left-1/2 xl:-translate-x-1/2'></figure>
 
-            <button className="hidden bg-secondary h-full px-12 md:block" onClick={() => openNav('.menu--secondary')}>
+            <button className="hidden bg-tertiary h-full px-12 md:block" onClick={() => openNav('.menu--secondary')}>
                 <span className='uppercase'>Réserver et offrir</span>
             </button>
         </header>
-        <div className="hidden">
-            <Navigation menuId={'main-navigation'} />
-        </div>
         </>
     );
 }

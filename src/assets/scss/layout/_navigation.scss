@@ -1,4 +1,10 @@
 .menu {
+    &--primary {
+        @include nav-style();
+        @include nav-btn-style();
+        @apply -translate-x-full;
+    }
+
     &--secondary {
         @include nav-style();
         @include nav-btn-style();
