@@ -1,0 +1,13 @@
+.main-nav {
+    @apply hidden md:flex flex-col justify-between w-10 h-6 xl:ms-lg-px;
+
+    .bar {
+        @apply w-full bg-secondary h-0.5 duration-700;
+    }
+
+    &:hover {
+        .bar {
+            @apply scale-x-75;
+        }
+    }
+}

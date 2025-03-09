@@ -22,10 +22,10 @@ const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
     return(
         <>
         <header className={classes}>
-            <button className='toggle-nav hidden md:flex flex-col justify-between w-10 h-6 xl:ms-lg-px' onClick={() => toggleNav('.menu--primary')}>
-                <span className='w-full bg-secondary h-0.5'></span>
-                <span className='w-full bg-secondary h-0.5'></span>
-                <span className='w-full bg-secondary h-0.5'></span>
+            <button className='main-nav' onClick={() => toggleNav('.menu--primary')}>
+                <span className='bar origin-right'></span>
+                <span className='bar origin-left'></span>
+                <span className='bar origin-right'></span>
             </button>
 
             <figure className='bg-black opacity-40 w-full h-full md:w-80 md:h-4/6 md:absolute md:left-40 xl:left-1/2 xl:-translate-x-1/2'></figure>
