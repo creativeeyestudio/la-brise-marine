@@ -10,7 +10,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   
   useEffect(() => {
     AOS.init({
-      duration: 800,
+      duration: 1500,
+      delay: 500,
+      mirror: true,
       once: false
     })
   })

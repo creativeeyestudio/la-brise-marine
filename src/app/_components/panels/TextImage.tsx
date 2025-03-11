@@ -16,10 +16,10 @@ interface TextImageProps {
 const TextImage: React.FC<TextImageProps> = ({ title, text, links, image }) => {
     return (
         <section className='xl:py-lg xl:grid xl:grid-cols-2 xl:grid-rows-1'>
-            <div className="text-img_text p-sm md:p-md lg:p-lg xl:pb-0 xl:py-lg xl:pt-lg" data-aos='fade-up'>
-                <h2 className='text-2xl md:text-3xl lg:text-center'>{title}</h2>
+            <div className="text-img_text p-sm md:p-md lg:p-lg xl:pb-0 xl:py-lg xl:pt-lg" data-aos='slide-skew'>
+                <h2 className='text-2xl md:text-3xl lg:text-center' data-aos='fade-right'>{title}</h2>
                 {text.map((paragraph, index) => (
-                    <p key={index}>
+                    <p key={index} data-aos='fade-right'>
                         {paragraph.children.map((child, childIndex) => {
                             if (child.type === "link" && child.url) {
                                 // Si l'élément est un lien
@@ -63,7 +63,7 @@ const TextImage: React.FC<TextImageProps> = ({ title, text, links, image }) => {
                     </p>
                 ))}
 
-                <div className='btnLinks flex flex-col flex-1 gap-4 mt-8'>
+                <div className='btnLinks flex flex-col flex-1 gap-4 mt-8' data-aos='fade-right'>
                     {links?.map((link) => (
                         <>
                             <ButtonLink 
@@ -91,13 +91,12 @@ const TextImage: React.FC<TextImageProps> = ({ title, text, links, image }) => {
                 
             </div>
             
-            <figure className="text-img_img aspect-[4/3] relative md:aspect-video xl:aspect-[inherit]">
+            <figure className="text-img_img aspect-[4/3] relative md:aspect-video xl:aspect-[inherit]" data-aos='parallax-fade'>
                 <Image
                     src={process.env.NEXT_PUBLIC_API_URL + image.data.attributes.url}
                     alt={image.data.attributes.alternativeText ?? "Missing Alt"}
                     fill={true}
-                    objectFit="cover"
-                    className='w-full h-full' />
+                    objectFit="cover" />
             </figure>
         </section>
     );
