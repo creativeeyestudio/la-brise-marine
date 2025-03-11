@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { JSX } from "react";
 import { ImageProps } from "@/app/interfaces/_image";
 import { LinkItem, TextBlock } from "@/app/interfaces/page";
 import ButtonLink from "../buttonLink";
@@ -16,7 +16,7 @@ const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, i
   return (
     <section className="bg-primary-dark flex flex-col-reverse text-tertiary xl:grid xl:grid-cols-2 xl:gap-lg xl:px-lg xl:py-lg">
       {/* First Image */}
-      <figure className="relative aspect-[4/3] md:aspect-video xl:aspect-[inherit] xl:col-start-1 xl:row-start-1 xl:h-2/3">
+      <figure data-aos='parallax-fade' className="relative aspect-[4/3] md:aspect-video xl:aspect-[inherit] xl:col-start-1 xl:row-start-1 xl:h-2/3">
         <Image
           src={process.env.NEXT_PUBLIC_API_URL + image1.data.attributes.url}
           fill={true}
@@ -26,11 +26,11 @@ const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, i
       </figure>
 
       {/* Texte */}
-      <div className="p-sm md:p-md lg:p-lg xl:pt-lg xl:p-0 xl:col-start-2 xl:row-start-1">
-        <h2 className="text-2xl">{title}</h2>
+      <div className="p-sm md:p-md lg:p-lg xl:pt-lg xl:p-0 xl:col-start-2 xl:row-start-1" data-aos='slide-skew'>
+        <h2 className="text-2xl" data-aos='fade-left'>{title}</h2>
         
         {text.map((paragraph, index) => (
-            <p key={index}>
+            <p key={index} data-aos='fade-left'>
                 {paragraph.children.map((child, childIndex) => {
                     if (child.type === "link" && child.url) {
                         // Si l'élément est un lien
@@ -74,7 +74,7 @@ const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, i
             </p>
         ))}
         
-        <div className='flex flex-col gap-4 mt-8'>
+        <div className='flex flex-col gap-4 mt-8' data-aos='fade-left'>
             {links?.map((link) => (
                 <>
                     <ButtonLink 
@@ -93,7 +93,7 @@ const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, i
         </div>
 
         {/* Second Image */}
-        {image2.data != null ? <figure className="hidden xl:block relative aspect-square ml-xl col-start-2 row-start-2 mt-lg ml-lg">
+        {image2.data != null ? <figure data-aos='parallax-fade' className="hidden xl:block relative aspect-square ml-xl col-start-2 row-start-2 mt-lg ml-lg">
           <Image
             src={process.env.NEXT_PUBLIC_API_URL + image2.data?.attributes.url}
             fill={true}

@@ -18,7 +18,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   })
 
   return (
-    <div className={`font-body ${poppins.variable} ${raleway.variable} ${roboto.variable}`}>
+    <div className={`overflow-x-hidden font-body ${poppins.variable} ${raleway.variable} ${roboto.variable}`}>
       <Component {...pageProps} />
     </div>
   );
