@@ -1,5 +1,4 @@
 import React from 'react';
-import Navigation from './Navigation';
 
 const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
     
@@ -18,7 +17,6 @@ const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
         });
     }
     
-
     return(
         <>
         <header className={classes}>

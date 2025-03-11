@@ -13,7 +13,13 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     const container: HTMLElement | null = document.getElementById('content');
   
     if (container) {
-      const scrollbar = Scrollbar.init(container);
+      const scrollbar = Scrollbar.init(container, {
+        damping: .05,
+        thumbMinSize: 20,
+        renderByPixels: false,
+        alwaysShowTracks: true,
+        continuousScrolling: true
+      });
       const aosAttr = document.querySelectorAll('[data-aos]');
   
       aosAttr.forEach((el) => {
@@ -24,7 +30,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
       if (window.innerWidth >= 1280) {
         const elements = [
-          { selector: '.header', offset: 0 },
+          { selector: '.header', offset: -1 },
           { selector: '.menu--primary', offset: 96 },
           { selector: '.menu--secondary', offset: 96 }
         ];
