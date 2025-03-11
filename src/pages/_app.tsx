@@ -1,10 +1,10 @@
 // pages/_app.tsx
 import { AppProps } from 'next/app';
 import { poppins, raleway, roboto } from '@/app/lib/fonts';
-import "@/assets/scss/main.scss";
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import "@/assets/scss/main.scss";
 import Scrollbar from 'smooth-scrollbar';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -30,7 +30,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
       if (window.innerWidth >= 1280) {
         const elements = [
-          { selector: '.header', offset: -1 },
+          { selector: '.header', offset: 0 },
           { selector: '.menu--primary', offset: 96 },
           { selector: '.menu--secondary', offset: 96 }
         ];

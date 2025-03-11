@@ -15,7 +15,7 @@ interface TextImageProps {
 
 const TextImage: React.FC<TextImageProps> = ({ title, text, links, image }) => {
     return (
-        <section className='xl:py-lg xl:grid xl:grid-cols-2 xl:grid-rows-1'>
+        <section className='overflow-x-hidden xl:py-lg xl:grid xl:grid-cols-2 xl:grid-rows-1'>
             <div className="text-img_text p-sm md:p-md lg:p-lg xl:pb-0 xl:py-lg xl:pt-lg" data-aos='slide-skew'>
                 <h2 className='text-2xl md:text-3xl lg:text-center' data-aos='fade-right'>{title}</h2>
                 {text.map((paragraph, index) => (

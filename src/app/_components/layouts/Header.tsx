@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header: React.FC<{secondary_page: boolean}> = ({ secondary_page }) => {
     
-    const baseClasses = 'header w-full h-24 bg-primary flex justify-between items-center fixed z-50 p-4 xl:p-0';
+    const baseClasses = 'header w-full h-24 bg-primary border-primary flex justify-between items-center fixed z-50 p-4 xl:p-0';
     const classes = `${baseClasses} ${secondary_page ? "secondary-page " : ""}`.trim();
 
     function toggleNav(classTarget: string) {

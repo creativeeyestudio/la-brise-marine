@@ -14,7 +14,7 @@ export interface TextDoubleImageProps {
 
 const TextDoubleImage: React.FC<TextDoubleImageProps> = ({ title, text, links, image1, image2 }) => {
   return (
-    <section className="bg-primary-dark flex flex-col-reverse text-tertiary xl:grid xl:grid-cols-2 xl:gap-lg xl:px-lg xl:py-lg">
+    <section className="overflow-x-hidden bg-primary-dark flex flex-col-reverse text-tertiary xl:grid xl:grid-cols-2 xl:gap-lg xl:px-lg xl:py-lg">
       {/* First Image */}
       <figure data-aos='parallax-fade' className="relative aspect-[4/3] md:aspect-video xl:aspect-[inherit] xl:col-start-1 xl:row-start-1 xl:h-2/3">
         <Image
