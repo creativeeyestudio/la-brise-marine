@@ -4,18 +4,23 @@
 
 @mixin nav-style() {
     @apply 
-        fixed top-[96px] 
-        bottom-0 z-10 
+        fixed 
+        top-[96px] 
+        z-10 
         w-full 
         p-sm 
         bg-primary-dark 
-        md:p-md 
+        md:p-md
         lg:px-lg-px 
         lg:py-lg-py 
         xl:flex 
         xl:gap-lg-px
         opacity-0
         duration-1000;
+    
+    @media screen and (min-width: 1280px) {
+        height: calc(100dvh - 96px);
+    }
     
     &.open {
         @apply 

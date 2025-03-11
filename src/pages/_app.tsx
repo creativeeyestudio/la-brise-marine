@@ -23,13 +23,28 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       });
 
       if (window.innerWidth >= 1280) {
-        const header: HTMLElement | null = document.querySelector('.header');
-        if (header) {
+        const elements = [
+          { selector: '.header', offset: 0 },
+          { selector: '.menu--primary', offset: 96 },
+          { selector: '.menu--secondary', offset: 96 }
+        ];
+      
+        const domElements = elements
+          .map(({ selector, offset }) => ({
+            el: document.querySelector(selector) as HTMLElement | null,
+            offset
+          }))
+          .filter(({ el }) => el !== null); // Filtrer les éléments qui existent
+      
+        if (domElements.length > 0) {
           scrollbar.addListener(({ offset }) => {
-            header.style.top = `${offset.y}px`;
-          })  
+            domElements.forEach(({ el, offset: elOffset }) => {
+              if (el) el.style.top = `${offset.y + elOffset}px`;
+            });
+          });
         }
       }
+      
   
       AOS.init({
         duration: 1500,
