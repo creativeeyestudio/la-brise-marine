@@ -1,6 +1,6 @@
 services:
   admin:
-    image: kevinad/dreamsite-admin:main  # Image stable de production
+    image: kevinad/dreamsite-admin:3.0.0-rc2  # Image stable de production
     restart: always
     env_file: .env
     environment:
