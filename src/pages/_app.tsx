@@ -2,10 +2,10 @@
 import { AppProps } from 'next/app';
 import { poppins, raleway, roboto } from '@/app/lib/fonts';
 import { useEffect } from 'react';
+import { SmoothScroll } from "react-smooth-scrolll";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import "@/assets/scss/main.scss";
-import Scrollbar from 'smooth-scrollbar';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   
@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         duration: 1500,
         delay: 500,
         mirror: true,
-        once: false
+        once: true
       });
   
       return () => {
@@ -27,8 +27,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   }, []);  
 
   return (
-    <div id='content' className={`overflow-x-hidden font-body ${poppins.variable} ${raleway.variable} ${roboto.variable}`}>
-      <Component {...pageProps} />
-    </div>
+    <SmoothScroll scrollSpeed={1.5} smoothness={0.07} infinite={false}>
+      <div id='content' className={`font-body ${poppins.variable} ${raleway.variable} ${roboto.variable}`}>
+        <Component {...pageProps} />
+      </div>
+    </SmoothScroll>
   );
 }
