@@ -38,7 +38,8 @@ const RoomPage = () => {
               odit error animi, officia deleniti tempora ipsam magni eum ipsa,
               sed sunt ipsum.
             </p>
-            <div className="mt-4 flex flex-col gap-4">
+
+            <div className="mt-4 flex flex-col gap-4 xl:flex-row xl:justify-between xl:mt-md">
               <span>0,00 €</span>
               <ButtonLink
                 primary={true}
@@ -59,9 +60,12 @@ const RoomPage = () => {
         </section>
 
         {/* Image */}
-        <figure className="relative aspect-[4/3]">
-          <Image src="" alt="Chambre" fill={true} objectFit="cover"></Image>
-        </figure>
+        <div className="lg:px-lg lg:py-lg lg:bg-primary">
+            <figure className="relative aspect-[4/3] md:aspect-video xl:aspect-[inherit] xl:h-[72dvh]">
+                <Image src="" alt="Chambre" fill={true} objectFit="cover" className="bg-black bg-opacity-50"></Image>
+            </figure>
+          
+        </div>
       </ContentPage>
     </>
   );
