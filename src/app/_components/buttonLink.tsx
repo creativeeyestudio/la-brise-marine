@@ -10,7 +10,7 @@ interface ButtonLinkProps {
 
 export default function ButtonLink({ primary, label, href, external, classes }: ButtonLinkProps) {
     const className = 'uppercase ';
-    const classNameLink =  primary ? 'link primary ' : 'link secondary ';
+    const classNameLink =  primary ? 'link link--primary ' : 'link link--secondary ';
 
     return external ? (
         <a href={href} className={className + classNameLink + classes} target="_blank" rel="noopener noreferrer">

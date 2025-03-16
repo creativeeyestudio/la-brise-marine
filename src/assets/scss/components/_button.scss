@@ -1,5 +1,10 @@
 .link {
-    &.secondary {
+
+    &--primary {
+        @apply bg-tertiary px-8 py-4;
+    }
+
+    &--secondary {
         @apply relative duration-500 w-[max-content];
         &::after {
             @apply content-[''] w-2/3 h-[2px] absolute -bottom-1 left-0 duration-500 bg-black;
